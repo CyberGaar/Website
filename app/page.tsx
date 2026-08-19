@@ -54,9 +54,7 @@ export default function Home() {
         </div>
 
         <div className="globe-stage" aria-label="Animated globe showing global security standards">
-          <p className="globe-kicker">ALIGNED WITH GLOBAL STANDARDS</p>
           <GlobeAnimation />
-          <p className="globe-caption"><span className="pulse-dot" /> CONTINUOUSLY MAPPING YOUR RISK</p>
         </div>
       </section>
 
