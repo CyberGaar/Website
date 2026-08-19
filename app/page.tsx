@@ -2,55 +2,28 @@
 
 import { useEffect, useState } from "react";
 
-const industries = [
+const offers = [
   {
-    number: "01",
-    title: "Financial services",
-    copy: "Protect sensitive transactions, customer data and fast-moving digital products.",
+    id: "industries",
+    icon: "◉",
+    title: "Industries",
+    copy: "Security shaped around your operational reality, regulatory pressure and the systems your organisation depends on.",
+    items: ["Financial services", "Healthcare", "Technology & SaaS", "Public sector", "Retail & eCommerce", "Critical infrastructure"],
   },
   {
-    number: "02",
-    title: "Healthcare",
-    copy: "Reduce clinical and operational risk while keeping essential systems available.",
+    id: "services",
+    icon: "✣",
+    title: "Services",
+    copy: "Clear, evidence-led security services that reveal exposure, test resilience and make the next action obvious.",
+    items: ["Security audits", "Penetration testing", "Vulnerability scanning", "Cloud security review", "Application security", "Compliance readiness"],
   },
   {
-    number: "03",
-    title: "Technology & SaaS",
-    copy: "Build security into cloud infrastructure, applications and every release cycle.",
+    id: "solutions",
+    icon: "⊞",
+    title: "Solutions",
+    copy: "Practical programmes that turn one-off findings into stronger controls, better visibility and continuous resilience.",
+    items: ["Assurance readiness", "Attack surface clarity", "Secure product delivery", "Continuous resilience"],
   },
-  {
-    number: "04",
-    title: "Public sector",
-    copy: "Strengthen critical services with clear assurance and pragmatic remediation.",
-  },
-];
-
-const services = [
-  {
-    number: "01",
-    title: "Security audits",
-    copy: "A clear, evidence-led view of your controls, risks and readiness against the frameworks that matter.",
-    meta: "ISO 27001 · SOC 2 · PCI DSS",
-  },
-  {
-    number: "02",
-    title: "Penetration testing",
-    copy: "Human-led testing that shows how a real attacker could reach your systems, data and users.",
-    meta: "Web · API · Cloud · Network",
-  },
-  {
-    number: "03",
-    title: "Vulnerability scanning",
-    copy: "Continuous visibility across your attack surface, with noise removed and priorities made obvious.",
-    meta: "External · Internal · Continuous",
-  },
-];
-
-const solutions = [
-  ["Assurance readiness", "Turn complex compliance requirements into a practical, achievable roadmap."],
-  ["Attack surface clarity", "Know what is exposed, what matters most and what your team should fix first."],
-  ["Secure product delivery", "Find weaknesses before release and help developers prevent them coming back."],
-  ["Continuous resilience", "Combine recurring validation, tracking and advice into one security rhythm."],
 ];
 
 const stories = [
@@ -73,27 +46,51 @@ const stories = [
 
 const trustItems = ["MICROSOFT", "AWS", "CLOUDFLARE", "CISCO", "FORTINET", "GITHUB"];
 
+const regions = [
+  { code: "global", flag: "◎", label: "Global", href: "/" },
+  { code: "uk", flag: "🇬🇧", label: "United Kingdom", href: "/uk" },
+  { code: "pk", flag: "🇵🇰", label: "Pakistan", href: "/pk" },
+];
+
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <span aria-hidden="true">⟶</span>;
+}
+
+function Chevron() {
+  return <span className="chevron" aria-hidden="true">⌄</span>;
 }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [regionOpen, setRegionOpen] = useState(false);
+  const [currentRegion, setCurrentRegion] = useState(regions[0]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const path = window.location.pathname.toLowerCase();
+    if (path.startsWith("/uk")) {
+      setCurrentRegion(regions[1]);
+      return;
+    }
+    if (path.startsWith("/pk")) {
+      setCurrentRegion(regions[2]);
+      return;
+    }
+
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const language = navigator.language.toLowerCase();
+    if (timeZone === "Asia/Karachi" || language.endsWith("-pk")) setCurrentRegion(regions[2]);
+    else if (timeZone === "Europe/London" || language === "en-gb") setCurrentRegion(regions[1]);
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setRegionOpen(false);
+  };
 
   return (
     <main>
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
-        <a className="brand" href="#top" aria-label="Cybergaar home" onClick={closeMenu}>
+      <header className="site-header reference-header">
+        <a className="brand" href="#top" aria-label="Cybergaar home" onClick={closeMenus}>
           <span className="brand-mark" aria-hidden="true"><i /></span>
           <span>CYBER<strong>GAAR</strong></span>
         </a>
@@ -109,32 +106,61 @@ export default function Home() {
         </button>
 
         <nav className={menuOpen ? "nav-open" : ""} aria-label="Primary navigation">
-          <a href="#industries" onClick={closeMenu}>Industries</a>
-          <a href="#services" onClick={closeMenu}>Services</a>
-          <a href="#solutions" onClick={closeMenu}>Solutions</a>
-          <a href="#stories" onClick={closeMenu}>Client stories</a>
-          <a className="header-cta" href="#contact" onClick={closeMenu}>Talk to an expert <Arrow /></a>
+          <div className="primary-nav">
+            <a href="#services" onClick={closeMenus}>Services <Chevron /></a>
+            <a href="#industries" onClick={closeMenus}>Industries <Chevron /></a>
+            <a href="#solutions" onClick={closeMenus}>Solutions <Chevron /></a>
+            <a href="#stories" onClick={closeMenus}>Client stories</a>
+            <a href="#about" onClick={closeMenus}>About</a>
+            <button className="search-button" type="button" aria-label="Search Cybergaar"><span /></button>
+          </div>
+
+          <div className="secondary-nav">
+            <a href="#contact" onClick={closeMenus}>Contact</a>
+            <div className="region-picker">
+              <button
+                type="button"
+                className="region-button"
+                aria-expanded={regionOpen}
+                aria-controls="region-menu"
+                onClick={() => setRegionOpen(!regionOpen)}
+              >
+                <span className="region-flag">{currentRegion.flag}</span>
+                <span>{currentRegion.label}</span>
+                <Chevron />
+              </button>
+              <div className={`region-menu ${regionOpen ? "region-menu-open" : ""}`} id="region-menu">
+                <p>Select a Cybergaar site</p>
+                {regions.map((region) => (
+                  <a
+                    className={currentRegion.code === region.code ? "active-region" : ""}
+                    href={region.href}
+                    key={region.code}
+                    onClick={() => {
+                      setCurrentRegion(region);
+                      closeMenus();
+                    }}
+                  >
+                    <span>{region.flag}</span>{region.label}
+                    {currentRegion.code === region.code && <b aria-label="Current site">✓</b>}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </nav>
       </header>
 
-      <section className="hero" id="top">
+      <section className="hero reference-hero" id="top">
         <div className="hero-noise" aria-hidden="true" />
-        <div className="hero-copy reveal">
-          <p className="eyebrow light"><span /> CYBER ASSURANCE, MADE CLEAR</p>
+        <div className="hero-copy">
+          <p className="eyebrow"><span /> CYBER ASSURANCE, MADE CLEAR</p>
           <h1>See every gap.<br />Secure every move.</h1>
           <p className="hero-intro">
             We help businesses understand and reduce cyber risk through focused
             security audits, penetration testing and vulnerability scanning.
           </p>
-          <div className="hero-actions">
-            <a className="button primary" href="#contact">Start a conversation <Arrow /></a>
-            <a className="text-link light-link" href="#services">Explore our services <span aria-hidden="true">↓</span></a>
-          </div>
-          <div className="hero-proof" aria-label="Cybergaar approach">
-            <span><b>01</b> Find the exposure</span>
-            <span><b>02</b> Prioritise the risk</span>
-            <span><b>03</b> Strengthen the business</span>
-          </div>
+          <a className="reference-link" href="#services">Explore what we do <Arrow /></a>
         </div>
 
         <div className="globe-stage" aria-label="Animated globe showing global security standards">
@@ -154,8 +180,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="trust-strip" aria-label="Security technology ecosystem">
-        <p>TRUSTED SECURITY ECOSYSTEMS</p>
+      <section className="trust-strip" aria-label="Trusted security ecosystem">
+        <p>TRUSTED SECURITY ECOSYSTEM</p>
         <div className="trust-window">
           <div className="trust-track">
             {[...trustItems, ...trustItems].map((item, index) => (
@@ -165,84 +191,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="positioning section-pad">
-        <p className="eyebrow"><span /> PRACTICAL SECURITY FOR MODERN BUSINESS</p>
-        <div className="positioning-grid">
-          <h2>Security should make<br />the next move <em>clear.</em></h2>
-          <div>
-            <p>Cybergaar turns technical exposure into business decisions. Our specialists look deeper, explain plainly and stay focused on the risks that can genuinely affect your organisation.</p>
-            <a className="text-link" href="#contact">Why Cybergaar <Arrow /></a>
-          </div>
-        </div>
+      <section className="offers" aria-label="Cybergaar industries, services and solutions">
+        {offers.map((offer) => (
+          <article className="offer-column" id={offer.id} key={offer.title}>
+            <div className="offer-title">
+              <span className="offer-icon" aria-hidden="true">{offer.icon}</span>
+              <h2>{offer.title}</h2>
+            </div>
+            <p>{offer.copy}</p>
+            <div className="offer-pills">
+              {offer.items.map((item) => <a href="#contact" key={item}>{item}</a>)}
+            </div>
+            <a className="offer-explore" href="#contact">Explore all {offer.title.toLowerCase()} <Arrow /></a>
+          </article>
+        ))}
       </section>
 
-      <section className="industries section-pad" id="industries">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow"><span /> INDUSTRIES</p>
-            <h2>Context changes<br />the risk.</h2>
-          </div>
-          <p>We bring security thinking shaped around how your organisation operates—not a generic checklist.</p>
-        </div>
-        <div className="industry-grid">
-          {industries.map((industry) => (
-            <a className="industry-card" href="#contact" key={industry.title}>
-              <span className="card-number">{industry.number}</span>
-              <div>
-                <h3>{industry.title}</h3>
-                <p>{industry.copy}</p>
-              </div>
-              <Arrow />
-            </a>
-          ))}
-        </div>
+      <section className="about-statement" id="about">
+        <p>Cybergaar turns technical exposure into business decisions. We look deeper, explain plainly and focus on the risks that can genuinely affect your organisation.</p>
       </section>
 
-      <section className="services section-pad" id="services">
-        <div className="section-heading light-heading">
-          <div>
-            <p className="eyebrow light"><span /> CORE SERVICES</p>
-            <h2>Three ways to<br />know what&apos;s real.</h2>
-          </div>
-          <p>Direct answers, evidence you can use and a practical path to reduce your exposure.</p>
-        </div>
-        <div className="service-list">
-          {services.map((service) => (
-            <a className="service-row" href="#contact" key={service.title}>
-              <span className="service-number">{service.number}</span>
-              <h3>{service.title}</h3>
-              <p>{service.copy}</p>
-              <span className="service-meta">{service.meta}</span>
-              <span className="round-arrow"><Arrow /></span>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="solutions section-pad" id="solutions">
-        <div className="solutions-title">
-          <p className="eyebrow"><span /> SOLUTIONS</p>
-          <h2>From a finding<br />to a <em>stronger system.</em></h2>
-        </div>
-        <div className="solution-grid">
-          {solutions.map(([title, copy], index) => (
-            <article className={`solution-card solution-${index + 1}`} key={title}>
-              <span className="solution-icon" aria-hidden="true">{index === 0 ? "◎" : index === 1 ? "⌁" : index === 2 ? "◇" : "↻"}</span>
-              <h3>{title}</h3>
-              <p>{copy}</p>
-              <a href="#contact" aria-label={`Explore ${title}`}>Explore <Arrow /></a>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="stories section-pad" id="stories">
-        <div className="section-heading stories-heading">
-          <div>
-            <p className="eyebrow"><span /> CLIENT STORIES</p>
-            <h2>Security work that<br />moves business forward.</h2>
-          </div>
-          <a className="text-link" href="#contact">View all stories <Arrow /></a>
+      <section className="stories reference-stories" id="stories">
+        <div className="reference-section-title">
+          <h2>Client stories</h2>
+          <a href="#contact">See all client stories <Arrow /></a>
         </div>
         <div className="story-grid">
           {stories.map((story, index) => (
@@ -262,14 +234,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="contact" id="contact">
+      <section className="contact reference-contact" id="contact">
         <div>
-          <p className="eyebrow light"><span /> LET&apos;S TALK</p>
-          <h2>Ready to see your<br />risk more clearly?</h2>
+          <p className="eyebrow"><span /> HOW CAN WE HELP?</p>
+          <h2>Let&apos;s make your<br />next move secure.</h2>
         </div>
         <div className="contact-side">
           <p>Tell us what you&apos;re protecting, what&apos;s changing, or where you need certainty. We&apos;ll help you find the right first step.</p>
-          <a className="button primary" href="mailto:hello@cybergaar.com">Talk to a security expert <Arrow /></a>
+          <a className="reference-link" href="mailto:hello@cybergaar.com">Contact Cybergaar <Arrow /></a>
         </div>
       </section>
 
@@ -288,9 +260,9 @@ export default function Home() {
           </div>
           <div className="footer-links">
             <a href="mailto:hello@cybergaar.com">Contact</a>
-            <a href="#top">LinkedIn</a>
+            <a href="/uk">United Kingdom site</a>
+            <a href="/pk">Pakistan site</a>
             <a href="#top">Privacy</a>
-            <a href="#top">Terms</a>
           </div>
         </div>
         <div className="footer-bottom">
