@@ -52,6 +52,36 @@ const regions = [
   { code: "pk", flag: "🇵🇰", label: "Pakistan", href: "/pk" },
 ];
 
+const navMenus = {
+  services: {
+    title: "Services",
+    copy: "Focused security expertise that helps you understand exposure, validate resilience and act with confidence.",
+    groups: [
+      { title: "Audit & assurance", links: ["Security audits", "Compliance readiness", "Cloud security review"] },
+      { title: "Offensive security", links: ["Penetration testing", "Web & API testing", "Network testing"] },
+      { title: "Continuous protection", links: ["Vulnerability scanning", "Attack surface monitoring", "Remediation validation"] },
+    ],
+  },
+  industries: {
+    title: "Industries",
+    copy: "Security decisions grounded in your sector, your obligations and the way your organisation really operates.",
+    groups: [
+      { title: "Regulated", links: ["Financial services", "Healthcare", "Public sector"] },
+      { title: "Digital", links: ["Technology & SaaS", "Retail & eCommerce", "Digital platforms"] },
+      { title: "Essential", links: ["Critical infrastructure", "Energy & utilities", "Professional services"] },
+    ],
+  },
+  solutions: {
+    title: "Solutions",
+    copy: "Practical security programmes designed around the outcome your organisation needs next.",
+    groups: [
+      { title: "Prepare", links: ["Assurance readiness", "Compliance roadmap", "Security baseline"] },
+      { title: "Discover", links: ["Attack surface clarity", "Exposure validation", "Risk prioritisation"] },
+      { title: "Improve", links: ["Secure product delivery", "Continuous resilience", "Developer enablement"] },
+    ],
+  },
+} as const;
+
 function Arrow() {
   return <span aria-hidden="true">⟶</span>;
 }
@@ -63,6 +93,7 @@ function Chevron() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<keyof typeof navMenus | null>(null);
   const [currentRegion, setCurrentRegion] = useState(regions[0]);
 
   useEffect(() => {
@@ -85,6 +116,17 @@ export default function Home() {
   const closeMenus = () => {
     setMenuOpen(false);
     setRegionOpen(false);
+    setActiveMenu(null);
+  };
+
+  const handleNavMenu = (menu: keyof typeof navMenus) => {
+    if (window.innerWidth <= 900) {
+      document.getElementById(menu)?.scrollIntoView({ behavior: "smooth" });
+      closeMenus();
+      return;
+    }
+    setRegionOpen(false);
+    setActiveMenu(activeMenu === menu ? null : menu);
   };
 
   return (
@@ -107,9 +149,9 @@ export default function Home() {
 
         <nav className={menuOpen ? "nav-open" : ""} aria-label="Primary navigation">
           <div className="primary-nav">
-            <a href="#services" onClick={closeMenus}>Services <Chevron /></a>
-            <a href="#industries" onClick={closeMenus}>Industries <Chevron /></a>
-            <a href="#solutions" onClick={closeMenus}>Solutions <Chevron /></a>
+            <button type="button" aria-expanded={activeMenu === "services"} onClick={() => handleNavMenu("services")}>Services <Chevron /></button>
+            <button type="button" aria-expanded={activeMenu === "industries"} onClick={() => handleNavMenu("industries")}>Industries <Chevron /></button>
+            <button type="button" aria-expanded={activeMenu === "solutions"} onClick={() => handleNavMenu("solutions")}>Solutions <Chevron /></button>
             <a href="#stories" onClick={closeMenus}>Client stories</a>
             <a href="#about" onClick={closeMenus}>About</a>
             <button className="search-button" type="button" aria-label="Search Cybergaar"><span /></button>
@@ -123,7 +165,10 @@ export default function Home() {
                 className="region-button"
                 aria-expanded={regionOpen}
                 aria-controls="region-menu"
-                onClick={() => setRegionOpen(!regionOpen)}
+                onClick={() => {
+                  setActiveMenu(null);
+                  setRegionOpen(!regionOpen);
+                }}
               >
                 <span className="region-flag">{currentRegion.flag}</span>
                 <span>{currentRegion.label}</span>
@@ -149,6 +194,28 @@ export default function Home() {
             </div>
           </div>
         </nav>
+
+        {activeMenu && (
+          <>
+            <div className="mega-menu" aria-label={`${navMenus[activeMenu].title} menu`}>
+              <div className="mega-intro">
+                <p>EXPLORE CYBERGAAR</p>
+                <h2>{navMenus[activeMenu].title}</h2>
+                <span>{navMenus[activeMenu].copy}</span>
+                <a href={`#${activeMenu}`} onClick={closeMenus}>Explore all {navMenus[activeMenu].title.toLowerCase()} <Arrow /></a>
+              </div>
+              <div className="mega-groups">
+                {navMenus[activeMenu].groups.map((group) => (
+                  <div className="mega-group" key={group.title}>
+                    <h3>{group.title}</h3>
+                    {group.links.map((link) => <a href="#contact" onClick={closeMenus} key={link}>{link} <span aria-hidden="true">›</span></a>)}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button className="nav-scrim" type="button" aria-label="Close navigation menu" onClick={closeMenus} />
+          </>
+        )}
       </header>
 
       <section className="hero reference-hero" id="top">
