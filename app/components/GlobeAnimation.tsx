@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const frameCount = 60;
-const frameDuration = 140;
+const frameDuration = 520;
 
 function framePath(index: number) {
   return `/globe-frames/frame-${String(index).padStart(3, "0")}.png`;
@@ -106,10 +106,27 @@ export default function GlobeAnimation() {
       <img
         alt="Rotating globe showing cyber compliance standards across regions"
         draggable="false"
-        height="420"
+        height="640"
         src={frames[activeFrame]}
-        width="420"
+        width="640"
       />
+      <div className="globe-readable-label globe-readable-us" aria-hidden="true">
+        <strong>UNITED STATES</strong>
+        <span>NIST</span>
+        <span>SOC 2</span>
+        <span>HIPAA</span>
+        <span>PCI DSS</span>
+      </div>
+      <div className="globe-readable-label globe-readable-uk" aria-hidden="true">
+        <strong>UNITED KINGDOM</strong>
+        <span>Cyber Essentials</span>
+        <span>ISO 27001</span>
+      </div>
+      <div className="globe-readable-label globe-readable-eu" aria-hidden="true">
+        <strong>EUROPE</strong>
+        <span>GDPR</span>
+        <span>DORA</span>
+      </div>
     </div>
   );
 }
