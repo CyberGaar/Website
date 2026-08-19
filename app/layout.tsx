@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://cybergaar.com"),
   title: "Cybergaar | Cyber assurance, made clear",
   description: "Security audits, penetration testing and vulnerability scanning that turn cyber risk into clear business action.",
+  icons: {
+    icon: "/fav.png",
+    shortcut: "/fav.png",
+    apple: "/fav.png",
+  },
   openGraph: {
     title: "Cybergaar | Cyber assurance, made clear",
     description: "See every gap. Secure every move.",

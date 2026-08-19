@@ -3,8 +3,7 @@ export default function SiteFooter() {
     <footer>
       <div className="footer-main">
         <a className="brand footer-brand" href="/" aria-label="Cybergaar home">
-          <span className="brand-mark" aria-hidden="true"><i /></span>
-          <span>CYBER<strong>GAAR</strong></span>
+          <img src="/logo.png" alt="Cybergaar" />
         </a>
         <p>Clear assurance.<br />Stronger business.</p>
         <div className="footer-links">
@@ -15,9 +14,9 @@ export default function SiteFooter() {
         </div>
         <div className="footer-links">
           <a href="/msp">MSP partners</a>
-          <a href="mailto:hello@cybergaar.com">Contact</a>
-          <a href="/uk">United Kingdom site</a>
-          <a href="/pk">Pakistan site</a>
+          <a href="/case-studies">Case studies</a>
+          <a href="/careers">Careers</a>
+          <a href="/contact">Contact</a>
         </div>
       </div>
       <div className="footer-bottom">
@@ -27,4 +26,3 @@ export default function SiteFooter() {
     </footer>
   );
 }
-

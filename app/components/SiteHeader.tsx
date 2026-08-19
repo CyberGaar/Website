@@ -16,20 +16,20 @@ const pentestLinks = getServicesByCategory("penetration-testing").slice(0, 4);
 const discoveryMenus = {
   industries: {
     title: "Industries",
-    copy: "Security decisions grounded in your sector, your obligations and the way your organisation operates.",
+    copy: "Security decisions grounded in your sector, obligations and operational reality.",
     groups: [
-      { title: "Regulated", links: ["Financial services", "Healthcare", "Public sector"] },
-      { title: "Digital", links: ["Technology & SaaS", "Retail & eCommerce", "Digital platforms"] },
-      { title: "Essential", links: ["Critical infrastructure", "Energy & utilities", "Professional services"] },
+      { title: "Regulated", links: [{ label: "Financial services", href: "/#industries" }, { label: "Healthcare", href: "/#industries" }, { label: "Public sector", href: "/#industries" }] },
+      { title: "Digital", links: [{ label: "Technology & SaaS", href: "/#industries" }, { label: "Retail & eCommerce", href: "/#industries" }, { label: "Digital platforms", href: "/#industries" }] },
+      { title: "Essential", links: [{ label: "Critical infrastructure", href: "/#industries" }, { label: "Energy & utilities", href: "/#industries" }, { label: "Professional services", href: "/#industries" }] },
     ],
   },
   solutions: {
     title: "Solutions",
-    copy: "Practical security programmes designed around the outcome your organisation needs next.",
+    copy: "Use Cybergaar technology directly or extend your own managed service with our security capability.",
     groups: [
-      { title: "Prepare", links: ["Assurance readiness", "Compliance roadmap", "Security baseline"] },
-      { title: "Discover", links: ["Attack surface clarity", "Exposure validation", "Risk prioritisation"] },
-      { title: "Improve", links: ["Secure product delivery", "Continuous resilience", "Developer enablement"] },
+      { title: "Product", links: [{ label: "Product Studio", href: "/product-studio" }, { label: "Open-source compliance automation", href: "/product-studio" }] },
+      { title: "Partners", links: [{ label: "MSP partner programme", href: "/msp" }, { label: "Multi-client delivery", href: "/msp" }] },
+      { title: "Outcomes", links: [{ label: "Assurance readiness", href: "/services/audits" }, { label: "Continuous resilience", href: "/services/vulnerability-scanning" }] },
     ],
   },
 } as const;
@@ -68,6 +68,14 @@ export default function SiteHeader() {
     setActiveMenu(null);
   };
 
+  const toggleMobileMenu = () => {
+    if (menuOpen) {
+      closeMenus();
+      return;
+    }
+    setMenuOpen(true);
+  };
+
   const toggleMenu = (menu: ActiveMenu) => {
     setRegionOpen(false);
     setActiveMenu(activeMenu === menu ? null : menu);
@@ -83,49 +91,45 @@ export default function SiteHeader() {
   return (
     <header className="site-header reference-header">
       <a className="brand" href="/" aria-label="Cybergaar home" onClick={closeMenus}>
-        <span className="brand-mark" aria-hidden="true"><i /></span>
-        <span>CYBER<strong>GAAR</strong></span>
+        <img src="/logo.png" alt="Cybergaar" />
       </a>
 
-      <button
-        className="menu-button"
-        type="button"
-        aria-label="Toggle navigation"
-        aria-expanded={menuOpen}
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
+      <button className="menu-button" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={toggleMobileMenu}>
         <span /><span />
       </button>
 
       <nav className={menuOpen ? "nav-open" : ""} aria-label="Primary navigation">
         <div className="primary-nav">
-          <button type="button" aria-expanded={activeMenu === "services"} onClick={() => toggleMenu("services")}>Services <Chevron /></button>
-          <button type="button" aria-expanded={activeMenu === "industries"} onClick={() => toggleMenu("industries")}>Industries <Chevron /></button>
-          <button type="button" aria-expanded={activeMenu === "solutions"} onClick={() => toggleMenu("solutions")}>Solutions <Chevron /></button>
-          <a href="/msp" onClick={closeMenus}>MSP</a>
-          <a href="/product-studio" onClick={closeMenus}>Product Studio</a>
-          <a href="/#stories" onClick={closeMenus}>Client stories</a>
-          <div className={`mobile-subnav ${activeMenu === "services" ? "mobile-subnav-open" : ""}`}>
-            <a href="/services/audits" onClick={closeMenus}>All audits</a>
+          <button type="button" aria-expanded={activeMenu === "services"} aria-controls="mobile-services" onClick={() => toggleMenu("services")}>Services <Chevron /></button>
+          <div className={`mobile-subnav ${activeMenu === "services" ? "mobile-subnav-open" : ""}`} id="mobile-services">
+            <a href="/services" onClick={closeMenus}>All services</a>
+            <a href="/services/audits" onClick={closeMenus}>Audit & compliance</a>
             <a href="/services/cyber-essentials" onClick={closeMenus}>Cyber Essentials</a>
             <a href="/services/vulnerability-scanning" onClick={closeMenus}>Vulnerability scanning</a>
             <a href="/services/penetration-testing" onClick={closeMenus}>Penetration testing</a>
           </div>
+
+          <button type="button" aria-expanded={activeMenu === "industries"} aria-controls="mobile-industries" onClick={() => toggleMenu("industries")}>Industries <Chevron /></button>
+          <div className={`mobile-subnav ${activeMenu === "industries" ? "mobile-subnav-open" : ""}`} id="mobile-industries">
+            <a href="/#industries" onClick={closeMenus}>Financial services</a>
+            <a href="/#industries" onClick={closeMenus}>Healthcare</a>
+            <a href="/#industries" onClick={closeMenus}>Technology & SaaS</a>
+            <a href="/#industries" onClick={closeMenus}>Critical infrastructure</a>
+          </div>
+
+          <button type="button" aria-expanded={activeMenu === "solutions"} aria-controls="mobile-solutions" onClick={() => toggleMenu("solutions")}>Solutions <Chevron /></button>
+          <div className={`mobile-subnav ${activeMenu === "solutions" ? "mobile-subnav-open" : ""}`} id="mobile-solutions">
+            <a href="/product-studio" onClick={closeMenus}>Product Studio</a>
+            <a href="/msp" onClick={closeMenus}>MSP partner programme</a>
+            <a href="/services/audits" onClick={closeMenus}>Assurance readiness</a>
+            <a href="/services/vulnerability-scanning" onClick={closeMenus}>Continuous resilience</a>
+          </div>
         </div>
 
         <div className="secondary-nav">
-          <a href="/#contact" onClick={closeMenus}>Contact</a>
+          <a href="/contact" onClick={closeMenus}>Contact</a>
           <div className="region-picker">
-            <button
-              type="button"
-              className="region-button"
-              aria-expanded={regionOpen}
-              aria-controls="region-menu"
-              onClick={() => {
-                setActiveMenu(null);
-                setRegionOpen(!regionOpen);
-              }}
-            >
+            <button type="button" className="region-button" aria-expanded={regionOpen} aria-controls="region-menu" onClick={() => { setActiveMenu(null); setRegionOpen(!regionOpen); }}>
               <span className="region-flag">{currentRegion.flag}</span>
               <span>{currentRegion.label}</span>
               <Chevron />
@@ -133,12 +137,7 @@ export default function SiteHeader() {
             <div className={`region-menu ${regionOpen ? "region-menu-open" : ""}`} id="region-menu">
               <p>Select a Cybergaar site</p>
               {regions.map((region) => (
-                <a
-                  className={currentRegion.code === region.code ? "active-region" : ""}
-                  href={region.href}
-                  key={region.code}
-                  onClick={closeMenus}
-                >
+                <a className={currentRegion.code === region.code ? "active-region" : ""} href={region.href} key={region.code} onClick={closeMenus}>
                   <span>{region.flag}</span>{region.label}
                   {currentRegion.code === region.code && <b aria-label="Current site">✓</b>}
                 </a>
@@ -183,13 +182,13 @@ export default function SiteHeader() {
                   <p>EXPLORE CYBERGAAR</p>
                   <h2>{discoveryMenus[activeMenu].title}</h2>
                   <span>{discoveryMenus[activeMenu].copy}</span>
-                  <a href={`/#${activeMenu}`} onClick={closeMenus}>Explore all {discoveryMenus[activeMenu].title.toLowerCase()} <Arrow /></a>
+                  <a href={activeMenu === "solutions" ? "/product-studio" : "/#industries"} onClick={closeMenus}>Explore {discoveryMenus[activeMenu].title.toLowerCase()} <Arrow /></a>
                 </div>
                 <div className="mega-groups">
                   {discoveryMenus[activeMenu].groups.map((group) => (
                     <div className="mega-group" key={group.title}>
                       <h3>{group.title}</h3>
-                      {group.links.map((link) => <a href="/#contact" onClick={closeMenus} key={link}>{link} <span aria-hidden="true">›</span></a>)}
+                      {group.links.map((link) => <a href={link.href} onClick={closeMenus} key={link.label}>{link.label} <span aria-hidden="true">›</span></a>)}
                     </div>
                   ))}
                 </div>
@@ -202,4 +201,3 @@ export default function SiteHeader() {
     </header>
   );
 }
-

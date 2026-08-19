@@ -1,5 +1,6 @@
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
+import { caseStudies } from "./data/caseStudies";
 
 const offers = [
   {
@@ -25,24 +26,6 @@ const offers = [
     copy: "Practical programmes that turn one-off findings into stronger controls, better visibility and continuous resilience.",
     items: ["Assurance readiness", "Attack surface clarity", "Secure product delivery", "Continuous resilience"],
     href: "/product-studio",
-  },
-];
-
-const stories = [
-  {
-    type: "FINANCIAL SERVICES",
-    title: "Making a fast-growing fintech ready for enterprise scrutiny",
-    copy: "A focused audit and remediation plan gave leadership a clear route from security questions to confident answers.",
-  },
-  {
-    type: "HEALTHCARE",
-    title: "Finding critical exposure before it reached patient-facing systems",
-    copy: "Targeted testing connected technical findings to operational risk, helping the team act in the right order.",
-  },
-  {
-    type: "SAAS",
-    title: "Building repeatable security into a high-velocity release cycle",
-    copy: "A continuous testing cadence helped engineering teams spot issues earlier and ship with greater confidence.",
   },
 ];
 
@@ -120,20 +103,20 @@ export default function Home() {
       <section className="stories reference-stories" id="stories">
         <div className="reference-section-title">
           <h2>Client stories</h2>
-          <a href="#contact">See all client stories <Arrow /></a>
+          <a href="/case-studies">See all client stories <Arrow /></a>
         </div>
         <div className="story-grid">
-          {stories.map((story, index) => (
+          {caseStudies.map((story, index) => (
             <article className="story-card" key={story.title}>
               <div className={`story-visual story-visual-${index + 1}`}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <div className="story-grid-lines" aria-hidden="true" />
               </div>
               <div className="story-copy">
-                <p className="story-type">{story.type} · REPRESENTATIVE ENGAGEMENT</p>
+                <p className="story-type">{story.sector.toUpperCase()} · REPRESENTATIVE ENGAGEMENT</p>
                 <h3>{story.title}</h3>
-                <p>{story.copy}</p>
-                <a href="#contact" aria-label={`Read: ${story.title}`}>Read the story <Arrow /></a>
+                <p>{story.summary}</p>
+                <a href={`/case-studies/${story.slug}`} aria-label={`Read: ${story.title}`}>Read the story <Arrow /></a>
               </div>
             </article>
           ))}
@@ -147,7 +130,7 @@ export default function Home() {
         </div>
         <div className="contact-side">
           <p>Tell us what you&apos;re protecting, what&apos;s changing, or where you need certainty. We&apos;ll help you find the right first step.</p>
-          <a className="reference-link" href="mailto:hello@cybergaar.com">Contact Cybergaar <Arrow /></a>
+          <a className="reference-link" href="/contact">Contact Cybergaar <Arrow /></a>
         </div>
       </section>
 
@@ -155,4 +138,3 @@ export default function Home() {
     </main>
   );
 }
-
