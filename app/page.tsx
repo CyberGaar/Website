@@ -1,7 +1,25 @@
+import type { Metadata } from "next";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
-import GlobeAnimation from "./components/GlobeAnimation";
 import { caseStudies } from "./data/caseStudies";
+
+export const metadata: Metadata = {
+  title: "Cybergaar | Security Audits, ISO 27001, Pentesting and Vulnerability Scanning",
+  description: "Cybergaar provides ISO audit support, ISO 27001 implementation, security audits, application security testing, penetration testing and vulnerability scanning.",
+  keywords: [
+    "ISO audit",
+    "ISO 27001",
+    "ISO 27001 implementation",
+    "security audit",
+    "application security",
+    "vulnerability scanning",
+    "penetration testing",
+    "Cyber Essentials",
+    "PCI DSS readiness",
+    "SOC 2 readiness",
+  ],
+  alternates: { canonical: "/" },
+};
 
 const offers = [
   {
@@ -32,6 +50,49 @@ const offers = [
 
 const trustItems = ["MICROSOFT", "AWS", "CLOUDFLARE", "CISCO", "FORTINET", "GITHUB"];
 
+const searchServices = [
+  { title: "ISO audit and ISO 27001 implementation", href: "/services/iso-27001", copy: "Gap assessment, ISMS controls, evidence preparation and readiness support for certification." },
+  { title: "Application security testing", href: "/services/web-application-penetration-testing", copy: "Web application and API testing for teams that need clear findings and practical remediation." },
+  { title: "Vulnerability scanning", href: "/services/vulnerability-scanning", copy: "Network, host, database, cloud and authenticated scanning with validation of real exposure." },
+  { title: "Penetration testing", href: "/services/penetration-testing", copy: "Manual testing across web, mobile, network, cloud, wireless and social engineering scenarios." },
+  { title: "Cyber Essentials and PCI DSS readiness", href: "/services/audits", copy: "Preparation for common audit and compliance requirements without overstating certification outcomes." },
+  { title: "Cloud security review", href: "/services/cloud-infrastructure-penetration-testing", copy: "Review of IAM, storage, exposed services, container images and cloud configuration risks." },
+];
+
+const homepageStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      name: "Cybergaar",
+      url: "https://cybergaar.com",
+      description: "Security audit, ISO 27001 implementation, application security testing, vulnerability scanning and penetration testing services.",
+      areaServed: ["Global", "United Kingdom", "Pakistan"],
+      serviceType: [
+        "ISO audit",
+        "ISO 27001 implementation",
+        "security audit",
+        "application security testing",
+        "vulnerability scanning",
+        "penetration testing",
+        "Cyber Essentials readiness",
+        "PCI DSS readiness",
+        "SOC 2 readiness",
+      ],
+    },
+    {
+      "@type": "ItemList",
+      name: "Cybergaar security services",
+      itemListElement: searchServices.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: service.title,
+        url: `https://cybergaar.com${service.href}`,
+      })),
+    },
+  ],
+};
+
 function Arrow() {
   return <span aria-hidden="true">⟶</span>;
 }
@@ -53,9 +114,34 @@ export default function Home() {
           <a className="reference-link" href="/services">Explore what we do <Arrow /></a>
         </div>
 
-        <div className="globe-stage" aria-label="Animated globe showing global security standards">
-          <GlobeAnimation />
-        </div>
+        <a className="globe-stage globe-stage-link" href="/global-standards" aria-label="Open interactive global cyber standards explorer">
+          <div className="globe-sequence globe-preview">
+            <img
+              alt="Globe preview with cyber security standards by region"
+              draggable="false"
+              height="640"
+              src="/globe-frames/frame-000.png"
+              width="640"
+            />
+            <div className="globe-readable-label globe-readable-us" aria-hidden="true">
+              <strong>UNITED STATES</strong>
+              <span>NIST</span>
+              <span>SOC 2</span>
+              <span>PCI DSS</span>
+            </div>
+            <div className="globe-readable-label globe-readable-uk" aria-hidden="true">
+              <strong>UNITED KINGDOM</strong>
+              <span>Cyber Essentials</span>
+              <span>ISO 27001</span>
+            </div>
+            <div className="globe-readable-label globe-readable-eu" aria-hidden="true">
+              <strong>EUROPE</strong>
+              <span>GDPR</span>
+              <span>DORA</span>
+            </div>
+          </div>
+          <span className="globe-open-link">Explore global standards <Arrow /></span>
+        </a>
       </section>
 
       <section className="trust-strip" aria-label="Trusted security ecosystem">
@@ -87,6 +173,21 @@ export default function Home() {
 
       <section className="about-statement" id="about">
         <p>Cybergaar turns technical exposure into business decisions. We look deeper, explain plainly and focus on the risks that can genuinely affect your organisation.</p>
+      </section>
+
+      <section className="search-services" aria-label="Common Cybergaar security services">
+        <div className="reference-section-title">
+          <h2>Security work people search for</h2>
+          <a href="/services">See services <Arrow /></a>
+        </div>
+        <div className="search-service-grid">
+          {searchServices.map((service) => (
+            <article key={service.title}>
+              <h3><a href={service.href}>{service.title}</a></h3>
+              <p>{service.copy}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="stories reference-stories" id="stories">
@@ -123,6 +224,7 @@ export default function Home() {
         </div>
       </section>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageStructuredData) }} />
       <SiteFooter />
     </main>
   );

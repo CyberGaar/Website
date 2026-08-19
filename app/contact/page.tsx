@@ -4,8 +4,10 @@ import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Contact Cybergaar",
-  description: "Talk to Cybergaar about security audits, vulnerability scanning, penetration testing, compliance automation or an MSP partnership.",
+  title: "Contact Cybergaar | Scope a Security Audit or Test",
+  description: "Contact Cybergaar to discuss ISO audit support, ISO 27001 implementation, application security testing, vulnerability scanning, penetration testing, compliance automation or an MSP partnership.",
+  keywords: ["contact Cybergaar", "scope security audit", "ISO 27001 implementation", "application security testing", "vulnerability scanning quote", "penetration testing quote", "MSP security partner"],
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
@@ -32,4 +34,3 @@ export default function ContactPage() {
     </main>
   );
 }
-

@@ -10,6 +10,7 @@ export default function SiteFooter() {
           <a href="/services/audits">Audits</a>
           <a href="/services/vulnerability-scanning">Vulnerability scanning</a>
           <a href="/services/penetration-testing">Penetration testing</a>
+          <a href="/global-standards">Global standards</a>
           <a href="/product-studio">Product Studio</a>
         </div>
         <div className="footer-links">

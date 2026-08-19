@@ -4,7 +4,9 @@ import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Product Studio | Open-source Compliance Automation | Cybergaar",
-  description: "Cybergaar Product Studio is an open-source compliance automation workspace for controls, evidence, readiness, remediation and audit delivery.",
+  description: "Cybergaar Product Studio is an open-source compliance automation workspace for ISO 27001, audit evidence, controls, readiness, remediation and MSP delivery.",
+  keywords: ["open-source compliance automation", "ISO 27001 automation", "audit evidence", "compliance management", "control mapping", "MSP compliance platform", "security implementation"],
+  alternates: { canonical: "/product-studio" },
 };
 
 const workflow = [
@@ -49,4 +51,3 @@ export default function ProductStudioPage() {
     </main>
   );
 }
-

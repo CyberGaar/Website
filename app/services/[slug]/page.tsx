@@ -14,9 +14,22 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
+  const category = categoryContent[service.category];
   return {
-    title: `${service.name} | Cybergaar`,
-    description: `${service.name} from Cybergaar. ${service.appliesTo}.`,
+    title: `${service.name} | ${category.label} | Cybergaar`,
+    description: `${service.name} support from Cybergaar for ${service.appliesTo.toLowerCase()}. Includes scoping, assessment, evidence, remediation guidance and clear next steps.`,
+    keywords: [
+      service.name,
+      service.shortName ?? service.name,
+      category.label,
+      "Cybergaar",
+      "security audit",
+      "application security",
+      "vulnerability scanning",
+      "penetration testing",
+      "security implementation",
+    ],
+    alternates: { canonical: `/services/${service.slug}` },
   };
 }
 
@@ -25,6 +38,17 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const service = getService(slug);
   if (!service) notFound();
   const category = categoryContent[service.category];
+  const serviceStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    provider: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
+    serviceType: category.label,
+    areaServed: service.region,
+    audience: service.appliesTo,
+    description: `${service.name} support for ${service.appliesTo}. ${service.risk}`,
+    offers: { "@type": "Offer", priceCurrency: "USD", description: service.price },
+  };
 
   return (
     <main className="inner-page service-detail-page" id="top">
@@ -82,8 +106,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <a href="mailto:hello@cybergaar.com">Talk to Cybergaar <span aria-hidden="true">⟶</span></a>
       </section>
       <p className="pricing-disclaimer">Indicative planning ranges only. Final pricing depends on scope, complexity, access, evidence quality and assessor requirements. Regulatory readiness support is not legal advice.</p>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceStructuredData) }} />
       <SiteFooter />
     </main>
   );
 }
-

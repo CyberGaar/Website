@@ -12,7 +12,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
   const study = getCaseStudy((await params).slug);
-  return study ? { title: `${study.title} | Cybergaar`, description: study.summary } : {};
+  return study ? {
+    title: `${study.title} | Security Case Study | Cybergaar`,
+    description: `${study.summary} Representative Cybergaar work covering security assessment, remediation and business risk reduction.`,
+    keywords: [study.sector, "security case study", "cybersecurity case study", "security assessment", "vulnerability scanning", "penetration testing", "security audit"],
+    alternates: { canonical: `/case-studies/${study.slug}` },
+  } : {};
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
@@ -38,4 +43,3 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     </main>
   );
 }
-

@@ -22,10 +22,11 @@ test("renders the Cybergaar homepage and primary navigation", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Cybergaar \| Cyber assurance, made clear<\/title>/i);
+  assert.match(html, /<title>Cybergaar \| Security Audits, ISO 27001, Pentesting and Vulnerability Scanning<\/title>/i);
   assert.match(html, /See every gap/);
   assert.match(html, /href="\/msp"/);
   assert.match(html, /href="\/product-studio"/);
+  assert.match(html, /href="\/global-standards"/);
   assert.match(html, /href="\/services\/cyber-essentials"/);
   assert.match(html, /href="\/case-studies"/);
   assert.match(html, /href="\/contact"/);
@@ -63,6 +64,19 @@ test("renders contact, careers and editable case-study routes", async () => {
   assert.match(await caseStudy.text(), /What needed to change/);
 });
 
+test("renders the global standards globe page without loading it into the homepage", async () => {
+  const [home, globe] = await Promise.all([render("/"), render("/global-standards")]);
+  const homeHtml = await home.text();
+  const globeHtml = await globe.text();
+
+  assert.doesNotMatch(homeHtml, /GLOBAL STANDARDS EXPLORER/);
+  assert.match(homeHtml, /Explore global standards/);
+  assert.equal(globe.status, 200);
+  assert.match(globeHtml, /Explore cyber standards by region/);
+  assert.match(globeHtml, /GLOBAL STANDARDS EXPLORER/);
+  assert.match(globeHtml, /ISO 27001 implementation/);
+});
+
 test("serves search-engine discovery files", async () => {
   const [robots, sitemap] = await Promise.all([render("/robots.txt"), render("/sitemap.xml")]);
   assert.equal(robots.status, 200);
@@ -70,6 +84,7 @@ test("serves search-engine discovery files", async () => {
   assert.equal(sitemap.status, 200);
   const xml = await sitemap.text();
   assert.match(xml, /https:\/\/cybergaar\.com\/contact/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/global-standards/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/fintech-enterprise-readiness/);
 });
 

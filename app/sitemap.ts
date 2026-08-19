@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/audits",
     "/services/vulnerability-scanning",
     "/services/penetration-testing",
+    "/global-standards",
     "/product-studio",
     "/msp",
     "/case-studies",
@@ -26,4 +27,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...caseStudies.map((study) => ({ url: `${baseUrl}/case-studies/${study.slug}`, changeFrequency: "monthly" as const, priority: 0.7 })),
   ];
 }
-

@@ -3,8 +3,10 @@ import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "MSP Partner Programme | Cybergaar",
-  description: "Extend your managed services with Cybergaar security assessments, delivery support and compliance automation.",
+  title: "MSP Security Partner Programme | Cybergaar",
+  description: "MSPs can use Cybergaar for client security audits, ISO 27001 readiness, vulnerability scanning, penetration testing and compliance automation delivery.",
+  keywords: ["MSP security services", "managed service provider security", "ISO 27001 for MSPs", "vulnerability scanning for MSPs", "penetration testing partner", "compliance automation"],
+  alternates: { canonical: "/msp" },
 };
 
 const capabilities = [
@@ -45,4 +47,3 @@ export default function MspPage() {
     </main>
   );
 }
-

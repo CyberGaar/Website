@@ -15,22 +15,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://cybergaar.com"),
   title: "Cybergaar | Cyber assurance, made clear",
-  description: "Security audits, penetration testing and vulnerability scanning that turn cyber risk into clear business action.",
+  description: "Security audits, ISO 27001 implementation, ISO audit support, application security, penetration testing and vulnerability scanning from Cybergaar.",
+  keywords: ["ISO audit", "ISO 27001", "security audit", "application security", "vulnerability scanning", "penetration testing", "Cyber Essentials", "PCI DSS", "SOC 2"],
   icons: {
     icon: "/fav.png",
     shortcut: "/fav.png",
     apple: "/fav.png",
   },
   openGraph: {
-    title: "Cybergaar | Cyber assurance, made clear",
-    description: "See every gap. Secure every move.",
+    title: "Cybergaar | Security audits and testing",
+    description: "ISO 27001, security audits, application security, penetration testing and vulnerability scanning.",
     type: "website",
     images: [{ url: "/og.png", width: 1672, height: 941, alt: "Cybergaar — See every gap. Secure every move." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cybergaar | Cyber assurance, made clear",
-    description: "See every gap. Secure every move.",
+    title: "Cybergaar | Security audits and testing",
+    description: "ISO 27001, application security, penetration testing and vulnerability scanning.",
     images: ["/og.png"],
   },
 };
