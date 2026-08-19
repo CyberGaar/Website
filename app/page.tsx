@@ -1,5 +1,6 @@
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
+import GlobeAnimation from "./components/GlobeAnimation";
 import { caseStudies } from "./data/caseStudies";
 
 const offers = [
@@ -54,17 +55,7 @@ export default function Home() {
 
         <div className="globe-stage" aria-label="Animated globe showing global security standards">
           <p className="globe-kicker">ALIGNED WITH GLOBAL STANDARDS</p>
-          <div className="orbit orbit-one" aria-hidden="true"><span>ISO 27001</span></div>
-          <div className="orbit orbit-two" aria-hidden="true"><span>SOC 2</span></div>
-          <div className="orbit orbit-three" aria-hidden="true"><span>PCI DSS</span></div>
-          <div className="standards-globe" aria-hidden="true">
-            <div className="globe-lines" />
-            <div className="globe-map map-one" />
-            <div className="globe-map map-two" />
-            <div className="scan-line" />
-          </div>
-          <div className="standard-label standard-nist">NIST<span>CSF</span></div>
-          <div className="standard-label standard-gdpr">GDPR<span>READY</span></div>
+          <GlobeAnimation />
           <p className="globe-caption"><span className="pulse-dot" /> CONTINUOUSLY MAPPING YOUR RISK</p>
         </div>
       </section>
