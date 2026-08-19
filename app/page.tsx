@@ -1,6 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import SiteFooter from "./components/SiteFooter";
+import SiteHeader from "./components/SiteHeader";
 
 const offers = [
   {
@@ -9,13 +8,15 @@ const offers = [
     title: "Industries",
     copy: "Security shaped around your operational reality, regulatory pressure and the systems your organisation depends on.",
     items: ["Financial services", "Healthcare", "Technology & SaaS", "Public sector", "Retail & eCommerce", "Critical infrastructure"],
+    href: "/#contact",
   },
   {
     id: "services",
     icon: "✣",
     title: "Services",
     copy: "Clear, evidence-led security services that reveal exposure, test resilience and make the next action obvious.",
-    items: ["Security audits", "Penetration testing", "Vulnerability scanning", "Cloud security review", "Application security", "Compliance readiness"],
+    items: ["Security audits", "Penetration testing", "Vulnerability scanning", "Cyber Essentials", "ISO 27001", "SOC 2 readiness"],
+    href: "/services",
   },
   {
     id: "solutions",
@@ -23,6 +24,7 @@ const offers = [
     title: "Solutions",
     copy: "Practical programmes that turn one-off findings into stronger controls, better visibility and continuous resilience.",
     items: ["Assurance readiness", "Attack surface clarity", "Secure product delivery", "Continuous resilience"],
+    href: "/product-studio",
   },
 ];
 
@@ -46,177 +48,14 @@ const stories = [
 
 const trustItems = ["MICROSOFT", "AWS", "CLOUDFLARE", "CISCO", "FORTINET", "GITHUB"];
 
-const regions = [
-  { code: "global", flag: "◎", label: "Global", href: "/" },
-  { code: "uk", flag: "🇬🇧", label: "United Kingdom", href: "/uk" },
-  { code: "pk", flag: "🇵🇰", label: "Pakistan", href: "/pk" },
-];
-
-const navMenus = {
-  services: {
-    title: "Services",
-    copy: "Focused security expertise that helps you understand exposure, validate resilience and act with confidence.",
-    groups: [
-      { title: "Audit & assurance", links: ["Security audits", "Compliance readiness", "Cloud security review"] },
-      { title: "Offensive security", links: ["Penetration testing", "Web & API testing", "Network testing"] },
-      { title: "Continuous protection", links: ["Vulnerability scanning", "Attack surface monitoring", "Remediation validation"] },
-    ],
-  },
-  industries: {
-    title: "Industries",
-    copy: "Security decisions grounded in your sector, your obligations and the way your organisation really operates.",
-    groups: [
-      { title: "Regulated", links: ["Financial services", "Healthcare", "Public sector"] },
-      { title: "Digital", links: ["Technology & SaaS", "Retail & eCommerce", "Digital platforms"] },
-      { title: "Essential", links: ["Critical infrastructure", "Energy & utilities", "Professional services"] },
-    ],
-  },
-  solutions: {
-    title: "Solutions",
-    copy: "Practical security programmes designed around the outcome your organisation needs next.",
-    groups: [
-      { title: "Prepare", links: ["Assurance readiness", "Compliance roadmap", "Security baseline"] },
-      { title: "Discover", links: ["Attack surface clarity", "Exposure validation", "Risk prioritisation"] },
-      { title: "Improve", links: ["Secure product delivery", "Continuous resilience", "Developer enablement"] },
-    ],
-  },
-} as const;
-
 function Arrow() {
   return <span aria-hidden="true">⟶</span>;
 }
 
-function Chevron() {
-  return <span className="chevron" aria-hidden="true">⌄</span>;
-}
-
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [regionOpen, setRegionOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<keyof typeof navMenus | null>(null);
-  const [currentRegion, setCurrentRegion] = useState(regions[0]);
-
-  useEffect(() => {
-    const path = window.location.pathname.toLowerCase();
-    if (path.startsWith("/uk")) {
-      setCurrentRegion(regions[1]);
-      return;
-    }
-    if (path.startsWith("/pk")) {
-      setCurrentRegion(regions[2]);
-      return;
-    }
-
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const language = navigator.language.toLowerCase();
-    if (timeZone === "Asia/Karachi" || language.endsWith("-pk")) setCurrentRegion(regions[2]);
-    else if (timeZone === "Europe/London" || language === "en-gb") setCurrentRegion(regions[1]);
-  }, []);
-
-  const closeMenus = () => {
-    setMenuOpen(false);
-    setRegionOpen(false);
-    setActiveMenu(null);
-  };
-
-  const handleNavMenu = (menu: keyof typeof navMenus) => {
-    if (window.innerWidth <= 900) {
-      document.getElementById(menu)?.scrollIntoView({ behavior: "smooth" });
-      closeMenus();
-      return;
-    }
-    setRegionOpen(false);
-    setActiveMenu(activeMenu === menu ? null : menu);
-  };
-
   return (
     <main>
-      <header className="site-header reference-header">
-        <a className="brand" href="#top" aria-label="Cybergaar home" onClick={closeMenus}>
-          <span className="brand-mark" aria-hidden="true"><i /></span>
-          <span>CYBER<strong>GAAR</strong></span>
-        </a>
-
-        <button
-          className="menu-button"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span /><span />
-        </button>
-
-        <nav className={menuOpen ? "nav-open" : ""} aria-label="Primary navigation">
-          <div className="primary-nav">
-            <button type="button" aria-expanded={activeMenu === "services"} onClick={() => handleNavMenu("services")}>Services <Chevron /></button>
-            <button type="button" aria-expanded={activeMenu === "industries"} onClick={() => handleNavMenu("industries")}>Industries <Chevron /></button>
-            <button type="button" aria-expanded={activeMenu === "solutions"} onClick={() => handleNavMenu("solutions")}>Solutions <Chevron /></button>
-            <a href="#stories" onClick={closeMenus}>Client stories</a>
-            <a href="#about" onClick={closeMenus}>About</a>
-            <button className="search-button" type="button" aria-label="Search Cybergaar"><span /></button>
-          </div>
-
-          <div className="secondary-nav">
-            <a href="#contact" onClick={closeMenus}>Contact</a>
-            <div className="region-picker">
-              <button
-                type="button"
-                className="region-button"
-                aria-expanded={regionOpen}
-                aria-controls="region-menu"
-                onClick={() => {
-                  setActiveMenu(null);
-                  setRegionOpen(!regionOpen);
-                }}
-              >
-                <span className="region-flag">{currentRegion.flag}</span>
-                <span>{currentRegion.label}</span>
-                <Chevron />
-              </button>
-              <div className={`region-menu ${regionOpen ? "region-menu-open" : ""}`} id="region-menu">
-                <p>Select a Cybergaar site</p>
-                {regions.map((region) => (
-                  <a
-                    className={currentRegion.code === region.code ? "active-region" : ""}
-                    href={region.href}
-                    key={region.code}
-                    onClick={() => {
-                      setCurrentRegion(region);
-                      closeMenus();
-                    }}
-                  >
-                    <span>{region.flag}</span>{region.label}
-                    {currentRegion.code === region.code && <b aria-label="Current site">✓</b>}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        {activeMenu && (
-          <>
-            <div className="mega-menu" aria-label={`${navMenus[activeMenu].title} menu`}>
-              <div className="mega-intro">
-                <p>EXPLORE CYBERGAAR</p>
-                <h2>{navMenus[activeMenu].title}</h2>
-                <span>{navMenus[activeMenu].copy}</span>
-                <a href={`#${activeMenu}`} onClick={closeMenus}>Explore all {navMenus[activeMenu].title.toLowerCase()} <Arrow /></a>
-              </div>
-              <div className="mega-groups">
-                {navMenus[activeMenu].groups.map((group) => (
-                  <div className="mega-group" key={group.title}>
-                    <h3>{group.title}</h3>
-                    {group.links.map((link) => <a href="#contact" onClick={closeMenus} key={link}>{link} <span aria-hidden="true">›</span></a>)}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <button className="nav-scrim" type="button" aria-label="Close navigation menu" onClick={closeMenus} />
-          </>
-        )}
-      </header>
+      <SiteHeader />
 
       <section className="hero reference-hero" id="top">
         <div className="hero-noise" aria-hidden="true" />
@@ -227,7 +66,7 @@ export default function Home() {
             We help businesses understand and reduce cyber risk through focused
             security audits, penetration testing and vulnerability scanning.
           </p>
-          <a className="reference-link" href="#services">Explore what we do <Arrow /></a>
+          <a className="reference-link" href="/services">Explore what we do <Arrow /></a>
         </div>
 
         <div className="globe-stage" aria-label="Animated globe showing global security standards">
@@ -267,9 +106,9 @@ export default function Home() {
             </div>
             <p>{offer.copy}</p>
             <div className="offer-pills">
-              {offer.items.map((item) => <a href="#contact" key={item}>{item}</a>)}
+              {offer.items.map((item) => <a href={offer.href} key={item}>{item}</a>)}
             </div>
-            <a className="offer-explore" href="#contact">Explore all {offer.title.toLowerCase()} <Arrow /></a>
+            <a className="offer-explore" href={offer.href}>Explore all {offer.title.toLowerCase()} <Arrow /></a>
           </article>
         ))}
       </section>
@@ -312,31 +151,8 @@ export default function Home() {
         </div>
       </section>
 
-      <footer>
-        <div className="footer-main">
-          <a className="brand footer-brand" href="#top" aria-label="Cybergaar home">
-            <span className="brand-mark" aria-hidden="true"><i /></span>
-            <span>CYBER<strong>GAAR</strong></span>
-          </a>
-          <p>Clear assurance.<br />Stronger business.</p>
-          <div className="footer-links">
-            <a href="#industries">Industries</a>
-            <a href="#services">Services</a>
-            <a href="#solutions">Solutions</a>
-            <a href="#stories">Client stories</a>
-          </div>
-          <div className="footer-links">
-            <a href="mailto:hello@cybergaar.com">Contact</a>
-            <a href="/uk">United Kingdom site</a>
-            <a href="/pk">Pakistan site</a>
-            <a href="#top">Privacy</a>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Cybergaar. All rights reserved.</span>
-          <a href="#top">Back to top ↑</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
+
