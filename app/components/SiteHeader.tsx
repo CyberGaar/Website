@@ -20,9 +20,9 @@ const discoveryMenus = {
     title: "Industries",
     copy: "Security decisions grounded in your sector, obligations and operational reality.",
     groups: [
-      { title: "Regulated", links: [{ label: "Financial services", href: "/industries" }, { label: "Healthcare", href: "/industries" }, { label: "Public sector", href: "/industries" }] },
-      { title: "Digital", links: [{ label: "Technology & SaaS", href: "/industries" }, { label: "Retail & eCommerce", href: "/industries" }, { label: "Digital platforms", href: "/industries" }] },
-      { title: "Essential", links: [{ label: "Critical infrastructure", href: "/industries" }, { label: "Energy & utilities", href: "/industries" }, { label: "Professional services", href: "/industries" }] },
+      { title: "Regulated", links: [{ label: "Financial services", href: "/industries/financial-services" }, { label: "Healthcare", href: "/industries/healthcare" }, { label: "Public sector", href: "/industries/public-sector" }] },
+      { title: "Digital", links: [{ label: "Technology & SaaS", href: "/industries/technology-saas" }, { label: "Retail & eCommerce", href: "/industries/retail-ecommerce" }, { label: "Digital platforms", href: "/industries/technology-saas" }] },
+      { title: "Essential", links: [{ label: "Critical infrastructure", href: "/industries/critical-infrastructure" }, { label: "Energy & utilities", href: "/industries/critical-infrastructure" }, { label: "Professional services", href: "/industries/technology-saas" }] },
     ],
   },
   solutions: {
@@ -130,10 +130,10 @@ export default function SiteHeader() {
 
           <button type="button" aria-expanded={activeMenu === "industries"} aria-controls="mobile-industries" onClick={() => toggleMenu("industries")}>Industries <Chevron /></button>
           <div className={`mobile-subnav ${activeMenu === "industries" ? "mobile-subnav-open" : ""}`} id="mobile-industries">
-            <a href="/industries" onClick={closeMenus}>Financial services</a>
-            <a href="/industries" onClick={closeMenus}>Healthcare</a>
-            <a href="/industries" onClick={closeMenus}>Technology & SaaS</a>
-            <a href="/industries" onClick={closeMenus}>Critical infrastructure</a>
+            <a href="/industries/financial-services" onClick={closeMenus}>Financial services</a>
+            <a href="/industries/healthcare" onClick={closeMenus}>Healthcare</a>
+            <a href="/industries/technology-saas" onClick={closeMenus}>Technology & SaaS</a>
+            <a href="/industries/critical-infrastructure" onClick={closeMenus}>Critical infrastructure</a>
           </div>
 
           <button type="button" aria-expanded={activeMenu === "solutions"} aria-controls="mobile-solutions" onClick={() => toggleMenu("solutions")}>Solutions <Chevron /></button>

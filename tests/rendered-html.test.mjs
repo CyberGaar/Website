@@ -56,12 +56,13 @@ test("keeps the complete 30-service catalogue in one data source", async () => {
   assert.match(source, /category: "penetration-testing"/);
 });
 
-test("renders contact, careers and editable case-study routes", async () => {
-  const [contact, careers, caseStudy, industries, solutions] = await Promise.all([
+test("renders contact, careers, editable case-study and industry routes", async () => {
+  const [contact, careers, caseStudy, industries, financialServices, solutions] = await Promise.all([
     render("/contact"),
     render("/careers"),
     render("/case-studies/fintech-enterprise-readiness"),
     render("/industries"),
+    render("/industries/financial-services"),
     render("/solutions"),
   ]);
   assert.equal(contact.status, 200);
@@ -71,7 +72,16 @@ test("renders contact, careers and editable case-study routes", async () => {
   assert.equal(caseStudy.status, 200);
   assert.match(await caseStudy.text(), /What needed to change/);
   assert.equal(industries.status, 200);
-  assert.match(await industries.text(), /Financial services/);
+  const industriesHtml = await industries.text();
+  assert.match(industriesHtml, /Financial services/);
+  assert.match(industriesHtml, /href="\/industries\/financial-services"/);
+  assert.doesNotMatch(industriesHtml, /Discuss this sector/);
+  assert.equal(financialServices.status, 200);
+  const financialServicesHtml = await financialServices.text();
+  assert.match(financialServicesHtml, /Applicable audits/);
+  assert.match(financialServicesHtml, /PCI DSS/);
+  assert.match(financialServicesHtml, /Web Application Penetration Testing/);
+  assert.match(financialServicesHtml, /Cloud-Native Vulnerability Scanning/);
   assert.equal(solutions.status, 200);
   assert.match(await solutions.text(), /Product Studio/);
 });
@@ -97,6 +107,7 @@ test("serves search-engine discovery files", async () => {
   const xml = await sitemap.text();
   assert.match(xml, /https:\/\/cybergaar\.com\/contact/);
   assert.match(xml, /https:\/\/cybergaar\.com\/industries/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/industries\/financial-services/);
   assert.match(xml, /https:\/\/cybergaar\.com\/solutions/);
   assert.match(xml, /https:\/\/cybergaar\.com\/global-standards/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/fintech-enterprise-readiness/);
