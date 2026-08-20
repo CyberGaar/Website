@@ -112,19 +112,12 @@ export default function InteractiveGlobeExplorer() {
         <img
           alt="Interactive globe for cyber security standards by country"
           draggable="false"
-          height="1000"
+          height="640"
           src={frames[activeFrame]}
-          width="1000"
+          width="640"
           loading="eager"
           decoding="async"
         />
-        <div className="globe-readable-overlay" aria-hidden="true">
-          <span>ISO 27001</span>
-          <span>PCI DSS</span>
-          <span>SOC 2</span>
-          <span>GDPR</span>
-          <span>Cyber Essentials</span>
-        </div>
         <div className="globe-stage-card" aria-live="polite">
           <p>Selected country</p>
           <h3>{selectedCountry.name}</h3>
