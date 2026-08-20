@@ -31,7 +31,7 @@ const discoveryMenus = {
     groups: [
       { title: "Product", links: [{ label: "Product Studio", href: "/product-studio" }, { label: "Open-source compliance automation", href: "/product-studio" }] },
       { title: "Partners", links: [{ label: "MSP partner programme", href: "/msp" }, { label: "Multi-client delivery", href: "/msp" }] },
-      { title: "Outcomes", links: [{ label: "Assurance readiness", href: "/services/audits" }, { label: "Continuous resilience", href: "/services/vulnerability-scanning" }] },
+      { title: "Outcomes", links: [{ label: "Assurance readiness", href: "/services/audits" }, { label: "Continuous resilience", href: "/services/vulnerability-scanning" }, { label: "Expert suggestions", href: "/expert-suggestions" }] },
     ],
   },
 } as const;
@@ -141,6 +141,7 @@ export default function SiteHeader() {
             <a href="/product-studio" onClick={closeMenus}>Product Studio</a>
             <a href="/msp" onClick={closeMenus}>MSP partner programme</a>
             <a href="/solutions" onClick={closeMenus}>All solutions</a>
+            <a href="/expert-suggestions" onClick={closeMenus}>Expert suggestions</a>
             <a href="/services/audits" onClick={closeMenus}>Assurance readiness</a>
             <a href="/services/vulnerability-scanning" onClick={closeMenus}>Continuous resilience</a>
           </div>

@@ -27,6 +27,7 @@ test("renders the Cybergaar homepage and primary navigation", async () => {
   assert.match(html, /href="\/msp"/);
   assert.match(html, /href="\/industries"/);
   assert.match(html, /href="\/solutions"/);
+  assert.match(html, /href="\/expert-suggestions"/);
   assert.match(html, /href="\/product-studio"/);
   assert.match(html, /href="\/global-standards"/);
   assert.match(html, /href="\/services\/cyber-essentials"/);
@@ -56,14 +57,16 @@ test("keeps the complete 30-service catalogue in one data source", async () => {
   assert.match(source, /category: "penetration-testing"/);
 });
 
-test("renders contact, careers, editable case-study and industry routes", async () => {
-  const [contact, careers, caseStudy, industries, financialServices, solutions] = await Promise.all([
+test("renders contact, careers, editable case-study, industry and expert routes", async () => {
+  const [contact, careers, caseStudy, industries, financialServices, solutions, expertSuggestions, expertPost] = await Promise.all([
     render("/contact"),
     render("/careers"),
     render("/case-studies/fintech-enterprise-readiness"),
     render("/industries"),
     render("/industries/financial-services"),
     render("/solutions"),
+    render("/expert-suggestions"),
+    render("/expert-suggestions/iso-27001-readiness-before-certification"),
   ]);
   assert.equal(contact.status, 200);
   assert.match(await contact.text(), /Prepare email/);
@@ -83,7 +86,15 @@ test("renders contact, careers, editable case-study and industry routes", async 
   assert.match(financialServicesHtml, /Web Application Penetration Testing/);
   assert.match(financialServicesHtml, /Cloud-Native Vulnerability Scanning/);
   assert.equal(solutions.status, 200);
-  assert.match(await solutions.text(), /Product Studio/);
+  const solutionsHtml = await solutions.text();
+  assert.match(solutionsHtml, /Product Studio/);
+  assert.match(solutionsHtml, /Expert suggestions/);
+  assert.equal(expertSuggestions.status, 200);
+  const expertSuggestionsHtml = await expertSuggestions.text();
+  assert.match(expertSuggestionsHtml, /Practical guidance before you scope security work/);
+  assert.match(expertSuggestionsHtml, /How to make vulnerability scanning useful/);
+  assert.equal(expertPost.status, 200);
+  assert.match(await expertPost.text(), /What to prepare before an ISO 27001 certification audit/);
 });
 
 test("renders the global standards globe page without loading it into the homepage", async () => {
@@ -108,6 +119,8 @@ test("serves search-engine discovery files", async () => {
   assert.match(xml, /https:\/\/cybergaar\.com\/contact/);
   assert.match(xml, /https:\/\/cybergaar\.com\/industries/);
   assert.match(xml, /https:\/\/cybergaar\.com\/industries\/financial-services/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/expert-suggestions/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/expert-suggestions\/iso-27001-readiness-before-certification/);
   assert.match(xml, /https:\/\/cybergaar\.com\/solutions/);
   assert.match(xml, /https:\/\/cybergaar\.com\/global-standards/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/fintech-enterprise-readiness/);
@@ -138,4 +151,10 @@ test("keeps client stories out of the primary navigation and exposes three mobil
     stat(new URL("../public/flags/gb.svg", import.meta.url)),
     stat(new URL("../public/flags/pk.svg", import.meta.url)),
   ]);
+  const socials = await readFile(new URL("../app/data/socials.ts", import.meta.url), "utf8");
+  assert.match(socials, /huggingface\.co\/CyberGaar\/CyberSecurity/);
+  assert.match(socials, /github\.com\/CyberGaar/);
+  assert.match(socials, /linkedin\.com\/company\/cybergaar/);
+  assert.match(socials, /x\.com\/CyberGaar_/);
+  assert.match(socials, /instagram\.com\/cybergaar/);
 });

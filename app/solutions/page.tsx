@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 const solutions = [
   ["Product Studio", "Open-source compliance automation for controls, evidence, gaps, remediation and audit delivery.", "/product-studio"],
   ["MSP partner programme", "A delivery model for managed service providers offering client security audits, scanning and testing.", "/msp"],
+  ["Expert suggestions", "Practical guidance on ISO audit readiness, vulnerability scanning, penetration testing and implementation decisions.", "/expert-suggestions"],
   ["Assurance readiness", "Framework readiness for ISO 27001, Cyber Essentials, SOC 2, PCI DSS, GDPR, NIST and related requirements.", "/services/audits"],
   ["Attack surface clarity", "Vulnerability scanning and validation across networks, applications, cloud services, hosts and databases.", "/services/vulnerability-scanning"],
   ["Secure product delivery", "Application security testing, API testing and remediation guidance for SaaS, ecommerce and digital platforms.", "/services/web-application-penetration-testing"],
