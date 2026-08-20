@@ -615,7 +615,12 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
 .globe-explorer { display: grid; grid-template-columns: 1fr; background: #f7f9f9; border-bottom: 1px solid var(--line); }
 .globe-explorer-stage { min-height: 700px; display: grid; place-items: center; position: relative; overflow: hidden; cursor: grab; touch-action: pan-y; background: radial-gradient(circle at 50% 48%, rgba(110,219,232,.2), rgba(255,255,255,0) 48%), #fff; border-bottom: 1px solid var(--line); }
 .globe-explorer-stage:active { cursor: grabbing; }
-.globe-explorer-stage img { width: min(660px, 70vw); height: auto; user-select: none; filter: drop-shadow(0 30px 58px rgba(8,44,60,.18)); transform: translateZ(0); backface-visibility: hidden; }
+.globe-canvas { width: min(760px, 74vw); aspect-ratio: 1; height: auto; display: block; filter: drop-shadow(0 30px 58px rgba(8,44,60,.18)); }
+.globe-map-labels { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.globe-map-labels button { position: absolute; transform: translate(13px, -50%); max-width: 210px; padding: 9px 10px; border: 1px solid rgba(110,219,232,.7); border-left: 4px solid rgba(110,219,232,.9); border-radius: 4px; background: rgba(8,44,60,.94); color: #fff; box-shadow: 0 14px 32px rgba(8,44,60,.22), 0 0 0 1px rgba(255,255,255,.08) inset; cursor: pointer; pointer-events: auto; text-align: left; transition: transform .18s ease, border-color .18s ease, opacity .18s ease; }
+.globe-map-labels button:hover, .globe-map-labels .active-globe-label { border-color: var(--acid); transform: translate(13px, -50%) scale(1.04); }
+.globe-map-labels strong { display: block; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,.14); font: 800 11px/1 var(--font-geist-mono), monospace; letter-spacing: .025em; text-transform: uppercase; }
+.globe-map-labels span { display: block; color: #dffcff; font: 750 9px/1.35 var(--font-geist-mono), monospace; }
 .globe-stage-card { position: absolute; right: max(4vw, 24px); bottom: 34px; width: min(390px, calc(100% - 48px)); padding: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.92); box-shadow: 0 20px 45px rgba(8,44,60,.12); backdrop-filter: blur(8px); }
 .globe-stage-card p { margin: 0 0 10px; color: #6a7f87; font: 650 9px/1 var(--font-geist-mono), monospace; letter-spacing: .12em; text-transform: uppercase; }
 .globe-stage-card h3 { margin: 0 0 15px; color: var(--ink); font-size: clamp(26px, 2.4vw, 38px); line-height: 1.05; letter-spacing: -.04em; font-weight: 540; }
@@ -649,7 +654,7 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
 @media (max-width: 1000px) {
   .global-standards-hero, .standards-answer-section { grid-template-columns: 1fr; gap: 42px; }
   .globe-explorer-stage { min-height: 560px; }
-  .globe-explorer-stage img { width: min(620px, 86vw); }
+  .globe-canvas { width: min(680px, 88vw); }
   .globe-control-panel { grid-template-columns: 1fr; }
 }
 
@@ -657,7 +662,12 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
   .global-standards-hero { min-height: 520px; margin-top: 70px; padding: 72px 18px 58px; }
   .global-standards-hero h1 { font-size: 50px; }
   .globe-explorer-stage { min-height: 560px; align-content: start; padding-top: 28px; }
-  .globe-explorer-stage img { width: min(112vw, 500px); max-width: none; }
+  .globe-canvas { width: min(112vw, 500px); max-width: none; margin-top: 42px; }
+  .globe-map-labels { display: flex; flex-wrap: wrap; align-content: start; justify-content: center; gap: 7px; inset: 18px 14px auto; }
+  .globe-map-labels button { position: static; max-width: none; transform: none; padding: 7px 9px; }
+  .globe-map-labels button:hover, .globe-map-labels .active-globe-label { transform: none; }
+  .globe-map-labels strong { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; font-size: 9px; }
+  .globe-map-labels span { display: none; }
   .globe-stage-card { left: 18px; right: 18px; bottom: 58px; width: auto; padding: 18px; }
   .globe-hint { left: 18px; bottom: 24px; max-width: calc(100% - 36px); line-height: 1.4; }
   .globe-control-panel { padding: 30px 18px; }

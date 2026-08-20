@@ -123,7 +123,8 @@ test("renders the global standards globe page without loading it into the homepa
   assert.match(globeHtml, /GLOBAL STANDARDS EXPLORER/);
   assert.match(globeHtml, /ISO 27001 implementation/);
   assert.match(globeHtml, /Choose country/);
-  assert.match(globeHtml, /Play slow rotation/);
+  assert.match(globeHtml, /Play rotation/);
+  assert.match(globeHtml, /crisp labels are rendered as page text/);
   assert.match(globeHtml, /Selected country/);
   assert.doesNotMatch(globeHtml, /globe-country-list/);
 });
