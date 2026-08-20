@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path = "/") {
@@ -105,9 +105,15 @@ test("keeps client stories out of the primary navigation and exposes three mobil
   assert.equal((header.match(/mobile-subnav-open/g) ?? []).length, 3);
   assert.match(header, /MSP partner programme/);
   assert.match(header, /Product Studio/);
-  assert.match(header, /flag: "\\u\{1F310\}"/);
-  assert.match(header, /flag: "\\u\{1F1EC\}\\u\{1F1E7\}"/);
-  assert.match(header, /flag: "\\u\{1F1F5\}\\u\{1F1F0\}"/);
+  assert.match(header, /flagSrc: "\/flags\/global\.svg"/);
+  assert.match(header, /flagSrc: "\/flags\/gb\.svg"/);
+  assert.match(header, /flagSrc: "\/flags\/pk\.svg"/);
   assert.match(header, /region-current-label/);
   assert.match(header, /login-link/);
+  assert.doesNotMatch(header, /login-icon/);
+  await Promise.all([
+    stat(new URL("../public/flags/global.svg", import.meta.url)),
+    stat(new URL("../public/flags/gb.svg", import.meta.url)),
+    stat(new URL("../public/flags/pk.svg", import.meta.url)),
+  ]);
 });

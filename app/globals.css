@@ -52,17 +52,16 @@ main { overflow: hidden; }
 .search-button span::after { content: ""; position: absolute; width: 7px; height: 2px; background: var(--ink); right: -5px; bottom: -3px; transform: rotate(45deg); }
 .secondary-nav > a { padding-inline: 18px; }
 .login-link { text-transform: none; }
-.login-icon { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid currentColor; border-radius: 999px; font-size: 12px; line-height: 1; transform: translateY(-1px); }
 .region-picker { position: relative; height: 100%; display: flex; align-items: center; border-left: 1px solid #8d989d; }
 .region-button { height: 100%; min-width: 190px; border: 0; background: transparent; padding: 0 18px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; font: 650 13px/1 var(--font-geist-mono), monospace; letter-spacing: .035em; white-space: nowrap; }
 .region-button .chevron { margin-left: 0; }
-.region-flag { font-size: 20px; line-height: 1; }
+.region-flag { width: 22px; height: 16px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(8,44,60,.12); flex: 0 0 auto; }
 .region-current-label { display: inline; }
 .region-menu { position: absolute; top: calc(100% + 1px); right: 0; width: 280px; padding: 18px; background: #fff; border: 1px solid var(--line); box-shadow: 0 18px 45px rgba(8,44,60,.14); display: none; }
 .region-menu-open { display: block; }
 .region-menu p { margin: 0 0 10px; padding: 0 10px 12px; border-bottom: 1px solid var(--line); color: var(--muted); font: 600 10px/1 var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .1em; }
 .region-menu a { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; padding: 12px 10px; font-size: 14px; }
-.region-menu .region-flag { font-size: 18px; }
+.region-menu .region-flag { width: 22px; height: 16px; }
 .region-menu a:hover, .region-menu .active-region { background: var(--soft); }
 .region-menu b { color: #4f9217; }
 .menu-button { display: none; margin-left: auto; background: transparent; border: 0; padding: 10px 0; position: relative; z-index: 3; }

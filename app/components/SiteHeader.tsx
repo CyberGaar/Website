@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { getServicesByCategory } from "../data/services";
 
 const regions = [
-  { code: "global", flag: "\u{1F310}", label: "Global", href: "/" },
-  { code: "uk", flag: "\u{1F1EC}\u{1F1E7}", label: "United Kingdom", href: "/uk" },
-  { code: "pk", flag: "\u{1F1F5}\u{1F1F0}", label: "Pakistan", href: "/pk" },
+  { code: "global", flagSrc: "/flags/global.svg", label: "Global", href: "/" },
+  { code: "uk", flagSrc: "/flags/gb.svg", label: "United Kingdom", href: "/uk" },
+  { code: "pk", flagSrc: "/flags/pk.svg", label: "Pakistan", href: "/pk" },
 ];
 
 const auditLinks = getServicesByCategory("audits").slice(0, 6);
@@ -129,10 +129,6 @@ export default function SiteHeader() {
 
         <div className="secondary-nav">
           <a href="/contact" onClick={closeMenus}>Contact</a>
-          <a className="login-link" href="https://demo.cybergaar.com" target="_blank" rel="noreferrer" onClick={closeMenus}>
-            <span className="login-icon" aria-hidden="true">↗</span>
-            <span>Login</span>
-          </a>
           <div className="region-picker">
             <button
               type="button"
@@ -142,7 +138,7 @@ export default function SiteHeader() {
               aria-controls="region-menu"
               onClick={() => { setActiveMenu(null); setRegionOpen(!regionOpen); }}
             >
-              <span className="region-flag" aria-hidden="true">{currentRegion.flag}</span>
+              <img className="region-flag" src={currentRegion.flagSrc} alt="" aria-hidden="true" />
               <span className="region-current-label" aria-hidden="true">{currentRegion.label}</span>
               <span className="sr-only">Current site: {currentRegion.label}</span>
               <Chevron />
@@ -151,12 +147,13 @@ export default function SiteHeader() {
               <p>Select a Cybergaar site</p>
               {regions.map((region) => (
                 <a className={currentRegion.code === region.code ? "active-region" : ""} href={region.href} key={region.code} onClick={closeMenus}>
-                  <span className="region-flag" aria-hidden="true">{region.flag}</span>{region.label}
+                  <img className="region-flag" src={region.flagSrc} alt="" aria-hidden="true" />{region.label}
                   {currentRegion.code === region.code && <b aria-label="Current site">✓</b>}
                 </a>
               ))}
             </div>
           </div>
+          <a className="login-link" href="https://demo.cybergaar.com" target="_blank" rel="noreferrer" onClick={closeMenus}>Login</a>
         </div>
       </nav>
 
