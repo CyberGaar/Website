@@ -97,6 +97,24 @@ export const expertSuggestions: ExpertSuggestion[] = [
     ],
     externalUrl: "https://medium.com/@cybergaar1/hardening-your-cisco-network-a-complete-security-audit-checklist-4a356c3109d5?postPublishedType=initial",
   },
+  {
+    slug: "vibe-coder-guide-to-security",
+    title: "A vibe coder's guide to security",
+    summary: "A practical guide for developers using AI assistants to identify, verify and fix common security issues before they ship.",
+    category: "Application security",
+    readingTime: "25 min read",
+    points: [
+      "Use the same AI tools that generated the code to inspect for issues such as secret leaks, package hallucinations and misplaced client-side trust.",
+      "Check for weak input validation, broken object-level authorization and missing rate limits before exposing an API.",
+      "Review configuration for default credentials, overly broad CORS and IAM settings, and disabled data isolation.",
+      "Treat AI output as a starting point, not a security guarantee: verify findings against the actual code and enforce controls server-side.",
+    ],
+    relatedServices: [
+      { label: "Application security", href: "/services/web-application-penetration-testing" },
+      { label: "Web application pentest", href: "/services/web-application-penetration-testing" },
+    ],
+    externalUrl: "https://medium.com/@cybergaar1/vibe-coder-guide-to-security-cc7f682d396e?postPublishedType=initial",
+  },
 ];
 
 export const getExpertSuggestion = (slug: string) => expertSuggestions.find((suggestion) => suggestion.slug === slug);
