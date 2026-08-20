@@ -34,7 +34,7 @@ export default async function ExpertSuggestionDetailPage({ params }: ExpertSugge
     description: post.summary,
     author: { "@type": "Organization", name: "Cybergaar" },
     publisher: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
-    mainEntityOfPage: `https://cybergaar.com/expert-suggestions/${post.slug}`,
+    mainEntityOfPage: post.externalUrl ?? `https://cybergaar.com/expert-suggestions/${post.slug}`,
   };
 
   return (

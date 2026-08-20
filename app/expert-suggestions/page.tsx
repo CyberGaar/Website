@@ -21,7 +21,7 @@ export default function ExpertSuggestionsPage() {
       "@type": "BlogPosting",
       headline: post.title,
       description: post.summary,
-      url: `https://cybergaar.com/expert-suggestions/${post.slug}`,
+      url: post.externalUrl ?? `https://cybergaar.com/expert-suggestions/${post.slug}`,
     })),
   };
 
@@ -41,7 +41,7 @@ export default function ExpertSuggestionsPage() {
             <span>{String(index + 1).padStart(2, "0")} · {post.category} · {post.readingTime}</span>
             <h2>{post.title}</h2>
             <p>{post.summary}</p>
-            <a href={`/expert-suggestions/${post.slug}`}>Read suggestion <b aria-hidden="true">⟶</b></a>
+            <a href={post.externalUrl ?? `/expert-suggestions/${post.slug}`} target={post.externalUrl ? "_blank" : undefined} rel={post.externalUrl ? "noopener noreferrer" : undefined}>Read suggestion <b aria-hidden="true">⟶</b></a>
           </article>
         ))}
       </section>

@@ -6,6 +6,7 @@ export type ExpertSuggestion = {
   readingTime: string;
   points: string[];
   relatedServices: Array<{ label: string; href: string }>;
+  externalUrl?: string;
 };
 
 export const expertSuggestions: ExpertSuggestion[] = [
@@ -59,6 +60,24 @@ export const expertSuggestions: ExpertSuggestion[] = [
       { label: "Penetration testing", href: "/services/penetration-testing" },
       { label: "Web application pentest", href: "/services/web-application-penetration-testing" },
     ],
+  },
+  {
+    slug: "pci-secure-software-key-management",
+    title: "PCI Secure Software and the key management requirement",
+    summary: "How PCI SSF objectives around strong cryptography and key lifecycle management connect to modern key infrastructure such as HashiCorp Vault.",
+    category: "PCI DSS",
+    readingTime: "6 min read",
+    points: [
+      "PCI SSF Security Objectives 8 and 9 require strong cryptography and controlled key lifecycle management, not just a completed checklist.",
+      "Traditional hardware security modules and in-house key management often struggle with the automated, cloud-native delivery patterns payment software now uses.",
+      "Identity-based secret management platforms can provide short-lived credentials, rotation, revocation and audit evidence that PCI assessors look for.",
+      "The tool is only part of the requirement. Engineering teams still own secure configuration and the full key lifecycle within their application.",
+    ],
+    relatedServices: [
+      { label: "PCI DSS", href: "/services/pci-dss" },
+      { label: "Application security", href: "/services/web-application-penetration-testing" },
+    ],
+    externalUrl: "https://www.linkedin.com/pulse/pci-secure-software-requirement-key-management-solution-cybergaar-vp8wf/?trackingId=Gf9YgqauxXJVbdEW%2FLt0BQ%3D%3D",
   },
 ];
 
