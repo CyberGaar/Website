@@ -31,6 +31,10 @@ test("renders the Cybergaar homepage and primary navigation", async () => {
   assert.match(html, /MarketLytics/);
   assert.match(html, /Risk Associates/);
   assert.match(html, /Yottabyte/);
+  assert.match(html, /Socbyte/);
+  assert.match(html, /Cloudflare/);
+  assert.match(html, /Google/);
+  assert.match(html, /Microsoft/);
   assert.match(html, /href="\/msp"/);
   assert.match(html, /href="\/industries"/);
   assert.match(html, /href="\/solutions"/);
@@ -162,6 +166,9 @@ test("keeps client stories out of the primary navigation and exposes three mobil
     stat(new URL("../public/flags/pk.svg", import.meta.url)),
   ]);
   const socials = await readFile(new URL("../app/data/socials.ts", import.meta.url), "utf8");
+  const footer = await readFile(new URL("../app/components/SiteFooter.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(footer, /Clear assurance/);
+  assert.doesNotMatch(footer, /Stronger business/);
   assert.match(socials, /huggingface\.co\/CyberGaar\/CyberSecurity/);
   assert.match(socials, /github\.com\/CyberGaar/);
   assert.match(socials, /linkedin\.com\/company\/cybergaar/);

@@ -60,6 +60,10 @@ const trustItems = [
   { name: "ComplyEncrypt", href: "https://complyencrypt.com/" },
   { name: "Risk Associates", href: "https://riskassociates.com/" },
   { name: "Yottabyte", href: "https://www.yottabyte.ltd/" },
+  { name: "Socbyte", href: "https://socbyte.ai/" },
+  { name: "Cloudflare", href: "https://www.cloudflare.com/" },
+  { name: "Google", href: "https://www.google.com/" },
+  { name: "Microsoft", href: "https://www.microsoft.com/" },
 ];
 
 const searchServices = [

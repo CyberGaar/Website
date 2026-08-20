@@ -165,12 +165,13 @@ main { overflow: hidden; }
 .contact h2 { margin: 0; font-size: clamp(45px, 5vw, 76px); line-height: 1.02; letter-spacing: -.05em; font-weight: 530; }
 .contact-side p { margin: 0; color: #3f606b; font-size: 17px; line-height: 1.6; }
 
-footer { padding: 65px max(5vw, 24px) 28px; border-top: 1px solid var(--line); background: #f7f8f7; color: #60767f; }
-.footer-main { display: grid; grid-template-columns: 1.15fr 1fr .65fr .75fr; gap: 5vw; max-width: 1580px; margin: 0 auto; padding-bottom: 55px; }
+footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); background: #f7f8f7; color: #60767f; }
+.footer-main { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 5vw; max-width: 1580px; margin: 0 auto; padding-bottom: 42px; }
 .footer-brand { margin: 0; align-self: start; color: var(--ink); }
 .footer-brand img { width: 176px; }
-.footer-main > p { margin: 3px 0; color: var(--ink); font-size: 21px; letter-spacing: -.02em; }
 .footer-links { display: flex; flex-direction: column; gap: 14px; font-size: 13px; }
+.social-links { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 10px 16px; }
+.social-links a { font-size: 12px; }
 .social-links a::after { content: "↗"; margin-left: 7px; color: var(--cyan); font-size: 11px; }
 .footer-links a:hover { color: var(--ink); }
 .footer-bottom { max-width: 1580px; margin: 0 auto; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font: 500 9px/1.4 var(--font-geist-mono), monospace; letter-spacing: .08em; text-transform: uppercase; }

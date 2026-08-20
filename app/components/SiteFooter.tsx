@@ -7,7 +7,6 @@ export default function SiteFooter() {
         <a className="brand footer-brand" href="/" aria-label="Cybergaar home">
           <img src="/logo.png" alt="Cybergaar" />
         </a>
-        <p>Clear assurance.<br />Stronger business.</p>
         <div className="footer-links">
           <a href="/services/audits">Audits</a>
           <a href="/services/vulnerability-scanning">Vulnerability scanning</a>
@@ -23,11 +22,11 @@ export default function SiteFooter() {
           <a href="/case-studies">Case studies</a>
           <a href="/careers">Careers</a>
           <a href="/contact">Contact</a>
-        </div>
-        <div className="footer-links social-links" aria-label="Cybergaar social links">
-          {socials.map((social) => (
-            <a href={social.href} target="_blank" rel="noreferrer" key={social.label}>{social.label}</a>
-          ))}
+          <div className="social-links" aria-label="Cybergaar social links">
+            {socials.map((social) => (
+              <a href={social.href} target="_blank" rel="noreferrer" key={social.label}>{social.label}</a>
+            ))}
+          </div>
         </div>
       </div>
       <div className="footer-bottom">
