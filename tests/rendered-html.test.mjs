@@ -104,4 +104,8 @@ test("keeps client stories out of the primary navigation and exposes three mobil
   assert.equal((header.match(/mobile-subnav-open/g) ?? []).length, 3);
   assert.match(header, /MSP partner programme/);
   assert.match(header, /Product Studio/);
+  assert.match(header, /flag: "\\u\{1F310\}"/);
+  assert.match(header, /flag: "\\u\{1F1EC\}\\u\{1F1E7\}"/);
+  assert.match(header, /flag: "\\u\{1F1F5\}\\u\{1F1F0\}"/);
+  assert.match(header, /region-current-label/);
 });

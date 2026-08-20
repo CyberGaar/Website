@@ -1,12 +1,12 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { getServicesByCategory } from "../data/services";
 
 const regions = [
-  { code: "global", flag: "◎", label: "Global", href: "/" },
-  { code: "uk", flag: "🇬🇧", label: "United Kingdom", href: "/uk" },
-  { code: "pk", flag: "🇵🇰", label: "Pakistan", href: "/pk" },
+  { code: "global", flag: "\u{1F310}", label: "Global", href: "/" },
+  { code: "uk", flag: "\u{1F1EC}\u{1F1E7}", label: "United Kingdom", href: "/uk" },
+  { code: "pk", flag: "\u{1F1F5}\u{1F1F0}", label: "Pakistan", href: "/pk" },
 ];
 
 const auditLinks = getServicesByCategory("audits").slice(0, 6);
@@ -130,16 +130,24 @@ export default function SiteHeader() {
         <div className="secondary-nav">
           <a href="/contact" onClick={closeMenus}>Contact</a>
           <div className="region-picker">
-            <button type="button" className="region-button" aria-expanded={regionOpen} aria-controls="region-menu" onClick={() => { setActiveMenu(null); setRegionOpen(!regionOpen); }}>
-              <span className="region-flag">{currentRegion.flag}</span>
-              <span>{currentRegion.label}</span>
+            <button
+              type="button"
+              className="region-button"
+              aria-label={`Select Cybergaar site. Current site: ${currentRegion.label}`}
+              aria-expanded={regionOpen}
+              aria-controls="region-menu"
+              onClick={() => { setActiveMenu(null); setRegionOpen(!regionOpen); }}
+            >
+              <span className="region-flag" aria-hidden="true">{currentRegion.flag}</span>
+              <span className="region-current-label" aria-hidden="true">{currentRegion.label}</span>
+              <span className="sr-only">Current site: {currentRegion.label}</span>
               <Chevron />
             </button>
             <div className={`region-menu ${regionOpen ? "region-menu-open" : ""}`} id="region-menu">
               <p>Select a Cybergaar site</p>
               {regions.map((region) => (
                 <a className={currentRegion.code === region.code ? "active-region" : ""} href={region.href} key={region.code} onClick={closeMenus}>
-                  <span>{region.flag}</span>{region.label}
+                  <span className="region-flag" aria-hidden="true">{region.flag}</span>{region.label}
                   {currentRegion.code === region.code && <b aria-label="Current site">✓</b>}
                 </a>
               ))}
