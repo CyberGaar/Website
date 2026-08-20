@@ -50,12 +50,14 @@ main { overflow: hidden; }
 .search-button { width: 38px; height: 38px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; }
 .search-button span { width: 15px; height: 15px; border: 2px solid var(--ink); border-radius: 50%; position: relative; }
 .search-button span::after { content: ""; position: absolute; width: 7px; height: 2px; background: var(--ink); right: -5px; bottom: -3px; transform: rotate(45deg); }
-.secondary-nav > a { padding-inline: 20px; }
+.secondary-nav > a { padding-inline: 18px; }
+.login-link { text-transform: none; }
+.login-icon { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid currentColor; border-radius: 999px; font-size: 12px; line-height: 1; transform: translateY(-1px); }
 .region-picker { position: relative; height: 100%; display: flex; align-items: center; border-left: 1px solid #8d989d; }
-.region-button { height: 100%; min-width: 58px; border: 0; background: transparent; padding: 0 14px 0 17px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font: 650 13px/1 var(--font-geist-mono), monospace; letter-spacing: .035em; white-space: nowrap; }
+.region-button { height: 100%; min-width: 190px; border: 0; background: transparent; padding: 0 18px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; font: 650 13px/1 var(--font-geist-mono), monospace; letter-spacing: .035em; white-space: nowrap; }
 .region-button .chevron { margin-left: 0; }
 .region-flag { font-size: 20px; line-height: 1; }
-.region-current-label { display: none; }
+.region-current-label { display: inline; }
 .region-menu { position: absolute; top: calc(100% + 1px); right: 0; width: 280px; padding: 18px; background: #fff; border: 1px solid var(--line); box-shadow: 0 18px 45px rgba(8,44,60,.14); display: none; }
 .region-menu-open { display: block; }
 .region-menu p { margin: 0 0 10px; padding: 0 10px 12px; border-bottom: 1px solid var(--line); color: var(--muted); font: 600 10px/1 var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .1em; }
@@ -178,6 +180,7 @@ footer { padding: 65px max(5vw, 24px) 28px; border-top: 1px solid var(--line); b
   .brand { margin-right: 30px; }
   .primary-nav { gap: 20px; }
   .primary-nav > a, .primary-nav > button, .secondary-nav > a, .region-button { font-size: 11px; }
+  .region-button { min-width: 164px; }
   .primary-nav > a:nth-child(6) { display: none; }
   .hero { grid-template-columns: 1.05fr .95fr; }
   .offer-column { padding-inline: 24px; }

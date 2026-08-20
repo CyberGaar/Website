@@ -32,6 +32,7 @@ test("renders the Cybergaar homepage and primary navigation", async () => {
   assert.match(html, /href="\/services\/cyber-essentials"/);
   assert.match(html, /href="\/case-studies"/);
   assert.match(html, /href="\/contact"/);
+  assert.match(html, /href="https:\/\/demo\.cybergaar\.com"/);
 });
 
 test("renders a complete service detail route", async () => {
@@ -108,4 +109,5 @@ test("keeps client stories out of the primary navigation and exposes three mobil
   assert.match(header, /flag: "\\u\{1F1EC\}\\u\{1F1E7\}"/);
   assert.match(header, /flag: "\\u\{1F1F5\}\\u\{1F1F0\}"/);
   assert.match(header, /region-current-label/);
+  assert.match(header, /login-link/);
 });

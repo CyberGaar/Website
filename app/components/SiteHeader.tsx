@@ -129,6 +129,10 @@ export default function SiteHeader() {
 
         <div className="secondary-nav">
           <a href="/contact" onClick={closeMenus}>Contact</a>
+          <a className="login-link" href="https://demo.cybergaar.com" target="_blank" rel="noreferrer" onClick={closeMenus}>
+            <span className="login-icon" aria-hidden="true">↗</span>
+            <span>Login</span>
+          </a>
           <div className="region-picker">
             <button
               type="button"
