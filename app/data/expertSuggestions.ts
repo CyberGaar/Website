@@ -79,6 +79,24 @@ export const expertSuggestions: ExpertSuggestion[] = [
     ],
     externalUrl: "https://www.linkedin.com/pulse/pci-secure-software-requirement-key-management-solution-cybergaar-vp8wf/?trackingId=Gf9YgqauxXJVbdEW%2FLt0BQ%3D%3D",
   },
+  {
+    slug: "cisco-network-hardening-audit-checklist",
+    title: "Hardening your Cisco network: a security audit checklist",
+    summary: "A baseline set of Cisco IOS checks for disabling legacy services, locking down management access, and verifying interface, routing and logging configuration.",
+    category: "Network security",
+    readingTime: "3 min read",
+    points: [
+      "Check that legacy services such as Finger, PAD and TCP/UDP small servers are disabled to reduce reconnaissance and amplification risk.",
+      "Review management access through VTY lines, SNMP, local user accounts and HTTP/HTTPS server settings.",
+      "Verify interface hardening including Proxy ARP, CDP exposure on untrusted interfaces and IP directed broadcast controls.",
+      "Confirm logging is active and sent to a secure syslog server so audit evidence is retained.",
+    ],
+    relatedServices: [
+      { label: "Network penetration testing", href: "/services/network-penetration-testing" },
+      { label: "Network vulnerability scanning", href: "/services/network-vulnerability-scanning" },
+    ],
+    externalUrl: "https://medium.com/@cybergaar1/hardening-your-cisco-network-a-complete-security-audit-checklist-4a356c3109d5?postPublishedType=initial",
+  },
 ];
 
 export const getExpertSuggestion = (slug: string) => expertSuggestions.find((suggestion) => suggestion.slug === slug);
