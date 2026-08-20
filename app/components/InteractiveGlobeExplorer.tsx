@@ -1,7 +1,8 @@
 "use client";
 
 import { PointerEvent, useEffect, useMemo, useRef, useState } from "react";
-import { GlobeCountry, globeCountries, globeRegions } from "../data/globeStandards";
+import { globeCountries, globeRegions } from "../data/globeStandards";
+import type { GlobeCountry } from "../data/globeStandards";
 
 type CountryPoint = {
   lat: number;
@@ -43,6 +44,35 @@ const countryPoints: Record<string, CountryPoint> = {
 };
 
 const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+
+const landMasses: CountryPoint[][] = [
+  [
+    { lat: 72, lon: -165 }, { lat: 66, lon: -105 }, { lat: 52, lon: -60 }, { lat: 28, lon: -82 },
+    { lat: 16, lon: -96 }, { lat: 24, lon: -124 }, { lat: 47, lon: -128 }, { lat: 62, lon: -150 },
+  ],
+  [
+    { lat: 13, lon: -82 }, { lat: 6, lon: -76 }, { lat: -8, lon: -80 }, { lat: -36, lon: -72 },
+    { lat: -55, lon: -67 }, { lat: -38, lon: -50 }, { lat: -12, lon: -36 }, { lat: 7, lon: -50 },
+  ],
+  [
+    { lat: 72, lon: -10 }, { lat: 64, lon: 32 }, { lat: 51, lon: 64 }, { lat: 37, lon: 35 },
+    { lat: 36, lon: -8 }, { lat: 50, lon: -11 },
+  ],
+  [
+    { lat: 34, lon: -17 }, { lat: 31, lon: 34 }, { lat: 10, lon: 52 }, { lat: -35, lon: 28 },
+    { lat: -34, lon: 18 }, { lat: -7, lon: 10 }, { lat: 9, lon: -14 },
+  ],
+  [
+    { lat: 67, lon: 38 }, { lat: 60, lon: 105 }, { lat: 48, lon: 148 }, { lat: 30, lon: 122 },
+    { lat: 8, lon: 104 }, { lat: 8, lon: 72 }, { lat: 25, lon: 45 }, { lat: 44, lon: 62 },
+  ],
+  [
+    { lat: -11, lon: 113 }, { lat: -22, lon: 154 }, { lat: -43, lon: 146 }, { lat: -35, lon: 114 },
+  ],
+  [
+    { lat: 7, lon: 95 }, { lat: -6, lon: 130 }, { lat: -10, lon: 115 }, { lat: 1, lon: 102 },
+  ],
+];
 
 function rotatePoint(lat: number, lon: number, rotationX: number, rotationY: number) {
   const latRad = toRadians(lat);
@@ -100,6 +130,34 @@ function drawGlobe(canvas: HTMLCanvasElement, rotationX: number, rotationY: numb
   context.clip();
   context.fillStyle = ocean;
   context.fillRect(centerX - radius, centerY - radius, radius * 2, radius * 2);
+
+  context.fillStyle = "rgba(185,255,102,.42)";
+  context.strokeStyle = "rgba(229,255,210,.34)";
+  context.lineWidth = 1.2;
+  landMasses.forEach((landMass) => {
+    context.beginPath();
+    let started = false;
+    landMass.forEach((coordinate) => {
+      const point = rotatePoint(coordinate.lat, coordinate.lon, rotationX, rotationY);
+      if (point.z < -0.05) {
+        started = false;
+        return;
+      }
+      const x = centerX + point.x * radius;
+      const y = centerY - point.y * radius;
+      if (!started) {
+        context.moveTo(x, y);
+        started = true;
+      } else {
+        context.lineTo(x, y);
+      }
+    });
+    if (started) {
+      context.closePath();
+      context.fill();
+      context.stroke();
+    }
+  });
 
   context.strokeStyle = "rgba(255,255,255,.16)";
   context.lineWidth = 1;

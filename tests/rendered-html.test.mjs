@@ -69,10 +69,13 @@ test("keeps the complete 30-service catalogue in one data source", async () => {
 });
 
 test("renders contact, careers, editable case-study, industry and expert routes", async () => {
-  const [contact, careers, caseStudy, industries, financialServices, solutions, expertSuggestions, expertPost] = await Promise.all([
+  const [contact, careers, caseStudy, zeroTrustCaseStudy, ciscoCaseStudy, aiGovernanceCaseStudy, industries, financialServices, solutions, expertSuggestions, expertPost] = await Promise.all([
     render("/contact"),
     render("/careers"),
     render("/case-studies/fintech-enterprise-readiness"),
+    render("/case-studies/cloudflare-zero-trust-shared-access"),
+    render("/case-studies/cisco-router-network-hardening"),
+    render("/case-studies/iso-42001-ai-governance-saas"),
     render("/industries"),
     render("/industries/financial-services"),
     render("/solutions"),
@@ -88,6 +91,15 @@ test("renders contact, careers, editable case-study, industry and expert routes"
   assert.match(await careers.text(), /No open careers right now/);
   assert.equal(caseStudy.status, 200);
   assert.match(await caseStudy.text(), /What needed to change/);
+  assert.equal(zeroTrustCaseStudy.status, 200);
+  const zeroTrustHtml = await zeroTrustCaseStudy.text();
+  assert.match(zeroTrustHtml, /Zero Trust controls for shared customer access/);
+  assert.match(zeroTrustHtml, /Identity-Aware Proxying/);
+  assert.match(zeroTrustHtml, /TECHNICAL HURDLES &amp; MITIGATIONS/);
+  assert.equal(ciscoCaseStudy.status, 200);
+  assert.match(await ciscoCaseStudy.text(), /Auditing Cisco routers for misconfiguration/);
+  assert.equal(aiGovernanceCaseStudy.status, 200);
+  assert.match(await aiGovernanceCaseStudy.text(), /AI governance for a SaaS provider using ISO 42001/);
   assert.equal(industries.status, 200);
   const industriesHtml = await industries.text();
   assert.match(industriesHtml, /Financial services/);
@@ -125,6 +137,7 @@ test("renders the global standards globe page without loading it into the homepa
   assert.match(globeHtml, /Choose country/);
   assert.match(globeHtml, /Play rotation/);
   assert.match(globeHtml, /crisp labels are rendered as page text/);
+  assert.match(globeHtml, /Interactive coordinate-based globe/);
   assert.match(globeHtml, /Selected country/);
   assert.doesNotMatch(globeHtml, /globe-country-list/);
 });
@@ -143,6 +156,9 @@ test("serves search-engine discovery files", async () => {
   assert.match(xml, /https:\/\/cybergaar\.com\/solutions/);
   assert.match(xml, /https:\/\/cybergaar\.com\/global-standards/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/fintech-enterprise-readiness/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/cloudflare-zero-trust-shared-access/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/cisco-router-network-hardening/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/iso-42001-ai-governance-saas/);
 });
 
 test("keeps client stories out of the primary navigation and exposes three mobile accordions", async () => {
