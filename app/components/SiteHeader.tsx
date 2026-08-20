@@ -110,7 +110,7 @@ export default function SiteHeader() {
   return (
     <header className="site-header reference-header">
       <a className="brand" href="/" aria-label="Cybergaar home" onClick={closeMenus}>
-        <img src="/logo.png" alt="Cybergaar" />
+        <img src="/logo.png" alt="Cybergaar" width="885" height="133" />
       </a>
 
       <button className="menu-button" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={toggleMobileMenu}>

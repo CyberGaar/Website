@@ -1,0 +1,41 @@
+# Cybergaar
+
+Cybergaar provides cyber security assurance services: security audits, ISO 27001
+implementation, ISO audit support, application security testing, vulnerability scanning,
+and penetration testing. Work is described in concrete terms focused on reducing real
+exposure and making the next action clear.
+
+## What Cybergaar does
+
+- Security audits and compliance readiness (ISO 27001, SOC 2, PCI DSS, Cyber Essentials,
+  GDPR, HIPAA, NIST CSF, DORA, NIS2, SAMA, CMMC and more).
+- Vulnerability scanning across networks, applications, hosts, databases, authenticated
+  and unauthenticated environments, and cloud-native workloads.
+- Penetration testing across web, mobile, network, cloud, wireless, social engineering and
+  IoT/embedded systems.
+- Practical remediation guidance and readiness support, delivered without overstating
+  certification outcomes.
+
+## Services
+
+- [ISO 27001](https://cybergaar.com/services/iso-27001): ISMS readiness, gap assessment,
+  control evidence and certification audit support.
+- [PCI DSS](https://cybergaar.com/services/pci-dss): readiness and implementation support
+  for organisations processing card payments.
+- [SOC 2](https://cybergaar.com/services/soc-2): control design and evidence support for
+  SaaS and technology companies.
+- [Cyber Essentials](https://cybergaar.com/services/cyber-essentials): UK baseline
+  certification readiness and remediation.
+- [Vulnerability scanning](https://cybergaar.com/services/vulnerability-scanning): network,
+  host, database, cloud and authenticated scanning with validation.
+- [Penetration testing](https://cybergaar.com/services/penetration-testing): manual testing
+  across web, mobile, network, cloud, wireless, social engineering and IoT.
+
+## Regions
+
+Cybergaar serves a global audience with site variants for the United Kingdom
+(https://cybergaar.com/uk) and Pakistan (https://cybergaar.com/pk).
+
+## Contact
+
+Email hello@cybergaar.com to discuss an engagement or scope a security audit or test.

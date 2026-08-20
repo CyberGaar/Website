@@ -5,7 +5,7 @@ export default function SiteFooter() {
     <footer>
       <div className="footer-main">
         <a className="brand footer-brand" href="/" aria-label="Cybergaar home">
-          <img src="/logo.png" alt="Cybergaar" />
+          <img src="/logo.png" alt="Cybergaar" width="885" height="133" />
         </a>
         <div className="footer-links">
           <a href="/services/audits">Audits</a>

@@ -17,12 +17,50 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
     description: `${study.summary} Representative Cybergaar work covering security assessment, remediation and business risk reduction.`,
     keywords: [study.sector, "security case study", "cybersecurity case study", "security assessment", "vulnerability scanning", "penetration testing", "security audit"],
     alternates: { canonical: `/case-studies/${study.slug}` },
+    openGraph: {
+      title: `${study.title} | Security Case Study | Cybergaar`,
+      description: `${study.summary} Representative Cybergaar work covering security assessment, remediation and business risk reduction.`,
+      url: `https://cybergaar.com/case-studies/${study.slug}`,
+      siteName: "Cybergaar",
+      locale: "en_US",
+      type: "article",
+      images: [{ url: "/og.png", width: 1672, height: 941, alt: `${study.title} | Cybergaar` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${study.title} | Security Case Study | Cybergaar`,
+      description: `${study.summary}`,
+      images: ["/og.png"],
+    },
   } : {};
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const study = getCaseStudy((await params).slug);
   if (!study) notFound();
+
+  const caseStudyStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: study.title,
+        description: study.summary,
+        articleSection: study.sector,
+        author: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
+        publisher: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com", logo: { "@type": "ImageObject", url: "https://cybergaar.com/logo.png" } },
+        mainEntityOfPage: `https://cybergaar.com/case-studies/${study.slug}`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Case studies", item: "https://cybergaar.com/case-studies" },
+          { "@type": "ListItem", position: 2, name: study.sector, item: "https://cybergaar.com/case-studies" },
+          { "@type": "ListItem", position: 3, name: study.title, item: `https://cybergaar.com/case-studies/${study.slug}` },
+        ],
+      },
+    ],
+  };
 
   return (
     <main className="inner-page" id="top">
@@ -39,6 +77,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         <article><span>03</span><p>THE OUTCOME</p><h2>The result</h2><div>{study.outcome}</div></article>
       </section>
       <section className="case-placeholder-note"><p>STORY STATUS</p><h2>This representative case study is ready for approved client detail, evidence and metrics.</h2><a href="/contact">Discuss a similar challenge <span aria-hidden="true">⟶</span></a></section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudyStructuredData) }} />
       <SiteFooter />
     </main>
   );

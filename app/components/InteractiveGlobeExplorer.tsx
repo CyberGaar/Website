@@ -115,6 +115,8 @@ export default function InteractiveGlobeExplorer() {
           height="640"
           src={frames[activeFrame]}
           width="640"
+          loading="lazy"
+          decoding="async"
         />
         <div className="globe-hint">Drag the globe area to rotate frames</div>
       </div>

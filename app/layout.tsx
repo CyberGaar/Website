@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cybergaar | Security audits and testing",
     description: "ISO 27001, security audits, application security, penetration testing and vulnerability scanning.",
+    url: "https://cybergaar.com",
+    siteName: "Cybergaar",
+    locale: "en_US",
     type: "website",
     images: [{ url: "/og.png", width: 1672, height: 941, alt: "Cybergaar — See every gap. Secure every move." }],
   },
@@ -36,10 +39,36 @@ export const metadata: Metadata = {
   },
 };
 
+const siteStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "Cybergaar",
+      url: "https://cybergaar.com",
+      logo: "https://cybergaar.com/logo.png",
+      email: "hello@cybergaar.com",
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "hello@cybergaar.com",
+        contactType: "sales",
+      },
+    },
+    {
+      "@type": "WebSite",
+      name: "Cybergaar",
+      url: "https://cybergaar.com",
+    },
+  ],
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteStructuredData) }} />
+      </body>
     </html>
   );
 }

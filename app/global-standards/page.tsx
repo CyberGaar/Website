@@ -27,7 +27,7 @@ const structuredData = {
   "@type": "WebPage",
   name: "Global Cyber Security Standards Explorer",
   description: "Interactive guide to cyber security standards and related services by country and region.",
-  about: globeCountries.slice(0, 12).map((country) => ({
+  about: globeCountries.map((country) => ({
     "@type": "Thing",
     name: `${country.name} cyber security standards`,
     description: country.standards.join(", "),
@@ -49,6 +49,15 @@ export default function GlobalStandardsPage() {
         </p>
       </section>
       <InteractiveGlobeExplorer />
+      <section className="sr-only" aria-label="Cyber security standards by country">
+        <h2>Cyber security standards by country</h2>
+        {globeCountries.map((country) => (
+          <article key={country.name}>
+            <h3>{country.name} ({country.region})</h3>
+            <p>{country.standards.join(", ")}</p>
+          </article>
+        ))}
+      </section>
       <section className="standards-answer-section">
         <div>
           <p>HOW CYBERGAAR HELPS</p>

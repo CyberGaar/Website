@@ -31,6 +31,21 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       "security implementation",
     ],
     alternates: { canonical: `/services/${service.slug}` },
+    openGraph: {
+      title: `${service.name} | ${category.label} | Cybergaar`,
+      description: `${service.name} support from Cybergaar for ${service.appliesTo.toLowerCase()}. Includes scoping, assessment, evidence, remediation guidance and clear next steps.`,
+      url: `https://cybergaar.com/services/${service.slug}`,
+      siteName: "Cybergaar",
+      locale: "en_US",
+      type: "website",
+      images: [{ url: "/og.png", width: 1672, height: 941, alt: `${service.name} | Cybergaar` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.name} | ${category.label} | Cybergaar`,
+      description: `${service.name} support from Cybergaar for ${service.appliesTo.toLowerCase()}.`,
+      images: ["/og.png"],
+    },
   };
 }
 
@@ -41,14 +56,26 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const category = categoryContent[service.category];
   const serviceStructuredData = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.name,
-    provider: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
-    serviceType: category.label,
-    areaServed: service.region,
-    audience: service.appliesTo,
-    description: `${service.name} support for ${service.appliesTo}. ${service.risk}`,
-    offers: { "@type": "Offer", priceCurrency: "USD", description: service.price },
+    "@graph": [
+      {
+        "@type": "Service",
+        name: service.name,
+        provider: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
+        serviceType: category.label,
+        areaServed: service.region,
+        audience: service.appliesTo,
+        description: `${service.name} support for ${service.appliesTo}. ${service.risk}`,
+        offers: { "@type": "Offer", priceCurrency: "USD", description: service.price },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Services", item: "https://cybergaar.com/services" },
+          { "@type": "ListItem", position: 2, name: category.label, item: `https://cybergaar.com/services/${service.category}` },
+          { "@type": "ListItem", position: 3, name: service.name, item: `https://cybergaar.com/services/${service.slug}` },
+        ],
+      },
+    ],
   };
 
   return (
