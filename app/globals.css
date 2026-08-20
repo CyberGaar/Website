@@ -335,6 +335,22 @@ footer { padding: 65px max(5vw, 24px) 28px; border-top: 1px solid var(--line); b
 .price-panel { background: #fff; }
 .formal-panel { background: var(--acid); }
 .formal-panel > p, .formal-panel > span { color: #28454f !important; }
+.audit-pricing-layout { grid-template-columns: minmax(280px, .8fr) minmax(0, 2.2fr); }
+.audit-pricing-layout article:last-child { border-right: 0; }
+.audit-switch-panel { min-height: 470px; display: flex; flex-direction: column; gap: 26px; }
+.audit-switch-head { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 12px; }
+.audit-switch-head > p { margin: 0; color: #6a7e86; font: 650 9px/1.4 var(--font-geist-mono), monospace; letter-spacing: .1em; }
+.audit-tabs { display: inline-flex; border: 1px solid #b8c3c7; background: var(--soft); }
+.audit-tabs button { min-width: 118px; padding: 12px 15px; border: 0; border-right: 1px solid #b8c3c7; background: transparent; color: var(--ink); cursor: pointer; font: 700 11px/1 var(--font-geist-mono), monospace; letter-spacing: .05em; text-transform: uppercase; }
+.audit-tabs button:last-child { border-right: 0; }
+.audit-tabs button:hover, .audit-tabs .active-audit-tab { background: var(--acid); }
+.audit-tab-panel h2 { max-width: 980px; margin-bottom: 12px; }
+.audit-tab-panel h3 { margin: 0 0 18px; font-size: 20px; line-height: 1.22; font-weight: 600; letter-spacing: -.02em; }
+.audit-tab-panel p, .pricing-scope-note span { margin: 18px 0 0; color: #526b75; font-size: 14px; line-height: 1.62; }
+.pricing-scope-note { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 170px 1fr; gap: 24px; }
+.pricing-scope-note b { font-size: 14px; line-height: 1.35; }
+.pricing-scope-note span { margin: 0; }
+.price-panel small { display: block; margin-top: 18px; color: #6a7e86; font-size: 11px; line-height: 1.5; }
 .delivery-section { padding: 95px max(6vw, 24px); display: grid; grid-template-columns: minmax(300px, .8fr) minmax(440px, 1fr); gap: 9vw; background: #fff; }
 .delivery-section h2 { max-width: 600px; margin: 0; font-size: clamp(38px, 4vw, 62px); line-height: 1.06; letter-spacing: -.045em; font-weight: 540; }
 .delivery-section ol { margin: 0; padding: 0; list-style: none; }
@@ -399,6 +415,7 @@ footer { padding: 65px max(5vw, 24px) 28px; border-top: 1px solid var(--line); b
   .solution-card:nth-last-child(-n+3) { border-bottom: 0; }
   .solution-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
   .service-evidence-grid { grid-template-columns: 1fr 1fr; }
+  .audit-pricing-layout { grid-template-columns: 1fr; }
   .service-evidence-grid article:last-child { grid-column: 1 / -1; }
   .partner-grid, .workflow-grid { grid-template-columns: repeat(2, 1fr); }
   .product-hero { grid-template-columns: 1fr; }
@@ -415,6 +432,10 @@ footer { padding: 65px max(5vw, 24px) 28px; border-top: 1px solid var(--line); b
   .service-detail-summary > span { grid-column: 2; width: fit-content; }
   .service-evidence-grid { grid-template-columns: 1fr; }
   .service-evidence-grid article, .service-evidence-grid article:last-child { grid-column: auto; border-right: 0; min-height: 300px; }
+  .audit-switch-head { align-items: stretch; flex-direction: column; }
+  .audit-tabs { width: 100%; }
+  .audit-tabs button { flex: 1; min-width: 0; }
+  .pricing-scope-note { grid-template-columns: 1fr; gap: 10px; }
   .delivery-section { grid-template-columns: 1fr; gap: 50px; }
   .detail-cta { align-items: start; flex-direction: column; }
   .partner-model { grid-template-columns: 1fr; }

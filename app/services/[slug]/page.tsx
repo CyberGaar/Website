@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SiteFooter from "../../components/SiteFooter";
 import SiteHeader from "../../components/SiteHeader";
+import PricingPanels from "../../components/PricingPanels";
 import { categoryContent, getService, services } from "../../data/services";
 
 type ServicePageProps = { params: Promise<{ slug: string }> };
@@ -69,25 +70,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      <section className="service-evidence-grid">
-        <article className="risk-panel">
-          <p>WHY IT MATTERS</p>
-          <h2>The exposure if this is missed</h2>
-          <span>{service.risk}</span>
-        </article>
-        <article className="price-panel">
-          <p>INDICATIVE CYBERGAAR READINESS / DELIVERY</p>
-          <h2>{service.price}</h2>
-          <span>{service.priceDetails}</span>
-        </article>
-        {service.formalPrice && (
-          <article className="price-panel formal-panel">
-            <p>FORMAL AUDIT OR CERTIFICATION</p>
-            <h2>{service.formalPrice}</h2>
-            <span>{service.formalDetails}</span>
-          </article>
-        )}
-      </section>
+      <PricingPanels
+        category={service.category}
+        risk={service.risk}
+        price={service.price}
+        priceDetails={service.priceDetails}
+        formalPrice={service.formalPrice}
+        formalDetails={service.formalDetails}
+      />
 
       <section className="delivery-section">
         <div>
@@ -105,7 +95,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <div><p>START A CONVERSATION</p><h2>Ready to scope your {service.shortName ?? service.name} engagement?</h2></div>
         <a href="mailto:hello@cybergaar.com">Talk to Cybergaar <span aria-hidden="true">⟶</span></a>
       </section>
-      <p className="pricing-disclaimer">Indicative planning ranges only. Final pricing depends on scope, complexity, access, evidence quality and assessor requirements. Regulatory readiness support is not legal advice.</p>
+      <p className="pricing-disclaimer">Indicative planning ranges only. Final pricing depends on the agreed scope, including people, business complexity and technology footprint. Currency conversion notes use rounded planning rates checked on 20 August 2026: 1 USD ≈ £0.74 and 1 USD ≈ PKR 278. Regulatory readiness support is not legal advice.</p>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceStructuredData) }} />
       <SiteFooter />
     </main>

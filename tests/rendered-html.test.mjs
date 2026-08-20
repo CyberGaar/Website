@@ -41,7 +41,10 @@ test("renders a complete service detail route", async () => {
   const html = await response.text();
   assert.match(html, /Cyber Essentials/);
   assert.match(html, /WHY IT MATTERS/);
-  assert.match(html, /FORMAL AUDIT OR CERTIFICATION/);
+  assert.match(html, /Audit pricing view/);
+  assert.match(html, /Internal/);
+  assert.match(html, /External/);
+  assert.match(html, /people, business complexity and technology footprint/);
   assert.match(html, /Discuss|Talk to Cybergaar/);
 });
 
@@ -114,6 +117,11 @@ test("keeps client stories out of the primary navigation and exposes three mobil
   assert.doesNotMatch(header, /login-icon/);
   assert.match(header, /Contact<\/a>\s*<a className="login-link"/);
   assert.match(css, /region-button:hover/);
+  assert.match(header, /cybergaar-region/);
+  const pricing = await readFile(new URL("../app/components/PricingPanels.tsx", import.meta.url), "utf8");
+  assert.match(pricing, /1 USD ≈ £0\.74/);
+  assert.match(pricing, /1 USD ≈ PKR 278/);
+  assert.match(pricing, /people, business complexity and technology footprint/);
   await Promise.all([
     stat(new URL("../public/flags/global.svg", import.meta.url)),
     stat(new URL("../public/flags/gb.svg", import.meta.url)),

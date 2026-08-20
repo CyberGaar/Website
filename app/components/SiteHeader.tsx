@@ -9,6 +9,8 @@ const regions = [
   { code: "pk", flagSrc: "/flags/pk.svg", label: "Pakistan", href: "/pk" },
 ];
 
+const REGION_STORAGE_KEY = "cybergaar-region";
+
 const auditLinks = getServicesByCategory("audits").slice(0, 6);
 const scanLinks = getServicesByCategory("vulnerability-scanning").slice(0, 4);
 const pentestLinks = getServicesByCategory("penetration-testing").slice(0, 4);
@@ -52,9 +54,21 @@ export default function SiteHeader() {
 
   useEffect(() => {
     const path = window.location.pathname.toLowerCase();
-    if (path === "/uk" || path.startsWith("/uk/")) setCurrentRegion(regions[1]);
-    else if (path === "/pk" || path.startsWith("/pk/")) setCurrentRegion(regions[2]);
+    if (path === "/uk" || path.startsWith("/uk/")) {
+      setCurrentRegion(regions[1]);
+      window.localStorage.setItem(REGION_STORAGE_KEY, "uk");
+    }
+    else if (path === "/pk" || path.startsWith("/pk/")) {
+      setCurrentRegion(regions[2]);
+      window.localStorage.setItem(REGION_STORAGE_KEY, "pk");
+    }
     else {
+      const storedRegion = window.localStorage.getItem(REGION_STORAGE_KEY);
+      const matchingRegion = regions.find((region) => region.code === storedRegion);
+      if (matchingRegion) {
+        setCurrentRegion(matchingRegion);
+        return;
+      }
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
       const language = navigator.language.toLowerCase();
       if (timeZone === "Asia/Karachi" || language.endsWith("-pk")) setCurrentRegion(regions[2]);
@@ -87,6 +101,11 @@ export default function SiteHeader() {
         {item.shortName ?? item.name} <span aria-hidden="true">›</span>
       </a>
     ));
+
+  const selectRegion = (region: (typeof regions)[number]) => {
+    window.localStorage.setItem(REGION_STORAGE_KEY, region.code);
+    closeMenus();
+  };
 
   return (
     <header className="site-header reference-header">
@@ -146,7 +165,7 @@ export default function SiteHeader() {
             <div className={`region-menu ${regionOpen ? "region-menu-open" : ""}`} id="region-menu">
               <p>Select a Cybergaar site</p>
               {regions.map((region) => (
-                <a className={currentRegion.code === region.code ? "active-region" : ""} href={region.href} key={region.code} onClick={closeMenus}>
+                <a className={currentRegion.code === region.code ? "active-region" : ""} href={region.href} key={region.code} onClick={() => selectRegion(region)}>
                   <img className="region-flag" src={region.flagSrc} alt="" aria-hidden="true" />{region.label}
                   {currentRegion.code === region.code && <b aria-label="Current site">✓</b>}
                 </a>

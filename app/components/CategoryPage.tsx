@@ -27,11 +27,10 @@ export default function CategoryPage({ category }: { category: ServiceCategory }
         </div>
       </section>
       <section className="catalog-note">
-        <p>Pricing shown on individual service pages is an indicative offshore/Pakistan planning range. Final scope and pricing depend on environment size, complexity, evidence quality and any independent assessor requirements.</p>
+        <p>Pricing shown on individual service pages changes by selected site: USD for Global, GBP for United Kingdom and PKR for Pakistan. Final scope and pricing depend on people, business complexity, technology footprint, evidence quality and any independent assessor requirements.</p>
         <a href="mailto:hello@cybergaar.com">Discuss your scope <span aria-hidden="true">⟶</span></a>
       </section>
       <SiteFooter />
     </main>
   );
 }
-
