@@ -612,12 +612,17 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
 .global-standards-hero { min-height: 560px; margin-top: 76px; padding: 95px max(6vw, 24px) 70px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(300px, .75fr); gap: 8vw; align-items: end; background: var(--soft); border-bottom: 1px solid var(--line); }
 .global-standards-hero h1 { max-width: 1120px; margin: 0; font-size: clamp(54px, 6.6vw, 98px); line-height: .95; letter-spacing: -.06em; font-weight: 520; }
 .global-standards-hero > p { max-width: 720px; margin: 0; color: #4b6570; font-size: 18px; line-height: 1.62; }
-.globe-explorer { min-height: calc(100vh - 76px); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(360px, .72fr); background: #f7f9f9; border-bottom: 1px solid var(--line); }
-.globe-explorer-stage { min-height: 720px; display: grid; place-items: center; position: relative; overflow: hidden; cursor: grab; touch-action: pan-y; background: radial-gradient(circle at 50% 48%, rgba(110,219,232,.2), rgba(255,255,255,0) 48%), #fff; border-right: 1px solid var(--line); }
+.globe-explorer { display: grid; grid-template-columns: 1fr; background: #f7f9f9; border-bottom: 1px solid var(--line); }
+.globe-explorer-stage { min-height: 700px; display: grid; place-items: center; position: relative; overflow: hidden; cursor: grab; touch-action: pan-y; background: radial-gradient(circle at 50% 48%, rgba(110,219,232,.2), rgba(255,255,255,0) 48%), #fff; border-bottom: 1px solid var(--line); }
 .globe-explorer-stage:active { cursor: grabbing; }
-.globe-explorer-stage img { width: min(680px, 82vw); height: auto; user-select: none; filter: drop-shadow(0 30px 58px rgba(8,44,60,.2)); }
+.globe-explorer-stage img { width: min(660px, 70vw); height: auto; user-select: none; filter: drop-shadow(0 30px 58px rgba(8,44,60,.18)); transform: translateZ(0); backface-visibility: hidden; }
+.globe-stage-card { position: absolute; right: max(4vw, 24px); bottom: 34px; width: min(390px, calc(100% - 48px)); padding: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.92); box-shadow: 0 20px 45px rgba(8,44,60,.12); backdrop-filter: blur(8px); }
+.globe-stage-card p { margin: 0 0 10px; color: #6a7f87; font: 650 9px/1 var(--font-geist-mono), monospace; letter-spacing: .12em; text-transform: uppercase; }
+.globe-stage-card h3 { margin: 0 0 15px; color: var(--ink); font-size: clamp(26px, 2.4vw, 38px); line-height: 1.05; letter-spacing: -.04em; font-weight: 540; }
+.globe-stage-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.globe-stage-tags span { padding: 7px 9px; border: 1px solid #c1cbcf; background: #fff; color: #28454f; font-size: 11px; line-height: 1; }
 .globe-hint { position: absolute; left: 28px; bottom: 24px; color: #6a7f87; font: 650 10px/1 var(--font-geist-mono), monospace; letter-spacing: .1em; text-transform: uppercase; }
-.globe-control-panel { display: flex; flex-direction: column; gap: 24px; padding: 44px; background: var(--ink); color: #fff; overflow: hidden; }
+.globe-control-panel { max-width: 1320px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: minmax(280px, .8fr) minmax(260px, .62fr) minmax(260px, .72fr); gap: 24px; padding: 42px max(4vw, 24px); background: var(--ink); color: #fff; }
 .globe-control-panel > div:first-child p, .globe-related p, .standards-answer-section > div:first-child p { margin: 0 0 14px; color: #b8c9cf; font: 650 9px/1.3 var(--font-geist-mono), monospace; letter-spacing: .12em; text-transform: uppercase; }
 .globe-control-panel h2 { margin: 0; font-size: clamp(36px, 4vw, 62px); line-height: 1; letter-spacing: -.045em; font-weight: 530; }
 .globe-control-panel > div:first-child > span { display: block; margin-top: 12px; color: #b7c9cf; font-size: 14px; }
@@ -625,16 +630,15 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
 .globe-standard-tags span, .globe-related span { padding: 9px 11px; border: 1px solid rgba(110,219,232,.35); color: #e9fbfd; background: rgba(110,219,232,.12); font-size: 12px; }
 .globe-related { display: block; }
 .globe-related span { display: inline-block; margin: 0 8px 8px 0; }
-.globe-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.globe-controls button, .globe-region-filter button, .globe-country-list button { border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff; cursor: pointer; }
+.globe-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: start; }
+.globe-controls button, .globe-region-filter button { border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff; cursor: pointer; }
 .globe-controls button { padding: 13px 12px; font-weight: 700; }
-.globe-controls button:hover, .globe-region-filter button:hover, .globe-country-list button:hover, .active-filter, .active-country { border-color: var(--acid) !important; background: rgba(185,255,102,.12) !important; }
-.globe-region-filter { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.16); }
+.globe-controls button:hover, .globe-region-filter button:hover, .active-filter { border-color: var(--acid) !important; background: rgba(185,255,102,.12) !important; }
+.globe-region-filter { display: flex; flex-wrap: wrap; align-content: start; gap: 8px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.16); }
 .globe-region-filter button { padding: 8px 10px; font-size: 11px; }
-.globe-country-list { min-height: 0; overflow: auto; display: grid; gap: 8px; padding-right: 4px; }
-.globe-country-list button { padding: 12px; text-align: left; }
-.globe-country-list span { display: block; font-weight: 700; }
-.globe-country-list small { display: block; margin-top: 5px; color: #c3d3d8; font-size: 11px; line-height: 1.4; }
+.globe-country-select { display: flex; flex-direction: column; gap: 10px; align-self: start; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.16); }
+.globe-country-select span { color: #b8c9cf; font: 650 9px/1.3 var(--font-geist-mono), monospace; letter-spacing: .12em; text-transform: uppercase; }
+.globe-country-select select { width: 100%; border: 1px solid rgba(255,255,255,.24); border-radius: 0; background: #fff; color: var(--ink); padding: 13px 14px; font: 650 14px/1.2 var(--font-geist-sans), Arial, sans-serif; }
 .standards-answer-section { padding: 88px max(6vw, 24px) 105px; display: grid; grid-template-columns: minmax(280px, .7fr) minmax(0, 1fr); gap: 7vw; background: #fff; }
 .standards-answer-section h2 { max-width: 650px; margin: 0; font-size: clamp(36px, 4vw, 62px); line-height: 1.06; letter-spacing: -.045em; font-weight: 530; }
 .standards-answer-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
@@ -644,16 +648,18 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
 
 @media (max-width: 1000px) {
   .global-standards-hero, .standards-answer-section { grid-template-columns: 1fr; gap: 42px; }
-  .globe-explorer { grid-template-columns: 1fr; }
-  .globe-explorer-stage { min-height: 560px; border-right: 0; border-bottom: 1px solid var(--line); }
-  .globe-control-panel { max-height: none; }
+  .globe-explorer-stage { min-height: 560px; }
+  .globe-explorer-stage img { width: min(620px, 86vw); }
+  .globe-control-panel { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
   .global-standards-hero { min-height: 520px; margin-top: 70px; padding: 72px 18px 58px; }
   .global-standards-hero h1 { font-size: 50px; }
-  .globe-explorer-stage { min-height: 420px; }
-  .globe-explorer-stage img { width: 112vw; max-width: none; }
+  .globe-explorer-stage { min-height: 560px; align-content: start; padding-top: 28px; }
+  .globe-explorer-stage img { width: min(112vw, 500px); max-width: none; }
+  .globe-stage-card { left: 18px; right: 18px; bottom: 58px; width: auto; padding: 18px; }
+  .globe-hint { left: 18px; bottom: 24px; max-width: calc(100% - 36px); line-height: 1.4; }
   .globe-control-panel { padding: 30px 18px; }
   .globe-controls { grid-template-columns: 1fr; }
   .standards-answer-section { padding: 64px 18px 75px; }

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { globeCountries, globeRegions } from "../data/globeStandards";
 
 const frameCount = 60;
-const frameDuration = 650;
+const frameDuration = 1500;
 
 function framePath(index: number) {
   return `/globe-frames/frame-${String(index).padStart(3, "0")}.png`;
@@ -20,7 +20,7 @@ export default function InteractiveGlobeExplorer() {
   const [activeFrame, setActiveFrame] = useState(0);
   const [selectedRegion, setSelectedRegion] = useState("All");
   const [selectedCountry, setSelectedCountry] = useState(globeCountries[0]);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const loadedFrames = useRef(new Set([frames[0]]));
   const dragging = useRef(false);
 
@@ -115,10 +115,17 @@ export default function InteractiveGlobeExplorer() {
           height="640"
           src={frames[activeFrame]}
           width="640"
-          loading="lazy"
+          loading="eager"
           decoding="async"
         />
-        <div className="globe-hint">Drag the globe area to rotate frames</div>
+        <div className="globe-stage-card" aria-live="polite">
+          <p>Selected country</p>
+          <h3>{selectedCountry.name}</h3>
+          <div className="globe-stage-tags">
+            {selectedCountry.standards.map((standard) => <span key={standard}>{standard}</span>)}
+          </div>
+        </div>
+        <div className="globe-hint">Drag the globe area to rotate frames · rotation starts paused</div>
       </div>
 
       <aside className="globe-control-panel">
@@ -138,7 +145,7 @@ export default function InteractiveGlobeExplorer() {
         </div>
 
         <div className="globe-controls">
-          <button type="button" onClick={() => setPlaying(!playing)}>{playing ? "Pause rotation" : "Play rotation"}</button>
+          <button type="button" onClick={() => setPlaying(!playing)}>{playing ? "Pause slow rotation" : "Play slow rotation"}</button>
           <button type="button" onClick={() => setActiveFrame(0)}>Reset view</button>
         </div>
 
@@ -159,19 +166,18 @@ export default function InteractiveGlobeExplorer() {
           ))}
         </div>
 
-        <div className="globe-country-list">
-          {visibleCountries.map((country) => (
-            <button
-              className={selectedCountry.name === country.name ? "active-country" : ""}
-              key={country.name}
-              type="button"
-              onClick={() => setSelectedCountry(country)}
-            >
-              <span>{country.name}</span>
-              <small>{country.standards.slice(0, 3).join(" / ")}</small>
-            </button>
-          ))}
-        </div>
+        <label className="globe-country-select">
+          <span>Choose country</span>
+          <select
+            value={selectedCountry.name}
+            onChange={(event) => {
+              const nextCountry = globeCountries.find((country) => country.name === event.target.value);
+              if (nextCountry) setSelectedCountry(nextCountry);
+            }}
+          >
+            {visibleCountries.map((country) => <option key={country.name} value={country.name}>{country.name}</option>)}
+          </select>
+        </label>
       </aside>
     </section>
   );
