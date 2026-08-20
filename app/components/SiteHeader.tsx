@@ -18,9 +18,9 @@ const discoveryMenus = {
     title: "Industries",
     copy: "Security decisions grounded in your sector, obligations and operational reality.",
     groups: [
-      { title: "Regulated", links: [{ label: "Financial services", href: "/#industries" }, { label: "Healthcare", href: "/#industries" }, { label: "Public sector", href: "/#industries" }] },
-      { title: "Digital", links: [{ label: "Technology & SaaS", href: "/#industries" }, { label: "Retail & eCommerce", href: "/#industries" }, { label: "Digital platforms", href: "/#industries" }] },
-      { title: "Essential", links: [{ label: "Critical infrastructure", href: "/#industries" }, { label: "Energy & utilities", href: "/#industries" }, { label: "Professional services", href: "/#industries" }] },
+      { title: "Regulated", links: [{ label: "Financial services", href: "/industries" }, { label: "Healthcare", href: "/industries" }, { label: "Public sector", href: "/industries" }] },
+      { title: "Digital", links: [{ label: "Technology & SaaS", href: "/industries" }, { label: "Retail & eCommerce", href: "/industries" }, { label: "Digital platforms", href: "/industries" }] },
+      { title: "Essential", links: [{ label: "Critical infrastructure", href: "/industries" }, { label: "Energy & utilities", href: "/industries" }, { label: "Professional services", href: "/industries" }] },
     ],
   },
   solutions: {
@@ -111,16 +111,17 @@ export default function SiteHeader() {
 
           <button type="button" aria-expanded={activeMenu === "industries"} aria-controls="mobile-industries" onClick={() => toggleMenu("industries")}>Industries <Chevron /></button>
           <div className={`mobile-subnav ${activeMenu === "industries" ? "mobile-subnav-open" : ""}`} id="mobile-industries">
-            <a href="/#industries" onClick={closeMenus}>Financial services</a>
-            <a href="/#industries" onClick={closeMenus}>Healthcare</a>
-            <a href="/#industries" onClick={closeMenus}>Technology & SaaS</a>
-            <a href="/#industries" onClick={closeMenus}>Critical infrastructure</a>
+            <a href="/industries" onClick={closeMenus}>Financial services</a>
+            <a href="/industries" onClick={closeMenus}>Healthcare</a>
+            <a href="/industries" onClick={closeMenus}>Technology & SaaS</a>
+            <a href="/industries" onClick={closeMenus}>Critical infrastructure</a>
           </div>
 
           <button type="button" aria-expanded={activeMenu === "solutions"} aria-controls="mobile-solutions" onClick={() => toggleMenu("solutions")}>Solutions <Chevron /></button>
           <div className={`mobile-subnav ${activeMenu === "solutions" ? "mobile-subnav-open" : ""}`} id="mobile-solutions">
             <a href="/product-studio" onClick={closeMenus}>Product Studio</a>
             <a href="/msp" onClick={closeMenus}>MSP partner programme</a>
+            <a href="/solutions" onClick={closeMenus}>All solutions</a>
             <a href="/services/audits" onClick={closeMenus}>Assurance readiness</a>
             <a href="/services/vulnerability-scanning" onClick={closeMenus}>Continuous resilience</a>
           </div>
@@ -182,7 +183,7 @@ export default function SiteHeader() {
                   <p>EXPLORE CYBERGAAR</p>
                   <h2>{discoveryMenus[activeMenu].title}</h2>
                   <span>{discoveryMenus[activeMenu].copy}</span>
-                  <a href={activeMenu === "solutions" ? "/product-studio" : "/#industries"} onClick={closeMenus}>Explore {discoveryMenus[activeMenu].title.toLowerCase()} <Arrow /></a>
+                  <a href={activeMenu === "solutions" ? "/solutions" : "/industries"} onClick={closeMenus}>Explore {discoveryMenus[activeMenu].title.toLowerCase()} <Arrow /></a>
                 </div>
                 <div className="mega-groups">
                   {discoveryMenus[activeMenu].groups.map((group) => (

@@ -14,6 +14,8 @@ export default function SiteFooter() {
           <a href="/product-studio">Product Studio</a>
         </div>
         <div className="footer-links">
+          <a href="/industries">Industries</a>
+          <a href="/solutions">Solutions</a>
           <a href="/msp">MSP partners</a>
           <a href="/case-studies">Case studies</a>
           <a href="/careers">Careers</a>

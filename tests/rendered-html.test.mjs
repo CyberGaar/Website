@@ -25,6 +25,8 @@ test("renders the Cybergaar homepage and primary navigation", async () => {
   assert.match(html, /<title>Cybergaar \| Security Audits, ISO 27001, Pentesting and Vulnerability Scanning<\/title>/i);
   assert.match(html, /See every gap/);
   assert.match(html, /href="\/msp"/);
+  assert.match(html, /href="\/industries"/);
+  assert.match(html, /href="\/solutions"/);
   assert.match(html, /href="\/product-studio"/);
   assert.match(html, /href="\/global-standards"/);
   assert.match(html, /href="\/services\/cyber-essentials"/);
@@ -51,10 +53,12 @@ test("keeps the complete 30-service catalogue in one data source", async () => {
 });
 
 test("renders contact, careers and editable case-study routes", async () => {
-  const [contact, careers, caseStudy] = await Promise.all([
+  const [contact, careers, caseStudy, industries, solutions] = await Promise.all([
     render("/contact"),
     render("/careers"),
     render("/case-studies/fintech-enterprise-readiness"),
+    render("/industries"),
+    render("/solutions"),
   ]);
   assert.equal(contact.status, 200);
   assert.match(await contact.text(), /Prepare email/);
@@ -62,6 +66,10 @@ test("renders contact, careers and editable case-study routes", async () => {
   assert.match(await careers.text(), /No open careers right now/);
   assert.equal(caseStudy.status, 200);
   assert.match(await caseStudy.text(), /What needed to change/);
+  assert.equal(industries.status, 200);
+  assert.match(await industries.text(), /Financial services/);
+  assert.equal(solutions.status, 200);
+  assert.match(await solutions.text(), /Product Studio/);
 });
 
 test("renders the global standards globe page without loading it into the homepage", async () => {
@@ -84,6 +92,8 @@ test("serves search-engine discovery files", async () => {
   assert.equal(sitemap.status, 200);
   const xml = await sitemap.text();
   assert.match(xml, /https:\/\/cybergaar\.com\/contact/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/industries/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/solutions/);
   assert.match(xml, /https:\/\/cybergaar\.com\/global-standards/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/fintech-enterprise-readiness/);
 });

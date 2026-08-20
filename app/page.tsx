@@ -28,7 +28,7 @@ const offers = [
     title: "Industries",
     copy: "Security shaped around your operational reality, regulatory pressure and the systems your organisation depends on.",
     items: ["Financial services", "Healthcare", "Technology & SaaS", "Public sector", "Retail & eCommerce", "Critical infrastructure"],
-    href: "/#contact",
+    href: "/industries",
   },
   {
     id: "services",
@@ -44,7 +44,7 @@ const offers = [
     title: "Solutions",
     copy: "Practical programmes that turn one-off findings into stronger controls, better visibility and continuous resilience.",
     items: ["Assurance readiness", "Attack surface clarity", "Secure product delivery", "Continuous resilience"],
-    href: "/product-studio",
+    href: "/solutions",
   },
 ];
 
