@@ -45,7 +45,7 @@ main { overflow: hidden; }
 .primary-nav { gap: clamp(22px, 2.4vw, 42px); }
 .secondary-nav { margin-left: 24px; }
 .primary-nav > a, .primary-nav > button, .secondary-nav > a { display: inline-flex; align-items: center; gap: 7px; font: 650 13px/1 var(--font-geist-mono), monospace; letter-spacing: .045em; height: 100%; border: 0; border-bottom: 3px solid transparent; padding: 3px 0 0; background: transparent; cursor: pointer; }
-.primary-nav > a:hover, .primary-nav > button:hover, .primary-nav > button[aria-expanded="true"], .secondary-nav > a:hover { border-bottom-color: var(--acid); }
+.primary-nav > a:hover, .primary-nav > button:hover, .primary-nav > button[aria-expanded="true"], .secondary-nav > a:hover, .region-button:hover, .region-button[aria-expanded="true"] { border-bottom-color: var(--acid); }
 .chevron { font-size: 17px; line-height: .5; transform: translateY(-2px); }
 .search-button { width: 38px; height: 38px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; }
 .search-button span { width: 15px; height: 15px; border: 2px solid var(--ink); border-radius: 50%; position: relative; }
@@ -53,7 +53,7 @@ main { overflow: hidden; }
 .secondary-nav > a { padding-inline: 18px; }
 .login-link { text-transform: none; }
 .region-picker { position: relative; height: 100%; display: flex; align-items: center; border-left: 1px solid #8d989d; }
-.region-button { height: 100%; min-width: 190px; border: 0; background: transparent; padding: 0 18px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; font: 650 13px/1 var(--font-geist-mono), monospace; letter-spacing: .035em; white-space: nowrap; }
+.region-button { height: 100%; min-width: 190px; border: 0; border-bottom: 3px solid transparent; background: transparent; padding: 3px 18px 0; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; font: 650 13px/1 var(--font-geist-mono), monospace; letter-spacing: .035em; white-space: nowrap; }
 .region-button .chevron { margin-left: 0; }
 .region-flag { width: 22px; height: 16px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(8,44,60,.12); flex: 0 0 auto; }
 .region-current-label { display: inline; }

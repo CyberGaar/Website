@@ -129,6 +129,7 @@ export default function SiteHeader() {
 
         <div className="secondary-nav">
           <a href="/contact" onClick={closeMenus}>Contact</a>
+          <a className="login-link" href="https://demo.cybergaar.com" target="_blank" rel="noreferrer" onClick={closeMenus}>Login</a>
           <div className="region-picker">
             <button
               type="button"
@@ -141,7 +142,6 @@ export default function SiteHeader() {
               <img className="region-flag" src={currentRegion.flagSrc} alt="" aria-hidden="true" />
               <span className="region-current-label" aria-hidden="true">{currentRegion.label}</span>
               <span className="sr-only">Current site: {currentRegion.label}</span>
-              <Chevron />
             </button>
             <div className={`region-menu ${regionOpen ? "region-menu-open" : ""}`} id="region-menu">
               <p>Select a Cybergaar site</p>
@@ -153,7 +153,6 @@ export default function SiteHeader() {
               ))}
             </div>
           </div>
-          <a className="login-link" href="https://demo.cybergaar.com" target="_blank" rel="noreferrer" onClick={closeMenus}>Login</a>
         </div>
       </nav>
 

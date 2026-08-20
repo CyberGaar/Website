@@ -101,6 +101,7 @@ test("serves search-engine discovery files", async () => {
 
 test("keeps client stories out of the primary navigation and exposes three mobile accordions", async () => {
   const header = await readFile(new URL("../app/components/SiteHeader.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.doesNotMatch(header, />Client stories</);
   assert.equal((header.match(/mobile-subnav-open/g) ?? []).length, 3);
   assert.match(header, /MSP partner programme/);
@@ -111,6 +112,8 @@ test("keeps client stories out of the primary navigation and exposes three mobil
   assert.match(header, /region-current-label/);
   assert.match(header, /login-link/);
   assert.doesNotMatch(header, /login-icon/);
+  assert.match(header, /Contact<\/a>\s*<a className="login-link"/);
+  assert.match(css, /region-button:hover/);
   await Promise.all([
     stat(new URL("../public/flags/global.svg", import.meta.url)),
     stat(new URL("../public/flags/gb.svg", import.meta.url)),
