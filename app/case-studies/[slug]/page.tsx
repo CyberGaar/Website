@@ -72,6 +72,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         <h1>{study.title}</h1>
         <p>{study.summary}</p>
         {study.tags?.length ? <div className="case-detail-tags">{study.tags.map((tag) => <span key={tag}>{tag}</span>)}</div> : null}
+        {study.image ? <img className="case-detail-image" src={study.image} alt={`${study.title} visual`} loading="eager" /> : null}
       </section>
 
       {study.metrics?.length ? (

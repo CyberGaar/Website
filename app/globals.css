@@ -565,6 +565,7 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
 .case-detail-hero > h1 + p { max-width: 800px; margin: 28px 0 0; color: #4d6771; font-size: 18px; line-height: 1.6; }
 .case-detail-tags { display: flex; flex-wrap: wrap; gap: 9px; max-width: 980px; margin-top: 28px; }
 .case-detail-tags span { padding: 8px 10px; border: 1px solid #c4ced2; background: #fff; color: #28454f; font-size: 11px; font-weight: 720; }
+.case-detail-image { width: min(1040px, 100%); max-height: 430px; margin-top: 34px; object-fit: cover; border: 1px solid var(--line); box-shadow: 0 24px 60px rgba(8,44,60,.14); }
 .case-metric-strip { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); background: #fff; }
 .case-metric-strip article { min-height: 145px; padding: 28px max(3vw, 24px); border-right: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; }
 .case-metric-strip article:last-child { border-right: 0; }
@@ -626,6 +627,7 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
   .case-detail-hero h1, .careers-hero h1 { font-size: 49px; }
   .case-detail-grid article { padding: 42px 18px; }
   .case-detail-tags span { font-size: 10px; }
+  .case-detail-image { max-height: 260px; margin-top: 24px; }
   .case-metric-strip article { min-height: 120px; padding: 24px 18px; }
   .case-two-column > div, .case-hurdles { padding: 54px 18px; }
   .case-hurdles > div:last-child { gap: 12px; }

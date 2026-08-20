@@ -69,13 +69,14 @@ test("keeps the complete 30-service catalogue in one data source", async () => {
 });
 
 test("renders contact, careers, editable case-study, industry and expert routes", async () => {
-  const [contact, careers, caseStudy, zeroTrustCaseStudy, ciscoCaseStudy, aiGovernanceCaseStudy, industries, financialServices, solutions, expertSuggestions, expertPost] = await Promise.all([
+  const [contact, careers, zeroTrustCaseStudy, ciscoCaseStudy, aiGovernanceCaseStudy, ransomwareCaseStudy, oldCaseStudy, industries, financialServices, solutions, expertSuggestions, expertPost] = await Promise.all([
     render("/contact"),
     render("/careers"),
-    render("/case-studies/fintech-enterprise-readiness"),
     render("/case-studies/cloudflare-zero-trust-shared-access"),
     render("/case-studies/cisco-router-network-hardening"),
     render("/case-studies/iso-42001-ai-governance-saas"),
+    render("/case-studies/factory-ransomware-digital-forensics"),
+    render("/case-studies/fintech-enterprise-readiness"),
     render("/industries"),
     render("/industries/financial-services"),
     render("/solutions"),
@@ -89,8 +90,6 @@ test("renders contact, careers, editable case-study, industry and expert routes"
   assert.match(contactHtml, /Submit/);
   assert.equal(careers.status, 200);
   assert.match(await careers.text(), /No open careers right now/);
-  assert.equal(caseStudy.status, 200);
-  assert.match(await caseStudy.text(), /What needed to change/);
   assert.equal(zeroTrustCaseStudy.status, 200);
   const zeroTrustHtml = await zeroTrustCaseStudy.text();
   assert.match(zeroTrustHtml, /Zero Trust controls for shared customer access/);
@@ -100,6 +99,13 @@ test("renders contact, careers, editable case-study, industry and expert routes"
   assert.match(await ciscoCaseStudy.text(), /Auditing Cisco routers for misconfiguration/);
   assert.equal(aiGovernanceCaseStudy.status, 200);
   assert.match(await aiGovernanceCaseStudy.text(), /AI governance for a SaaS provider using ISO 42001/);
+  assert.equal(ransomwareCaseStudy.status, 200);
+  const ransomwareHtml = await ransomwareCaseStudy.text();
+  assert.match(ransomwareHtml, /Digital forensics after ransomware in a factory environment/);
+  assert.match(ransomwareHtml, /SAP/);
+  assert.match(ransomwareHtml, /HMI/);
+  assert.match(ransomwareHtml, /ransomware-factory-forensics\.png/);
+  assert.equal(oldCaseStudy.status, 404);
   assert.equal(industries.status, 200);
   const industriesHtml = await industries.text();
   assert.match(industriesHtml, /Financial services/);
@@ -155,10 +161,11 @@ test("serves search-engine discovery files", async () => {
   assert.match(xml, /https:\/\/cybergaar\.com\/expert-suggestions\/iso-27001-readiness-before-certification/);
   assert.match(xml, /https:\/\/cybergaar\.com\/solutions/);
   assert.match(xml, /https:\/\/cybergaar\.com\/global-standards/);
-  assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/fintech-enterprise-readiness/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/cloudflare-zero-trust-shared-access/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/cisco-router-network-hardening/);
   assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/iso-42001-ai-governance-saas/);
+  assert.match(xml, /https:\/\/cybergaar\.com\/case-studies\/factory-ransomware-digital-forensics/);
+  assert.doesNotMatch(xml, /https:\/\/cybergaar\.com\/case-studies\/fintech-enterprise-readiness/);
 });
 
 test("keeps client stories out of the primary navigation and exposes three mobile accordions", async () => {

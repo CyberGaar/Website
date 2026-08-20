@@ -4,6 +4,7 @@ export type CaseStudy = {
   title: string;
   summary: string;
   tags?: string[];
+  image?: string;
   metrics?: { label: string; value: string }[];
   challenge: string;
   approach: string;
@@ -102,31 +103,35 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    slug: "fintech-enterprise-readiness",
-    sector: "Financial services",
-    title: "Making a fast-growing fintech ready for enterprise scrutiny",
-    summary: "A focused audit and remediation plan gave leadership a clear route from security questions to confident answers.",
-    challenge: "A growing fintech needed to answer increasingly detailed customer security reviews without slowing its commercial momentum.",
-    approach: "Cybergaar reviewed the control environment, organised the evidence and translated gaps into a prioritised remediation plan.",
-    outcome: "Leadership gained a repeatable assurance process and a clearer way to respond to enterprise security expectations.",
-  },
-  {
-    slug: "healthcare-exposure-validation",
-    sector: "Healthcare",
-    title: "Finding critical exposure before it reached patient-facing systems",
-    summary: "Targeted testing connected technical findings to operational risk, helping the team act in the right order.",
-    challenge: "A healthcare environment needed an independent view of weaknesses that could affect sensitive and patient-facing services.",
-    approach: "Cybergaar combined vulnerability analysis with targeted validation, then ranked findings by plausible operational impact.",
-    outcome: "The security team received a focused remediation sequence that put the most consequential exposure first.",
-  },
-  {
-    slug: "saas-secure-delivery",
-    sector: "SaaS",
-    title: "Building repeatable security into a high-velocity release cycle",
-    summary: "A continuous testing cadence helped engineering teams spot issues earlier and ship with greater confidence.",
-    challenge: "A SaaS team needed stronger security coverage without adding a heavy gate to a fast product-release cycle.",
-    approach: "Cybergaar introduced a practical testing cadence, clear ownership and developer-ready remediation guidance.",
-    outcome: "Security findings moved earlier in the delivery cycle and the team gained a more predictable route to closure.",
+    slug: "factory-ransomware-digital-forensics",
+    sector: "Manufacturing",
+    title: "Digital forensics after ransomware in a factory environment",
+    summary: "A manufacturing site needed root-cause analysis, malware validation and safer recovery across servers, SAP, thin clients, IP cameras, HMI systems and printers.",
+    image: "/case-studies/ransomware-factory-forensics.png",
+    tags: ["Digital forensics", "Ransomware", "Manufacturing", "SAP", "Thin clients", "IP cameras", "HMI", "IP printers", "Malware eradication"],
+    metrics: [
+      { label: "Environment reviewed", value: "OT + IT" },
+      { label: "Critical asset classes", value: "5+" },
+      { label: "Recovery focus", value: "Root cause" },
+    ],
+    challenge: "A factory experienced ransomware on a server and needed to understand the original entry point before bringing systems back into normal operation. The environment included SAP, thin clients, IP cameras, HMI systems and IP printers, so recovery had to consider both business systems and operational technology.",
+    approach: "Cybergaar preserved evidence, reviewed affected servers, checked persistence mechanisms, investigated authentication and remote-access paths, validated whether malware remained in the environment and prioritised containment before restoration.",
+    outcome: "The client received a clear root-cause narrative, a practical remediation plan and a safer recovery path that reduced the chance of reinfection across factory IT and connected operational devices.",
+    challengePoints: [
+      { title: "Mixed IT and OT estate", detail: "The incident affected a factory environment where SAP and servers sat close to thin clients, HMI systems, cameras and printers." },
+      { title: "Root cause uncertainty", detail: "Restoring from backups without understanding the initial access path could have reintroduced the same ransomware risk." },
+      { title: "Malware confidence gap", detail: "The business needed assurance that no active malware, persistence or suspicious remote access remained before returning to normal operations." },
+    ],
+    solutionPoints: [
+      { title: "Forensic evidence review", detail: "Collected and reviewed relevant logs, affected server artifacts, user activity, remote-access indicators and suspicious execution paths." },
+      { title: "Factory asset validation", detail: "Checked the wider environment including SAP-connected systems, thin clients, IP cameras, HMI hosts and IP printers for signs of compromise." },
+      { title: "Containment and hardening", detail: "Prioritised account resets, access control changes, patching, segmentation improvements and recovery sequencing around production impact." },
+    ],
+    hurdles: [
+      { issue: "Production Availability: factory systems could not simply be taken offline for a broad rebuild without affecting operations.", fix: "Used staged containment and validation so the highest-risk systems were handled first while minimising disruption to production workflows." },
+      { issue: "OT Visibility: HMI systems, cameras and printers often had limited logging compared with normal servers.", fix: "Combined network-level review, asset inventory checks and targeted device validation to look for signs of persistence or lateral movement." },
+      { issue: "Reinfection Risk: restoring a server without closing the original access path could restart the incident.", fix: "Focused the investigation on initial access, credential exposure, persistence and remote-access paths before declaring systems ready for recovery." },
+    ],
   },
 ];
 
