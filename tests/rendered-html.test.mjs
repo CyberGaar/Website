@@ -24,6 +24,13 @@ test("renders the Cybergaar homepage and primary navigation", async () => {
   const html = await response.text();
   assert.match(html, /<title>Cybergaar \| Security Audits, ISO 27001, Pentesting and Vulnerability Scanning<\/title>/i);
   assert.match(html, /See every gap/);
+  assert.match(html, /TRUSTED BY CUSTOMERS AND PARTNERS/);
+  assert.match(html, /Cubercore/);
+  assert.match(html, /href="https:\/\/sakoon\.com\.pk\/"/);
+  assert.match(html, /Bluebird Paints/);
+  assert.match(html, /MarketLytics/);
+  assert.match(html, /Risk Associates/);
+  assert.match(html, /Yottabyte/);
   assert.match(html, /href="\/msp"/);
   assert.match(html, /href="\/industries"/);
   assert.match(html, /href="\/solutions"/);

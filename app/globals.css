@@ -115,7 +115,8 @@ main { overflow: hidden; }
 .trust-strip > p { margin: 0; color: #647981; font: 600 9px/1.4 var(--font-geist-mono), monospace; letter-spacing: .12em; }
 .trust-window { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 .trust-track { display: flex; width: max-content; animation: marquee 26s linear infinite; }
-.trust-track span { min-width: 155px; padding: 0 24px; text-align: center; color: #86949a; font-size: 12px; font-weight: 760; letter-spacing: .1em; }
+.trust-track a { min-width: 190px; padding: 0 24px; text-align: center; color: #6f8087; font-size: 12px; font-weight: 760; letter-spacing: .08em; text-transform: uppercase; transition: color .2s ease; }
+.trust-track a:hover { color: var(--ink); }
 
 .offers { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1680px; margin: 0 auto; padding: 48px clamp(20px, 3vw, 50px) 62px; background: #fff; }
 .offer-column { min-width: 0; padding: 10px 35px 8px 22px; border-right: 1px solid var(--line); }

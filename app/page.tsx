@@ -48,7 +48,19 @@ const offers = [
   },
 ];
 
-const trustItems = ["MICROSOFT", "AWS", "CLOUDFLARE", "CISCO", "FORTINET", "GITHUB"];
+const trustItems = [
+  { name: "Cubercore", href: "https://cubercore.com/" },
+  { name: "Sakoon", href: "https://sakoon.com.pk/" },
+  { name: "Bluebird Paints", href: "https://bluebirdpaints.com/" },
+  { name: "Meraal", href: "https://www.meraal.me/" },
+  { name: "Stratagem Ventures", href: "https://stratagemven.com/" },
+  { name: "VectraView", href: "https://vectraview.com/" },
+  { name: "MarketLytics", href: "https://marketlytics.com/" },
+  { name: "Zairen", href: "https://zairen.co/" },
+  { name: "ComplyEncrypt", href: "https://complyencrypt.com/" },
+  { name: "Risk Associates", href: "https://riskassociates.com/" },
+  { name: "Yottabyte", href: "https://www.yottabyte.ltd/" },
+];
 
 const searchServices = [
   { title: "ISO audit and ISO 27001 implementation", href: "/services/iso-27001", copy: "Gap assessment, ISMS controls, evidence preparation and readiness support for certification." },
@@ -144,12 +156,12 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="trust-strip" aria-label="Trusted security ecosystem">
-        <p>TRUSTED SECURITY ECOSYSTEM</p>
+      <section className="trust-strip" aria-label="Trusted by customers and partners">
+        <p>TRUSTED BY CUSTOMERS AND PARTNERS</p>
         <div className="trust-window">
           <div className="trust-track">
             {[...trustItems, ...trustItems].map((item, index) => (
-              <span key={`${item}-${index}`}>{item}</span>
+              <a href={item.href} target="_blank" rel="noreferrer" key={`${item.name}-${index}`}>{item.name}</a>
             ))}
           </div>
         </div>
