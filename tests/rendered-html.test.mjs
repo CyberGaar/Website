@@ -69,7 +69,10 @@ test("renders contact, careers, editable case-study, industry and expert routes"
     render("/expert-suggestions/iso-27001-readiness-before-certification"),
   ]);
   assert.equal(contact.status, 200);
-  assert.match(await contact.text(), /Prepare email/);
+  const contactHtml = await contact.text();
+  assert.match(contactHtml, /action="https:\/\/formspree\.io\/f\/xzzdgkly"/);
+  assert.match(contactHtml, /name="subject"/);
+  assert.match(contactHtml, /Submit/);
   assert.equal(careers.status, 200);
   assert.match(await careers.text(), /No open careers right now/);
   assert.equal(caseStudy.status, 200);
