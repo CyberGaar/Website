@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import HomePage from "./components/HomePage";
 import { regionLanguages } from "./seo";
-
 export const metadata: Metadata = {
   title: "Cybergaar | Security Audits, ISO 27001, Pentesting and Vulnerability Scanning",
   description: "Cybergaar provides ISO audit support, ISO 27001 implementation, security audits, application security testing, penetration testing and vulnerability scanning.",

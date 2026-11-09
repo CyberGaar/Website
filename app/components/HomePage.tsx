@@ -155,7 +155,7 @@ export default function HomePage({ region }: { region?: "uk" | "pk" }) {
         <div className="trust-window">
           <div className="trust-track">
             {[...trustItems, ...trustItems].map((item, index) => (
-              <a href={item.href} target="_blank" rel="noreferrer" key={`${item.name}-${index}`}>{item.name}</a>
+              <a href={item.href} target="_blank" rel="noreferrer nofollow" key={`${item.name}-${index}`}>{item.name}</a>
             ))}
           </div>
         </div>
