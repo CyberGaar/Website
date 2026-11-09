@@ -2,6 +2,8 @@ export type TrainingSession = {
   title: string;
   venue: string;
   date: string;
+  /** ISO start date, only where the exact day is confirmed. */
+  isoDate?: string;
   audience: string;
   summary: string;
   topics: string[];
@@ -14,6 +16,7 @@ export const trainingSessions: TrainingSession[] = [
     title: "AI Red-Team Workshop: OWASP Top 10 for LLM Applications",
     venue: "UBIT, University of Karachi",
     date: "2 November 2026",
+    isoDate: "2026-11-02",
     audience: "About 90 students",
     summary: "A hands-on workshop on attacking and defending large language model applications, including live hacking of an LLM.",
     topics: ["OWASP Top 10 for LLMs", "AI red teaming", "LLM security"],
@@ -34,6 +37,7 @@ export const trainingSessions: TrainingSession[] = [
     title: "Cyber Circle: how modern digital exploits work",
     venue: "NIC Karachi",
     date: "11 September 2026, 3:00 to 6:00 PM",
+    isoDate: "2026-09-11T15:00:00+05:00",
     audience: "Students and professionals",
     summary: "A community session with an expert panel, career guidance and networking, hosted with the National Incubation Center Karachi.",
     topics: ["Prompt injection", "Modern exploit mechanics", "Cybersecurity careers", "Networking"],

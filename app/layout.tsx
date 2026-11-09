@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { socialProfiles } from "./seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,7 +47,10 @@ const siteStructuredData = {
       "@type": "Organization",
       name: "Cybergaar",
       url: "https://cybergaar.com",
+      "@id": "https://cybergaar.com/#organization",
       logo: "https://cybergaar.com/logo.png",
+      sameAs: socialProfiles,
+      areaServed: ["Global", "United Kingdom", "Pakistan"],
       email: "hello@cybergaar.com",
       contactPoint: {
         "@type": "ContactPoint",
@@ -58,6 +62,7 @@ const siteStructuredData = {
       "@type": "WebSite",
       name: "Cybergaar",
       url: "https://cybergaar.com",
+      publisher: { "@id": "https://cybergaar.com/#organization" },
     },
   ],
 };

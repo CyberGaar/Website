@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import { expertSuggestions } from "../data/expertSuggestions";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "Expert Suggestions | Cyber Security Guidance | Cybergaar",
   description: "Practical Cybergaar expert suggestions for ISO audit readiness, vulnerability scanning, penetration testing, application security and security implementation.",
   keywords: ["cyber security blog", "expert suggestions", "ISO audit", "ISO 27001", "vulnerability scanning", "penetration testing", "application security", "security implementation"],
   alternates: { canonical: "/expert-suggestions" },
-};
+});
 
 export default function ExpertSuggestionsPage() {
   const structuredData = {

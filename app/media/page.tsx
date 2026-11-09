@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import { mediaItems } from "../data/community";
 import { socials } from "../data/socials";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "News, Events & Media | Cybergaar",
   description: "Cybergaar in the news: GISEC Global 2026, NIC Karachi, TechFest'26 and community events.",
   alternates: { canonical: "/media" },
+});
+
+const mediaStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Cybergaar news, events and media",
+  url: "https://cybergaar.com/media",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: mediaItems.map((item, index) => ({ "@type": "ListItem", position: index + 1, name: item.title, url: item.href })),
+  },
 };
 
 export default function MediaPage() {
@@ -27,6 +39,7 @@ export default function MediaPage() {
           </article>
         ))}
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mediaStructuredData) }} />
       <SiteFooter />
     </main>
   );

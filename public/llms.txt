@@ -31,6 +31,15 @@ exposure and making the next action clear.
 - [Penetration testing](https://cybergaar.com/services/penetration-testing): manual testing
   across web, mobile, network, cloud, wireless, social engineering and IoT.
 
+## Training and community
+
+- [Training](https://cybergaar.com/training): hands-on workshops on AI red teaming, the OWASP
+  Top 10 for LLM applications, social engineering and cyber awareness for universities and teams.
+- [News and media](https://cybergaar.com/media): press coverage and events, including GISEC Global
+  2026 and Cyber Circle at NIC Karachi.
+- [Expert suggestions](https://cybergaar.com/expert-suggestions): practical security guidance.
+- [Case studies](https://cybergaar.com/case-studies): representative engagements.
+
 ## Regions
 
 Cybergaar serves a global audience with site variants for the United Kingdom

@@ -1,13 +1,38 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import { trainingSessions } from "../data/community";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "Cybersecurity Training & Workshops | Cybergaar",
   description: "Hands-on Cybergaar training: AI red teaming, OWASP Top 10 for LLM applications, social engineering awareness and community sessions for students and professionals.",
   keywords: ["cybersecurity training", "AI red team workshop", "OWASP LLM top 10 training", "LLM security workshop", "cyber awareness training Karachi"],
   alternates: { canonical: "/training" },
+});
+
+const trainingStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    ...trainingSessions.filter((session) => session.isoDate).map((session) => ({
+      "@type": "Event",
+      name: session.title,
+      description: session.summary,
+      ...(session.isoDate ? { startDate: session.isoDate } : {}),
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      location: { "@type": "Place", name: session.venue, address: { "@type": "PostalAddress", addressLocality: "Karachi", addressCountry: "PK" } },
+      organizer: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
+      url: session.href,
+    })),
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://cybergaar.com" },
+        { "@type": "ListItem", position: 2, name: "Training", item: "https://cybergaar.com/training" },
+      ],
+    },
+  ],
 };
 
 export default function TrainingPage() {
@@ -38,6 +63,7 @@ export default function TrainingPage() {
           <a href="/contact">Contact us <span aria-hidden="true">⟶</span></a>
         </article>
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingStructuredData) }} />
       <SiteFooter />
     </main>
   );

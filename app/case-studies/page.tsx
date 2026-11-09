@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import { caseStudies } from "../data/caseStudies";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "Security Case Studies | Cybergaar",
   description: "Representative Cybergaar case studies for security audits, application security, vulnerability scanning, penetration testing and compliance readiness work.",
   keywords: ["security case studies", "cybersecurity case studies", "security audit case study", "application security case study", "vulnerability scanning case study", "penetration testing case study"],
   alternates: { canonical: "/case-studies" },
-};
+});
 
 export default function CaseStudiesPage() {
   return (

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "Careers | Cybergaar",
   description: "Careers at Cybergaar. There are no open roles right now, but this page will list future cyber security, audit, application security and compliance roles.",
   keywords: ["Cybergaar careers", "cyber security careers", "application security jobs", "security audit jobs", "ISO 27001 jobs"],
   alternates: { canonical: "/careers" },
-};
+});
 
 export default function CareersPage() {
   return (

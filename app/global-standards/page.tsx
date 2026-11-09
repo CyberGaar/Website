@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import InteractiveGlobeExplorer from "../components/InteractiveGlobeExplorer";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import { globeCountries } from "../data/globeStandards";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "Global Cyber Security Standards Explorer | Cybergaar",
   description: "Explore cyber security standards by region, including ISO 27001, Cyber Essentials, SOC 2, PCI DSS, GDPR, NIST, HIPAA, DORA and NIS2.",
   keywords: [
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     "security implementation",
   ],
   alternates: { canonical: "/global-standards" },
-};
+});
 
 const structuredData = {
   "@context": "https://schema.org",

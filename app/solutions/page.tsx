@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "Solutions | Product Studio, MSP Partners and Security Programmes | Cybergaar",
   description: "Explore Cybergaar solutions for Product Studio compliance automation, MSP security partnerships, assurance readiness, attack surface clarity and continuous resilience.",
   keywords: ["cyber security solutions", "Product Studio", "compliance automation", "MSP security partner", "assurance readiness", "attack surface management", "continuous vulnerability scanning", "security implementation"],
   alternates: { canonical: "/solutions" },
-};
+});
 
 const solutions = [
   ["Product Studio", "Open-source compliance automation for controls, evidence, gaps, remediation and audit delivery.", "/product-studio"],

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial({
   title: "MSP Security Partner Programme | Cybergaar",
   description: "MSPs can use Cybergaar for client security audits, ISO 27001 readiness, vulnerability scanning, penetration testing and compliance automation delivery.",
   keywords: ["MSP security services", "managed service provider security", "ISO 27001 for MSPs", "vulnerability scanning for MSPs", "penetration testing partner", "compliance automation"],
   alternates: { canonical: "/msp" },
-};
+});
 
 const capabilities = [
   ["Multi-client delivery", "Run repeatable audit, scanning and testing engagements across your customer portfolio."],

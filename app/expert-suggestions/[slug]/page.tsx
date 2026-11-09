@@ -19,6 +19,16 @@ export async function generateMetadata({ params }: ExpertSuggestionPageProps): P
     description: post.summary,
     keywords: [post.category, "Cybergaar", "security implementation", "application security", "ISO audit", "vulnerability scanning", "penetration testing"],
     alternates: { canonical: `/expert-suggestions/${post.slug}` },
+    openGraph: {
+      title: `${post.title} | Cybergaar Expert Suggestions`,
+      description: post.summary,
+      url: `https://cybergaar.com/expert-suggestions/${post.slug}`,
+      siteName: "Cybergaar",
+      locale: "en_US",
+      type: "article",
+      images: [{ url: "/og.png", width: 1672, height: 941, alt: `${post.title} | Cybergaar` }],
+    },
+    twitter: { card: "summary_large_image", title: post.title, description: post.summary, images: ["/og.png"] },
   };
 }
 
@@ -32,7 +42,9 @@ export default async function ExpertSuggestionDetailPage({ params }: ExpertSugge
     "@type": "BlogPosting",
     headline: post.title,
     description: post.summary,
-    author: { "@type": "Organization", name: "Cybergaar" },
+    image: "https://cybergaar.com/og.png",
+    url: `https://cybergaar.com/expert-suggestions/${post.slug}`,
+    author: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
     publisher: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
     mainEntityOfPage: post.externalUrl ?? `https://cybergaar.com/expert-suggestions/${post.slug}`,
   };
