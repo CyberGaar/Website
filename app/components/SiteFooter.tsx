@@ -20,6 +20,8 @@ export default function SiteFooter() {
           <a href="/solutions">Solutions</a>
           <a href="/msp">MSP partners</a>
           <a href="/case-studies">Case studies</a>
+          <a href="/training">Training</a>
+          <a href="/media">News & media</a>
           <a href="/careers">Careers</a>
           <a href="/contact">Contact</a>
           <div className="social-links" aria-label="Cybergaar social links">

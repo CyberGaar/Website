@@ -22,6 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/product-studio",
     "/msp",
     "/case-studies",
+    "/training",
+    "/media",
     "/contact",
     "/careers",
   ];
