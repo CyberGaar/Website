@@ -3,9 +3,26 @@ import { notFound } from "next/navigation";
 import SiteFooter from "../../components/SiteFooter";
 import SiteHeader from "../../components/SiteHeader";
 import PricingPanels from "../../components/PricingPanels";
+import { orgRef } from "../../seo";
 import { categoryContent, getService, services } from "../../data/services";
 
 type ServicePageProps = { params: Promise<{ slug: string }> };
+
+/** Builds an Offer with a structured USD price range from text like "$1,500 – $5,000+". */
+function priceOffer(price: string) {
+  const amounts = [...price.matchAll(/\$(\d[\d,]*)/g)].map((match) => Number(match[1].replace(/,/g, "")));
+  if (amounts.length === 0) return { "@type": "Offer", description: price };
+  return {
+    "@type": "Offer",
+    description: `Indicative planning range: ${price}`,
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      priceCurrency: "USD",
+      minPrice: Math.min(...amounts),
+      ...(amounts.length > 1 ? { maxPrice: Math.max(...amounts) } : {}),
+    },
+  };
+}
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -17,7 +34,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   if (!service) return {};
   const category = categoryContent[service.category];
   return {
-    title: `${service.name} | ${category.label} | Cybergaar`,
+    title: `${service.name} | Cybergaar`,
     description: `${service.name} support from Cybergaar for ${service.appliesTo.toLowerCase()}. Includes scoping, assessment, evidence, remediation guidance and clear next steps.`,
     keywords: [
       service.name,
@@ -32,17 +49,17 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     ],
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
-      title: `${service.name} | ${category.label} | Cybergaar`,
+      title: `${service.name} | Cybergaar`,
       description: `${service.name} support from Cybergaar for ${service.appliesTo.toLowerCase()}. Includes scoping, assessment, evidence, remediation guidance and clear next steps.`,
       url: `https://cybergaar.com/services/${service.slug}`,
       siteName: "Cybergaar",
       locale: "en_US",
       type: "website",
-      images: [{ url: "/og.png", width: 1672, height: 941, alt: `${service.name} | Cybergaar` }],
+      images: [{ url: "/og.png", width: 1200, height: 675, alt: `${service.name} | Cybergaar` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.name} | ${category.label} | Cybergaar`,
+      title: `${service.name} | Cybergaar`,
       description: `${service.name} support from Cybergaar for ${service.appliesTo.toLowerCase()}.`,
       images: ["/og.png"],
     },
@@ -60,12 +77,12 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       {
         "@type": "Service",
         name: service.name,
-        provider: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
+        provider: orgRef,
         serviceType: category.label,
         areaServed: service.region,
         audience: service.appliesTo,
         description: `${service.name} support for ${service.appliesTo}. ${service.risk}`,
-        offers: { "@type": "Offer", priceCurrency: "USD", description: service.price },
+        offers: priceOffer(service.price),
       },
       {
         "@type": "BreadcrumbList",

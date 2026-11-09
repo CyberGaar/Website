@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Cybergaar",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og.png", width: 1672, height: 941, alt: "Cybergaar — See every gap. Secure every move." }],
+    images: [{ url: "/og.png", width: 1200, height: 675, alt: "Cybergaar — See every gap. Secure every move." }],
   },
   twitter: {
     card: "summary_large_image",
@@ -48,6 +48,7 @@ const siteStructuredData = {
       name: "Cybergaar",
       url: "https://cybergaar.com",
       "@id": "https://cybergaar.com/#organization",
+      alternateName: "CyberGaar",
       logo: "https://cybergaar.com/logo.png",
       sameAs: socialProfiles,
       areaServed: ["Global", "United Kingdom", "Pakistan"],
@@ -60,6 +61,7 @@ const siteStructuredData = {
     },
     {
       "@type": "WebSite",
+      "@id": "https://cybergaar.com/#website",
       name: "Cybergaar",
       url: "https://cybergaar.com",
       publisher: { "@id": "https://cybergaar.com/#organization" },

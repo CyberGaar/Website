@@ -4,7 +4,7 @@ import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = withSocial({
-  title: "Product Studio | Open-source Compliance Automation | Cybergaar",
+  title: "Product Studio: Compliance Automation | Cybergaar",
   description: "Cybergaar Product Studio is an open-source compliance automation workspace for ISO 27001, audit evidence, controls, readiness, remediation and MSP delivery.",
   keywords: ["open-source compliance automation", "ISO 27001 automation", "audit evidence", "compliance management", "control mapping", "MSP compliance platform", "security implementation"],
   alternates: { canonical: "/product-studio" },

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Cybergaar",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og.png", width: 1672, height: 941, alt: "Cybergaar — See every gap. Secure every move." }],
+    images: [{ url: "/og.png", width: 1200, height: 675, alt: "Cybergaar — See every gap. Secure every move." }],
   },
   twitter: {
     card: "summary_large_image",

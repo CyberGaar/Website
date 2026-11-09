@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: RegionPageProps): Promise<Met
       siteName: "Cybergaar",
       locale: content.locale,
       type: "website",
-      images: [{ url: "/og.png", width: 1672, height: 941, alt: "Cybergaar — See every gap. Secure every move." }],
+      images: [{ url: "/og.png", width: 1200, height: 675, alt: "Cybergaar — See every gap. Secure every move." }],
     },
     twitter: { card: "summary_large_image", title: `Cybergaar | Security audits and testing in ${content.name}`, description: content.description, images: ["/og.png"] },
   };

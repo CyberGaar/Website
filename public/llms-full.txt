@@ -77,8 +77,33 @@ delivery, and continuous resilience.
 
 ## Case studies
 
-Representative engagements in financial services, healthcare, and SaaS covering security
-audit, exposure validation, and secure delivery.
+Four representative engagements: Zero Trust controls for shared customer access, auditing
+Cisco routers for misconfiguration and legacy risk, AI governance for a SaaS provider using
+ISO 42001, and digital forensics after ransomware in a factory environment. See
+https://cybergaar.com/case-studies.
+
+## Training and community
+
+Cybergaar runs hands-on workshops and community sessions (https://cybergaar.com/training):
+an AI Red-Team Workshop on the OWASP Top 10 for LLM Applications at UBIT, University of
+Karachi (2 November 2026, about 90 students); an OWASP AI Exchange PwnzzAI LLM security
+workshop at NED University; Cyber Circle at NIC Karachi (11 September 2026); and a session
+with the Youth Entrepreneurship Society at Salim Habib University.
+
+## News and media
+
+Cybergaar (also written CyberGaar) is a Cohort 15 startup at the National Incubation Center
+Karachi. Its founder joined Pakistan's cybersecurity delegation at GISEC Global 2026 in Dubai
+(16 to 18 September 2026). See https://cybergaar.com/media.
+
+## Expert suggestions
+
+- [What to prepare before an ISO 27001 certification audit](https://cybergaar.com/expert-suggestions/iso-27001-readiness-before-certification)
+- [How to make vulnerability scanning useful instead of noisy](https://cybergaar.com/expert-suggestions/vulnerability-scanning-without-noise)
+- [How to scope a penetration test around business risk](https://cybergaar.com/expert-suggestions/pentest-scope-that-matches-business-risk)
+- [PCI Secure Software and the key management requirement](https://cybergaar.com/expert-suggestions/pci-secure-software-key-management)
+- [Hardening your Cisco network: a security audit checklist](https://cybergaar.com/expert-suggestions/cisco-network-hardening-audit-checklist)
+- [A vibe coder's guide to security](https://cybergaar.com/expert-suggestions/vibe-coder-guide-to-security)
 
 ## Contact
 

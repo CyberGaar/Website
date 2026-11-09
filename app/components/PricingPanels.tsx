@@ -84,6 +84,8 @@ export default function PricingPanels({ category, risk, price, priceDetails, for
     externalDetails: formalDetails ? convertDollarPrices(formalDetails, region) : undefined,
   }), [formalDetails, formalPrice, price, priceDetails, region]);
 
+  // Crawlable regional equivalents, rendered in the server HTML and shown while the USD view is active.
+  const regionalEquivalent = `Approximately ${convertDollarPrices(price, "uk")} in the UK or ${convertDollarPrices(price, "pk")} in Pakistan.`;
   const isAudit = category === "audits";
   const exchangeNote = region === "uk"
     ? "Indicative conversion uses 1 USD ≈ £0.74."
@@ -127,7 +129,7 @@ export default function PricingPanels({ category, risk, price, priceDetails, for
             <b>Scope changes the price.</b>
             <span>We scope around people, business complexity and technology footprint: headcount, locations, systems, cloud assets, applications, suppliers, evidence quality and whether the work is internal readiness or external assessment.</span>
           </div>
-          <small>{exchangeNote} Rates are rounded for planning only.</small>
+          <small>{exchangeNote} Rates are rounded for planning only.{region === "global" && ` ${regionalEquivalent}`}</small>
         </article>
       ) : (
         <>
@@ -139,7 +141,7 @@ export default function PricingPanels({ category, risk, price, priceDetails, for
               <b>Scope changes the price.</b>
               <span>Pricing depends on people, business complexity and technology footprint: assets, applications, locations, access, evidence quality and remediation depth.</span>
             </div>
-            <small>{exchangeNote} Rates are rounded for planning only.</small>
+            <small>{exchangeNote} Rates are rounded for planning only.{region === "global" && ` ${regionalEquivalent}`}</small>
           </article>
           {formalPrice && (
             <article className="price-panel formal-panel">

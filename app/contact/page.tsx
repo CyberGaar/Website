@@ -11,6 +11,14 @@ export const metadata: Metadata = withSocial({
   alternates: { canonical: "/contact" },
 });
 
+const contactStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Cybergaar",
+  url: "https://cybergaar.com/contact",
+  about: { "@id": "https://cybergaar.com/#organization" },
+};
+
 export default function ContactPage() {
   return (
     <main className="inner-page" id="top">
@@ -31,6 +39,7 @@ export default function ContactPage() {
         <div><p>YOUR ENQUIRY</p><h2>Give us enough context to make the first conversation useful.</h2></div>
         <ContactForm />
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactStructuredData) }} />
       <SiteFooter />
     </main>
   );

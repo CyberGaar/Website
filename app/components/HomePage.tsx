@@ -110,7 +110,11 @@ export default function HomePage({ region }: { region?: "uk" | "pk" }) {
         <div className="hero-noise" aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow"><span /> CYBER ASSURANCE, MADE CLEAR</p>
-          <h1>See every gap.<br />Secure every move.</h1>
+          {focus ? (
+            <h1>{focus.heading}</h1>
+          ) : (
+            <h1>See every gap.<br />Secure every move.</h1>
+          )}
           <p className="hero-intro">
             We help businesses understand and reduce cyber risk through focused
             security audits, penetration testing and vulnerability scanning.
@@ -124,7 +128,7 @@ export default function HomePage({ region }: { region?: "uk" | "pk" }) {
               alt="Globe preview with cyber security standards by region"
               draggable="false"
               height="640"
-              src="/globe-frames/frame-000.png"
+              src="/globe-frames/frame-000.webp"
               width="640"
               fetchPriority="high"
               decoding="async"

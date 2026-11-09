@@ -16,6 +16,8 @@ const mediaStructuredData = {
   "@type": "CollectionPage",
   name: "Cybergaar news, events and media",
   url: "https://cybergaar.com/media",
+  isPartOf: { "@id": "https://cybergaar.com/#website" },
+  breadcrumb: { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://cybergaar.com" }, { "@type": "ListItem", position: 2, name: "News & media", item: "https://cybergaar.com/media" }] },
   mainEntity: {
     "@type": "ItemList",
     itemListElement: mediaItems.map((item, index) => ({ "@type": "ListItem", position: index + 1, name: item.title, url: item.href })),

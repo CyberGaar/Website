@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import SiteFooter from "../../components/SiteFooter";
 import SiteHeader from "../../components/SiteHeader";
 import { expertSuggestions, getExpertSuggestion } from "../../data/expertSuggestions";
+import { orgRef } from "../../seo";
 
 type ExpertSuggestionPageProps = { params: Promise<{ slug: string }> };
 
@@ -15,18 +16,18 @@ export async function generateMetadata({ params }: ExpertSuggestionPageProps): P
   const post = getExpertSuggestion(slug);
   if (!post) return {};
   return {
-    title: `${post.title} | Cybergaar Expert Suggestions`,
+    title: `${post.title} | Cybergaar`,
     description: post.summary,
     keywords: [post.category, "Cybergaar", "security implementation", "application security", "ISO audit", "vulnerability scanning", "penetration testing"],
     alternates: { canonical: `/expert-suggestions/${post.slug}` },
     openGraph: {
-      title: `${post.title} | Cybergaar Expert Suggestions`,
+      title: `${post.title} | Cybergaar`,
       description: post.summary,
       url: `https://cybergaar.com/expert-suggestions/${post.slug}`,
       siteName: "Cybergaar",
       locale: "en_US",
       type: "article",
-      images: [{ url: "/og.png", width: 1672, height: 941, alt: `${post.title} | Cybergaar` }],
+      images: [{ url: "/og.png", width: 1200, height: 675, alt: `${post.title} | Cybergaar` }],
     },
     twitter: { card: "summary_large_image", title: post.title, description: post.summary, images: ["/og.png"] },
   };
@@ -44,8 +45,8 @@ export default async function ExpertSuggestionDetailPage({ params }: ExpertSugge
     description: post.summary,
     image: "https://cybergaar.com/og.png",
     url: `https://cybergaar.com/expert-suggestions/${post.slug}`,
-    author: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
-    publisher: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
+    author: orgRef,
+    publisher: orgRef,
     mainEntityOfPage: post.externalUrl ?? `https://cybergaar.com/expert-suggestions/${post.slug}`,
   };
 

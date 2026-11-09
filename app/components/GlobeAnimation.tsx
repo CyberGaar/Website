@@ -6,7 +6,7 @@ const frameCount = 60;
 const frameDuration = 520;
 
 function framePath(index: number) {
-  return `/globe-frames/frame-${String(index).padStart(3, "0")}.png`;
+  return `/globe-frames/frame-${String(index).padStart(3, "0")}.webp`;
 }
 
 type IdleWindow = Window & {

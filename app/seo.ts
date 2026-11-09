@@ -11,6 +11,7 @@ export const socialProfiles = [
   "https://x.com/CyberGaar_",
   "https://github.com/CyberGaar",
   "https://huggingface.co/CyberGaar/CyberSecurity",
+  "https://www.youtube.com/@cybergaar",
 ];
 
 /** Adds page-specific Open Graph and Twitter tags derived from the title, description and canonical path. */
@@ -27,8 +28,11 @@ export function withSocial(meta: Metadata): Metadata {
       siteName: "Cybergaar",
       locale: "en_US",
       type: "website",
-      images: [{ url: "/og.png", width: 1672, height: 941, alt: "Cybergaar — See every gap. Secure every move." }],
+      images: [{ url: "/og.png", width: 1200, height: 675, alt: "Cybergaar — See every gap. Secure every move." }],
     },
     twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   };
 }
+
+/** Reference to the Organization node defined once in the root layout. */
+export const orgRef = { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Cybergaar", url: siteUrl } as const;

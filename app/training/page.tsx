@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { withSocial } from "../seo";
+import { orgRef, withSocial } from "../seo";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import { trainingSessions } from "../data/community";
@@ -19,10 +19,11 @@ const trainingStructuredData = {
       name: session.title,
       description: session.summary,
       ...(session.isoDate ? { startDate: session.isoDate } : {}),
+      ...(session.isoEndDate ? { endDate: session.isoEndDate } : {}),
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       location: { "@type": "Place", name: session.venue, address: { "@type": "PostalAddress", addressLocality: "Karachi", addressCountry: "PK" } },
-      organizer: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
+      organizer: orgRef,
       url: session.href,
     })),
     {

@@ -5,13 +5,19 @@ import SiteHeader from "../components/SiteHeader";
 import { categoryContent, getServicesByCategory, type ServiceCategory } from "../data/services";
 
 export const metadata: Metadata = withSocial({
-  title: "Cybersecurity Services | ISO Audit, Pentesting and Scanning | Cybergaar",
+  title: "Security Services: Audit, Pentest, Scanning | Cybergaar",
   description: "Explore Cybergaar services for ISO audit, ISO 27001 implementation, Cyber Essentials, SOC 2, PCI DSS, application security, vulnerability scanning and penetration testing.",
   keywords: ["cybersecurity services", "ISO audit", "ISO 27001 implementation", "Cyber Essentials", "SOC 2 readiness", "PCI DSS readiness", "application security", "vulnerability scanning", "penetration testing"],
   alternates: { canonical: "/services" },
 });
 
 const categories: ServiceCategory[] = ["audits", "vulnerability-scanning", "penetration-testing"];
+
+const servicesBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://cybergaar.com" }, { "@type": "ListItem", position: 2, name: "Services", item: "https://cybergaar.com/services" }],
+};
 
 export default function ServicesPage() {
   return (
@@ -44,6 +50,7 @@ export default function ServicesPage() {
           );
         })}
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesBreadcrumb) }} />
       <SiteFooter />
     </main>
   );

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import SiteFooter from "../../components/SiteFooter";
 import SiteHeader from "../../components/SiteHeader";
 import { caseStudies, getCaseStudy } from "../../data/caseStudies";
+import { orgRef } from "../../seo";
 
 type CaseStudyPageProps = { params: Promise<{ slug: string }> };
 
@@ -13,22 +14,22 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
   const study = getCaseStudy((await params).slug);
   return study ? {
-    title: `${study.title} | Security Case Study | Cybergaar`,
+    title: `${study.title} | Cybergaar`,
     description: `${study.summary} Representative Cybergaar work covering security assessment, remediation and business risk reduction.`,
     keywords: [study.sector, "security case study", "cybersecurity case study", "security assessment", "vulnerability scanning", "penetration testing", "security audit", ...(study.tags ?? [])],
     alternates: { canonical: `/case-studies/${study.slug}` },
     openGraph: {
-      title: `${study.title} | Security Case Study | Cybergaar`,
+      title: `${study.title} | Cybergaar`,
       description: `${study.summary} Representative Cybergaar work covering security assessment, remediation and business risk reduction.`,
       url: `https://cybergaar.com/case-studies/${study.slug}`,
       siteName: "Cybergaar",
       locale: "en_US",
       type: "article",
-      images: [{ url: "/og.png", width: 1672, height: 941, alt: `${study.title} | Cybergaar` }],
+      images: [{ url: "/og.png", width: 1200, height: 675, alt: `${study.title} | Cybergaar` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${study.title} | Security Case Study | Cybergaar`,
+      title: `${study.title} | Cybergaar`,
       description: `${study.summary}`,
       images: ["/og.png"],
     },
@@ -48,16 +49,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         description: study.summary,
         articleSection: study.sector,
         keywords: study.tags?.join(", "),
-        author: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com" },
-        publisher: { "@type": "Organization", name: "Cybergaar", url: "https://cybergaar.com", logo: { "@type": "ImageObject", url: "https://cybergaar.com/logo.png" } },
+        image: study.image ? `https://cybergaar.com${study.image}` : "https://cybergaar.com/og.png",
+        author: orgRef,
+        publisher: orgRef,
         mainEntityOfPage: `https://cybergaar.com/case-studies/${study.slug}`,
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Case studies", item: "https://cybergaar.com/case-studies" },
-          { "@type": "ListItem", position: 2, name: study.sector, item: "https://cybergaar.com/case-studies" },
-          { "@type": "ListItem", position: 3, name: study.title, item: `https://cybergaar.com/case-studies/${study.slug}` },
+          { "@type": "ListItem", position: 2, name: study.title, item: `https://cybergaar.com/case-studies/${study.slug}` },
         ],
       },
     ],

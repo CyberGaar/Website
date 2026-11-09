@@ -5,7 +5,7 @@ import SiteHeader from "../components/SiteHeader";
 import { industries } from "../data/industries";
 
 export const metadata: Metadata = withSocial({
-  title: "Industries | Cyber Security for Regulated and Digital Teams | Cybergaar",
+  title: "Industries We Secure | Cybergaar",
   description: "Cybergaar supports financial services, healthcare, SaaS, public sector, retail, ecommerce and critical infrastructure teams with security audits, application security, vulnerability scanning and penetration testing.",
   keywords: ["cyber security industries", "financial services security", "healthcare cyber security", "SaaS security", "application security", "retail cyber security", "critical infrastructure security", "security audit"],
   alternates: { canonical: "/industries" },
