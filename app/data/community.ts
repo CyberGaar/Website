@@ -103,6 +103,15 @@ export const mediaItems: MediaItem[] = [
     href: "https://www.techjuice.pk/nic-karachi-launches-cohort-15-welcomes-36-innovative-startups-in-pakistan/",
   },
   {
+    title: "Cyber Safe Pakistan 2026 highlights digital resilience at NIC Karachi",
+    outlet: "Daily Pakistan",
+    date: "2 May 2026",
+    kind: "Press",
+    isoDate: "2026-05-02",
+    summary: "Cybergaar CTO Omer Rastgar moderated a panel on cybersecurity risks and innovation at Cyber Safe Pakistan 2026, and joined a second panel on governance and resilience strategies.",
+    href: "https://en.dailypakistan.com.pk/02-May-2026/cyber-safe-pakistan-2026-highlights-digital-resilience-at-nic-karachi",
+  },
+  {
     title: "Celebrating the partners behind TechFest'26 at NED University",
     outlet: "TechFest on LinkedIn",
     date: "2026",
