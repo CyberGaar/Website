@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { mediaItems } from "./data/community";
 import { socialProfiles } from "./seo";
 
 const geistSans = Geist({
@@ -51,6 +52,10 @@ const siteStructuredData = {
       alternateName: "CyberGaar",
       logo: "https://cybergaar.com/logo.png",
       sameAs: socialProfiles,
+      memberOf: { "@type": "Organization", name: "National Incubation Center Karachi" },
+      subjectOf: mediaItems
+        .filter((item) => item.independent && item.isoDate)
+        .map((item) => ({ "@type": "NewsArticle", headline: item.title, url: item.href, datePublished: item.isoDate, publisher: { "@type": "Organization", name: item.outlet } })),
       areaServed: ["Global", "United Kingdom", "Pakistan"],
       email: "hello@cybergaar.com",
       contactPoint: {

@@ -64,6 +64,10 @@ export type MediaItem = {
   outlet: string;
   date: string;
   kind: "Press" | "Event" | "Community";
+  /** ISO publication date, only where the outlet shows an exact date. */
+  isoDate?: string;
+  /** True for independent third-party coverage. */
+  independent?: boolean;
   summary: string;
   href: string;
 };
@@ -74,8 +78,29 @@ export const mediaItems: MediaItem[] = [
     outlet: "DealBeat",
     date: "23 October 2026",
     kind: "Press",
+    isoDate: "2026-10-23",
+    independent: true,
     summary: "CyberGaar's founder joined Pakistan's cybersecurity delegation at GISEC Global 2026 in Dubai (16 to 18 September). CyberGaar is a Cohort 15 startup at NIC Karachi.",
     href: "https://dealbeat.ink/national-incubation-center-karachi-startup-cybergaar-joins-pakistan-cybersecurity-delegation-at-gisec-global-2026/",
+  },
+  {
+    title: "NIC Karachi Cohort 15: 36 startups selected for the 2026 incubation programme",
+    outlet: "DealBeat",
+    date: "4 April 2026",
+    kind: "Press",
+    isoDate: "2026-04-04",
+    independent: true,
+    summary: "DealBeat lists CyberGaar among the 36 startups selected for the National Incubation Center Karachi Cohort 15, a cohort spanning sectors that include cybersecurity.",
+    href: "https://dealbeat.ink/nic-karachi-cohort-15-36-startups-selected-for-incubation-program-2026/",
+  },
+  {
+    title: "NIC Karachi launches Cohort 15, welcomes 36 innovative startups in Pakistan",
+    outlet: "TechJuice",
+    date: "2026",
+    kind: "Press",
+    independent: true,
+    summary: "TechJuice names CyberGaar among the startups featured in NIC Karachi Cohort 15.",
+    href: "https://www.techjuice.pk/nic-karachi-launches-cohort-15-welcomes-36-innovative-startups-in-pakistan/",
   },
   {
     title: "Celebrating the partners behind TechFest'26 at NED University",

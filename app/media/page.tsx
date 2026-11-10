@@ -36,7 +36,7 @@ export default function MediaPage() {
         {mediaItems.map((item, index) => (
           <article className="case-study-row" key={item.href}>
             <div className="case-study-index">{String(index + 1).padStart(2, "0")}</div>
-            <div><p>{item.kind.toUpperCase()} · {item.outlet.toUpperCase()} · {item.date.toUpperCase()}</p><h2>{item.title}</h2><span>{item.summary}</span></div>
+            <div><p>{item.independent ? "INDEPENDENT COVERAGE" : item.kind.toUpperCase()} · {item.outlet.toUpperCase()} · {item.date.toUpperCase()}</p><h2>{item.title}</h2><span>{item.summary}</span></div>
             <a href={item.href} target="_blank" rel="noreferrer">Read more <span aria-hidden="true">⟶</span></a>
           </article>
         ))}

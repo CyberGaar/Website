@@ -1,6 +1,7 @@
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 import { caseStudies } from "../data/caseStudies";
+import { mediaItems } from "../data/community";
 
 const offers = [
   {
@@ -37,6 +38,9 @@ const trustItems = [
   { name: "Stratagem Ventures", href: "https://stratagemven.com/" },
   { name: "VectraView", href: "https://vectraview.com/" },
   { name: "MarketLytics", href: "https://marketlytics.com/" },
+  { name: "Zvolta", href: "https://zvolta.com/" },
+  { name: "UBIT, University of Karachi", href: "https://www.uok.edu.pk/" },
+  { name: "Salim Habib University", href: "https://shu.edu.pk/" },
   { name: "Zairen", href: "https://zairen.co/" },
   { name: "ComplyEncrypt", href: "https://complyencrypt.com/" },
   { name: "Risk Associates", href: "https://riskassociates.com/" },
@@ -205,6 +209,21 @@ export default function HomePage({ region }: { region?: "uk" | "pk" }) {
             <article key={service.title}>
               <h3><a href={service.href}>{service.title}</a></h3>
               <p>{service.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="search-services" aria-label="Cybergaar in the news">
+        <div className="reference-section-title">
+          <h2>Cybergaar in the news</h2>
+          <a href="/media">All news and media <Arrow /></a>
+        </div>
+        <div className="search-service-grid">
+          {mediaItems.filter((item) => item.independent).map((item) => (
+            <article key={item.href}>
+              <h3><a href={item.href} target="_blank" rel="noopener">{item.title}</a></h3>
+              <p>{item.outlet} · {item.date}. {item.summary}</p>
             </article>
           ))}
         </div>
