@@ -133,6 +133,37 @@ export const caseStudies: CaseStudy[] = [
       { issue: "Reinfection Risk: restoring a server without closing the original access path could restart the incident.", fix: "Focused the investigation on initial access, credential exposure, persistence and remote-access paths before declaring systems ready for recovery." },
     ],
   },
+  {
+    slug: "mobile-platform-and-legacy-device-tier-assessment",
+    sector: "Mobility technology",
+    title: "Separating a hardened mobile platform from an exposed legacy device tier",
+    summary: "A connected-hardware company asked for an independent assessment of its Android app and backend. The new platform held up. The real risk sat on a retired-looking legacy tier that was still live.",
+    tags: ["Mobile application security", "Android", "OWASP MASVS", "API security", "Static analysis", "Dynamic analysis", "Attack chain analysis", "Legacy infrastructure"],
+    metrics: [
+      { label: "Findings reported", value: "36" },
+      { label: "Critical and high", value: "10" },
+      { label: "Testing window", value: "6 days" },
+      { label: "Attack chains reaching Critical", value: "4" },
+    ],
+    challenge: "The client had moved to a new app and backend, but an older device-management stack was still reachable from the internet. It was unclear whether that stack was retired, still in use, or somewhere in between. The team needed to know what an attacker could actually do, which estate the risk belonged to, and what to fix first.",
+    approach: "Cybergaar tested the Android app with static analysis, dynamic analysis on an instrumented emulator and authenticated backend and API testing, mapped to OWASP MASVS v2.1, the OWASP API Security Top 10 (2023) and CVSS 3.1. Actions with real-world side effects, such as starting billed sessions or moving money, were deliberately left untested. Findings were then combined into attack chains to show where medium and high issues escalate to critical, and each impact claim was labelled as demonstrated, inferred or conditional.",
+    outcome: "The client received a 77-page report that cleanly separated the two estates. The customer app and its platform showed no remote code execution or authentication bypass in testing, and their main gaps were hardening items such as update signing. The critical exposure was on the legacy device tier, with credentials that were shared beyond it. The report gave a prioritised fix order, including the few changes that break several attack chains at once.",
+    challengePoints: [
+      { title: "Two estates, one risk picture", detail: "The new platform and the legacy tier looked like one system from outside, so a finding on one could be mistaken for a finding on the other." },
+      { title: "Shared secrets", detail: "Credentials and keys on the legacy tier were not scoped to it, which turned an old system into a possible pivot toward the new one." },
+      { title: "Unclear ownership of the old stack", detail: "Evidence suggested the legacy tier was both superseded and still active, so the client needed a clear answer on whether to retire it or treat it as live." },
+    ],
+    solutionPoints: [
+      { title: "Evidence-based scoping", detail: "Every finding was tied to the estate it sat on, with a stack-boundary view so remediation could be assigned to the right team." },
+      { title: "Attack chain analysis", detail: "Medium and high findings were combined to show which fixes break several chains at once, so effort went where it reduced the most risk." },
+      { title: "Honest impact labelling", detail: "Business impact was labelled demonstrated, inferred or conditional, so leadership could separate real exposure from theoretical risk." },
+    ],
+    hurdles: [
+      { issue: "Safe testing of money-moving features: billing and top-up actions could not be exercised against production without real financial effect.", fix: "Left those mutation paths out of scope on purpose, documented them as remaining work and tested everything around them." },
+      { issue: "Hardened release build: the app used code protection and a compiled JavaScript bundle that limit casual inspection.", fix: "Combined bytecode decompilation, runtime instrumentation and traffic capture to confirm behaviour dynamically rather than relying on static output." },
+      { issue: "Findings that only matter in combination: several issues looked minor alone but escalated when chained.", fix: "Mapped chains explicitly and noted where one change set should fix several findings together." },
+    ],
+  },
 ];
 
 export const getCaseStudy = (slug: string) => caseStudies.find((study) => study.slug === slug);
