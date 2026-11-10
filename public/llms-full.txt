@@ -77,9 +77,10 @@ delivery, and continuous resilience.
 
 ## Case studies
 
-Four representative engagements: Zero Trust controls for shared customer access, auditing
-Cisco routers for misconfiguration and legacy risk, AI governance for a SaaS provider using
-ISO 42001, and digital forensics after ransomware in a factory environment. See
+Client engagements, shared with approval and anonymised: Zero Trust controls for shared customer
+access, auditing Cisco routers for misconfiguration and legacy risk, AI governance for a SaaS
+provider using ISO 42001, digital forensics after ransomware in a factory environment, and a
+mobile platform and legacy device tier security assessment. See
 https://cybergaar.com/case-studies.
 
 ## Training and community

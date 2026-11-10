@@ -242,7 +242,7 @@ export default function HomePage({ region }: { region?: "uk" | "pk" }) {
                 <div className="story-grid-lines" aria-hidden="true" />
               </div>
               <div className="story-copy">
-                <p className="story-type">{story.sector.toUpperCase()} · REPRESENTATIVE ENGAGEMENT</p>
+                <p className="story-type">{story.sector.toUpperCase()} · CLIENT ENGAGEMENT</p>
                 <h3>{story.title}</h3>
                 <p>{story.summary}</p>
                 <a href={`/case-studies/${story.slug}`} aria-label={`Read: ${story.title}`}>Read the story <Arrow /></a>

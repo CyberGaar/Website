@@ -15,12 +15,12 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   const study = getCaseStudy((await params).slug);
   return study ? {
     title: `${study.title} | Cybergaar`,
-    description: `${study.summary} Representative Cybergaar work covering security assessment, remediation and business risk reduction.`,
+    description: `${study.summary} Cybergaar client work covering security assessment, remediation and business risk reduction.`,
     keywords: [study.sector, "security case study", "cybersecurity case study", "security assessment", "vulnerability scanning", "penetration testing", "security audit", ...(study.tags ?? [])],
     alternates: { canonical: `/case-studies/${study.slug}` },
     openGraph: {
       title: `${study.title} | Cybergaar`,
-      description: `${study.summary} Representative Cybergaar work covering security assessment, remediation and business risk reduction.`,
+      description: `${study.summary} Cybergaar client work covering security assessment, remediation and business risk reduction.`,
       url: `https://cybergaar.com/case-studies/${study.slug}`,
       siteName: "Cybergaar",
       locale: "en_US",
@@ -112,7 +112,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </section>
       ) : null}
 
-      <section className="case-placeholder-note"><p>STORY STATUS</p><h2>This representative case study is ready for approved client detail, evidence and metrics.</h2><a href="/contact">Discuss a similar challenge <span aria-hidden="true">→</span></a></section>
+      <section className="case-placeholder-note"><p>NEXT STEP</p><h2>Facing a similar challenge? Let’s talk.</h2><a href="/contact">Discuss a similar challenge <span aria-hidden="true">→</span></a></section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudyStructuredData) }} />
       <SiteFooter />
     </main>
