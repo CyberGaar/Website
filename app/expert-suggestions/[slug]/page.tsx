@@ -45,6 +45,7 @@ export default async function ExpertSuggestionDetailPage({ params }: ExpertSugge
     description: post.summary,
     image: "https://cybergaar.com/og.png",
     url: `https://cybergaar.com/expert-suggestions/${post.slug}`,
+    ...(post.datePublished ? { datePublished: post.datePublished, dateModified: post.datePublished } : {}),
     author: orgRef,
     publisher: orgRef,
     mainEntityOfPage: post.externalUrl ?? `https://cybergaar.com/expert-suggestions/${post.slug}`,
@@ -78,6 +79,23 @@ export default async function ExpertSuggestionDetailPage({ params }: ExpertSugge
           ))}
         </ol>
       </section>
+      {post.sections?.length ? (
+        <section className="expert-detail-body">
+          <div>
+            <p className="eyebrow"><span /> FULL GUIDE</p>
+            <h2>{post.datePublished ? `Published ${new Date(post.datePublished).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}` : "In detail"}</h2>
+          </div>
+          <div className="expert-guide">
+            {post.sections.map((section) => (
+              <article key={section.heading}>
+                <h3>{section.heading}</h3>
+                {section.paragraphs?.map((text) => <p key={text}>{text}</p>)}
+                {section.list ? <ul>{section.list.map((item) => <li key={item}>{item}</li>)}</ul> : null}
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
       <section className="catalog-note">
         <p>Related Cybergaar services for this suggestion.</p>
         <div className="expert-related-links">

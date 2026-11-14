@@ -345,6 +345,12 @@ footer { padding: 50px max(5vw, 24px) 26px; border-top: 1px solid var(--line); b
 .expert-detail-body li:last-child { border-bottom: 1px solid var(--line); }
 .expert-detail-body li > span { color: #6c8189; font: 600 10px/1 var(--font-geist-mono), monospace; }
 .expert-detail-body li p { margin: 0; color: #59717a; font-size: 15px; line-height: 1.65; }
+.expert-guide article { padding: 0 0 34px; }
+.expert-guide h3 { margin: 0 0 12px; font-size: 24px; line-height: 1.2; letter-spacing: -.02em; font-weight: 560; }
+.expert-guide p { margin: 0 0 14px; color: #59717a; font-size: 16px; line-height: 1.75; }
+.expert-guide ul { margin: 0; padding-left: 20px; color: #59717a; font-size: 16px; line-height: 1.75; }
+.expert-guide li { display: list-item; padding: 4px 0; border: 0; }
+.expert-guide li:last-child { border: 0; }
 .expert-related-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: end; }
 .expert-related-links a { padding: 10px 14px; border: 1px solid #bec6c9; border-radius: 999px; color: #294753; font-size: 12px; line-height: 1.25; }
 .expert-related-links a:hover { border-color: var(--ink); background: var(--soft); }

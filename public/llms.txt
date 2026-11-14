@@ -38,6 +38,8 @@ exposure and making the next action clear.
 - [News and media](https://cybergaar.com/media): press coverage and events, including GISEC Global
   2026 and Cyber Circle at NIC Karachi.
 - [Expert suggestions](https://cybergaar.com/expert-suggestions): practical security guidance.
+- [Cyber Essentials evidence checklist](https://cybergaar.com/expert-suggestions/cyber-essentials-evidence-checklist): what UK organisations should gather for the five controls before applying.
+- [How to scope a penetration test](https://cybergaar.com/expert-suggestions/pentest-scope-that-matches-business-risk): a step-by-step scoping guide and checklist.
 - [Case studies](https://cybergaar.com/case-studies): client engagements, shared with approval and anonymised.
 - Brand note: the company name is written Cybergaar on this site and CyberGaar on some social profiles.
 
